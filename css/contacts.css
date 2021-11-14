@@ -1,0 +1,124 @@
+body{
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: linear-gradient(150deg, #FCFCF0,  #f3f6d9, #cfca90);
+}
+
+#navbar{
+    background-color: #D09f74;
+}
+
+.searchbar{
+    margin-right: -100px;
+}
+
+#searchBox{
+    width: 400px;
+}
+
+#contacts{
+    max-width:70%;
+}
+
+#searchMsg{
+    margin-top: 5rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+#toUserPage{
+    margin-right: 1.5rem;
+    text-decoration: none;
+    color: #4a86ff;
+}
+
+#toUserPage:hover{
+    color: white;
+}
+
+.error-message{
+    color: red;
+    margin: 5px 0px;
+    font-size: 0.9rem;
+}
+
+#navSpacer{
+    margin: 6rem auto;
+}
+
+.list-group-item, .card-footer{
+    background-color: #f8e1c5;
+}
+
+.card-header{
+    background-color: #d09f74;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.card-footer{
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.card{
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+        transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+    cursor: pointer;
+}
+
+.card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+
+}
+
+.btn-custom{
+    color: white;
+    background-color: #6F9EFF;
+    border-radius: 5px;
+}
+
+/*inverts button colors when hovering*/
+.btn-danger:hover{
+    color: #c82333;
+    background-color: #FFF;
+    border-color: rgb(20, 20, 20);
+}
+.btn-custom:hover{
+    color: #6F9EFF;
+    background-color: #FFF;
+    border-color: rgb(20, 20, 20);
+}
+
+.btn-outline-secondary{
+    border-color: rgb(20, 20, 20);
+}
+/* ----------------------------------------------*/
+
+.modal-dialog{
+    margin: 5rem auto;
+}
+
+.modal-header{
+    background-color: #D09f74;
+    border: none;
+}
+
+.modal-title{
+    margin-right: -25px;
+}
+
+.modal-body, .modal-footer{
+    background-color: #f8e1c5;
+    border: none;
+}
+
+.inputPad{
+    padding-top: 13px;
+}

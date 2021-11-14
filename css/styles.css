@@ -1,0 +1,61 @@
+body{
+    background-image: url(../images/pexels-pixabay-45238.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+}
+
+.form-group{
+    margin-bottom: 0;;
+}
+
+#passwordVal{
+    margin-bottom: 8px;   
+}
+
+.container{
+    margin-left: -8%;
+}
+
+#main-signin{
+    margin-top: 10%;
+}
+
+#main-signup{
+    margin-top: 5%;
+}
+
+#signUp {
+    margin-top: 7px;
+}
+
+label{
+    margin: .5rem 0 0 0;
+}
+
+.card{
+    background-color: rgba(250,251,237,0);
+    border: none;
+}
+
+.btn-custom{
+    color: white;
+    background-color: #6F9EFF;
+}
+
+/* inverts buttons colors */
+.btn-custom:hover{
+    color: #007BFF;
+    background-color: #FFF;
+    border-color: rgb(20, 20, 20);
+}
+
+.btn-outline-secondary{
+    border-color: rgb(20, 20, 20);
+}
+
+.error-message{
+    color: red;
+    margin: 5px 0px;
+    font-size: 0.9rem;
+}
