@@ -4,6 +4,12 @@ var updateEmail = false;
 var updateFirst = false;
 var updateLast = false;
 
+// COMMENT
+//
+//
+//
+//
+
 window.onload = function () {
   validateUser();
   $("#edit-error-message").text("");
@@ -43,7 +49,8 @@ $("#edit-user-btn").on("click", function (event) {
       Password = md5(Password);
     }
   }
-
+//
+//
   if (updateFirst || updateLast) {
     if (!FirstName.length || !LastName.length) {
       $("#edit-error-message").text("Please enter a new name for your account");
