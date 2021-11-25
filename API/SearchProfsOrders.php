@@ -5,10 +5,8 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("SELECT * FROM order WHERE (FirstName LIKE ? OR LastName LIKE ? OR Phone LIKE ? OR Email LIKE ? OR FullName LIKE ?) AND UserID=? ORDER BY LastName");
-	$search = "%". $inData["Search"] . "%";
-	$phone = "%". $inData["Phone"] . "%";
-	$stmt->bind_param("ssssss", $search, $search, $phone, $search, $search, $inData["UserID"]);
+	$stmt = $conn->prepare("SELECT * FROM order WHERE fid=? ORDER BY cid");
+	$stmt->bind_param("i", $inData["fid"]);
 	$stmt->execute();
 
 	$result = $stmt->get_result();
@@ -21,7 +19,7 @@
 		echo json_encode($rows);
   	}
     else {
-		returnWithError("No Contact Found");
+		returnWithError("No Orders Found");
   	}
 
 	$stmt->close();
