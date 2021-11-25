@@ -6,7 +6,7 @@
 	$inData = getRequestInfo();
 
 	$stmt = $conn->prepare("SELECT * FROM order WHERE semester=?");
-	$stmt->bind_param("i", $inData["semester"]);
+	$stmt->bind_param("s", $inData["semester"]);
 	$stmt->execute();
 
 	$result = $stmt->get_result();
