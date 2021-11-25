@@ -29,6 +29,24 @@ body{
     margin-top: 7px;
 }
 
+#forgotPassword {
+    margin-top: 7px;
+}
+
+#forgotPasswordInstructions {
+    display: inline-block;
+    width: 280px;
+    margin-bottom: 0rem;
+}
+
+#forgotPasswordForm {
+    padding-top: 0rem;
+}
+
+#submit {
+    margin-top: 15px;
+}
+
 label{
     margin: .5rem 0 0 0;
 }
