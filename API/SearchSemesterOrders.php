@@ -5,7 +5,8 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("SELECT * FROM order");
+	$stmt = $conn->prepare("SELECT * FROM order WHERE semester=?");
+	$stmt->bind_param("i", $inData["semester"]);
 	$stmt->execute();
 
 	$result = $stmt->get_result();
@@ -18,7 +19,7 @@
 		echo json_encode($rows);
   	}
     	else {
-		returnWithError("No Orders Found");
+		returnWithError("No Orders Found for this Semester");
   	}
 
 	$stmt->close();
