@@ -5,8 +5,8 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("UPDATE order SET FirstName=? WHERE UserID=?");
-	$stmt->bind_param("ss", $inData["FirstName"], $inData["UserID"]);
+	$stmt = $conn->prepare("INSERT INTO orders (fid, cid, isbn, orderBy, semester, title, author, edition, publisher) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+	$stmt->bind_param("iiidsssis", $inData["fid"], $inData["cid"], $inData["isbn"], $inData["orderBy"], $inData["semester"], $inData["title"], $inData["author"], $inData["edition"], $inData["publisher"]);
 
 	$stmt->execute();
 
