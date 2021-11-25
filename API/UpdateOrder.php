@@ -5,7 +5,7 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("UPDATE Users SET FirstName=? WHERE UserID=?");
+	$stmt = $conn->prepare("UPDATE order SET FirstName=? WHERE UserID=?");
 	$stmt->bind_param("ss", $inData["FirstName"], $inData["UserID"]);
 
 	$stmt->execute();
