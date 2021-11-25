@@ -19,7 +19,7 @@
 	}
 	else{
 		$stmt = $conn->prepare("INSERT INTO orders (fid, cid, isbn, orderBy) VALUES (?, ?, ?, ?)");
-		$stmt->bind_param("iiids", $inData["fid"], $inData["cid"], $inData["isbn"], $inData["orderBy"], $inData["semester"]);
+		$stmt->bind_param("iiidsssis", $inData["fid"], $inData["cid"], $inData["isbn"], $inData["orderBy"], $inData["semester"], $inData["title"], $inData["author"], $inData["edition"], $inData["publisher"]);
 		$stmt->execute();
 
 		returnWithInfo($stmt->affected_rows);
