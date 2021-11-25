@@ -5,7 +5,8 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("UPDATE order SET processed=true WHERE ContactID=? AND UserID=?");
+	$stmt = $conn->prepare("UPDATE order SET processed=true  WHERE fid=? AND cid=? AND isbn=? AND semester=?");
+	$stmt->bind_param("iiis", $inData["fid"], $inData["cid"], $inData["isbn"], $inData["semester"]);
 	$stmt->execute();
 
 	returnWithInfo($stmt->affected_rows);
