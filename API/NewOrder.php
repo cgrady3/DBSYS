@@ -18,7 +18,7 @@
 		returnWithError("Order Already Exists");
 	}
 	else{
-		$stmt = $conn->prepare("INSERT INTO orders (fid, cid, isbn, orderBy) VALUES (?, ?, ?, ?)");
+		$stmt = $conn->prepare("INSERT INTO orders (fid, cid, isbn, orderBy, semester, title, author, edition, publisher) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		$stmt->bind_param("iiidsssis", $inData["fid"], $inData["cid"], $inData["isbn"], $inData["orderBy"], $inData["semester"], $inData["title"], $inData["author"], $inData["edition"], $inData["publisher"]);
 		$stmt->execute();
 
