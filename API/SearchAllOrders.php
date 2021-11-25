@@ -5,8 +5,7 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=? ORDER BY LastName");
-	$stmt->bind_param("s", $inData["UserID"]);
+	$stmt = $conn->prepare("SELECT * FROM order");
 	$stmt->execute();
 
 	$result = $stmt->get_result();
@@ -19,7 +18,7 @@
 		echo json_encode($rows);
   	}
     	else {
-		returnWithError("No Contact Found");
+		returnWithError("No Orders Found");
   	}
 
 	$stmt->close();
