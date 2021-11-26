@@ -15,42 +15,129 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 	<link href="../css/styles.css" rel="stylesheet">
     <link href="../css/professorMain.css" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script type="text/javascript" src="js/script.js" defer></script>
-	<script type="text/javascript" src="js/md5.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../js/professorMain.js" defer></script>
 </head>
 
 <body>
     <div class="container-fluid" id="mainHeading">
         <div class="row d-flex justify-content-center">
             <h1>Professor Main Page</h1>
-            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p2">Change Password</button>
-            <a class="btn btn-sm btn-outline-secondary align-self-center p2" id="returnToLogin" href="/index.html">Return to Login</a>
+            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2"
+                onclick="showChangePasswordContent()">Change Password</button>
+            <a class="btn btn-sm btn-outline-secondary align-self-center p-2" id="returnToLogin" href="/index.html">Return to Login</a>
         </div>
     </div>
     <div class="container-fluid" id="mainContainer">
-        <div class="container-fluid" id="mainToolbar">
-            <button class="btn btn-sm btn-outline-light toolbarButton">View Book Request Forms</button>
-            <button class="btn btn-sm btn-outline-light toolbarButton">New Book Request Form</button>
-            <button class="btn btn-sm btn-outline-light toolbarButton">Edit Existing Form</button>
+        <div class="container-fluid d-flex" id="mainToolbar">
+            <button class="btn btn-sm btn-outline-light toolbarButton"
+                onclick="showViewBookRequestsContent()">View Book Request Forms</button>
+            <button class="btn btn-sm btn-outline-light toolbarButton"
+                onclick="showNewBookRequestContent()">New Book Request Form</button>
+            <button class="btn btn-sm btn-outline-light toolbarButton"
+                onclick="showEditRequestContent()">Edit Existing Form</button>
+            <button class="btn btn-sm btn-outline-light ml-auto toolbarButton"
+                onclick="clearWorkspaceWindow()">Clear</button>
         </div>
         <div class="container-fluid" id="mainContent">
+
             <!-- Change Password Content -->
-            <div class="" id="changePasswordForm">
-
+            <div class="" id="changePasswordContent" style="display:none">
+                <h3 class="contentHeading">Change Password</h3>
+                <form id="changePasswordForm">
+                    <div class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <input class="form-control" id="newPassword" type="password">
+                        <small id="passwordVal" class="form-text text-muted">Password must be 8-15 characters
+                            long</small>
+                        <button class="btn btn-sm btn-light" type="button" 
+                            onclick="doChangePassword()">Submit</button>
+                    </div>
+                </form>
             </div>
+
             <!-- View Book Request Forms Content -->
-            <div>
-
+            <div class="" id="viewRequestsContent" style="display:none">
+                <h3 class="contentHeading">View Book Request Forms</h3>
+                <!-- Dropdown menu for viewing by semester -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                        id="viewRequestsSemesterDropdown" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        View by Semester
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="viewRequestsSemesterDropdown">
+                        <li><a class="dropdown-item" href='#' onclick="viewRequestForm('Fall 2021')">Fall 2021</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="viewRequestForm('Spring 2022')">Spring 2022</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="viewRequestForm('Summer 2022')">Summer 2022</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="viewRequestForm('Fall 2022')">Fall 2022</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="viewRequestForm('Spring 2023')">Spring 2023</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="viewRequestForm('Summer 2023')">Summer 2023</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="viewRequestForm('Fall 2023')">Fall 2023</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="viewRequestForm('Spring 2024')">Spring 2024</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="viewRequestForm('Summer 2024')">Summer 2024</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="viewRequestForm('Fall 2024')">Fall 2024</a></li>
+                    </ul>
+                </div>
             </div>
+
             <!-- New Book Request Form Content -->
-            <div>
+            <div class="" id="newRequestContent" style="display:none">
+                <h3 class="contentHeading">Create New Book Request Form</h3>
+                <!-- Dropdown menu for viewing by semester -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                        id="newRequestSemesterDropdown" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Select Semester
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="newRequestSemesterDropdown">
+                        <li><a class="dropdown-item" href='#' >Fall 2021</a></li>
+                        <li><a class="dropdown-item" href='#' >Spring 2022</a></li>
+                        <li><a class="dropdown-item" href='#' >Summer 2022</a></li>
+                        <li><a class="dropdown-item" href='#' >Fall 2022</a></li>
+                        <li><a class="dropdown-item" href='#' >Spring 2023</a></li>
+                        <li><a class="dropdown-item" href='#' >Summer 2023</a></li>
+                        <li><a class="dropdown-item" href='#' >Fall 2023</a></li>
+                        <li><a class="dropdown-item" href='#' >Spring 2024</a></li>
+                        <li><a class="dropdown-item" href='#' >Summer 2024</a></li>
+                        <li><a class="dropdown-item" href='#' >Fall 2024</a></li>
+                    </ul>
+                </div>
+                <form id="newBookRequestForm">
+                    <div class="form-group">
+                        <label for=""></label>
+                    </div>
+                </form>
+            </div>
 
-            </div>
             <!-- Edit Existing Form Content -->
-            <div>
-                
+            <div class="" id="editRequestContent" style="display:none">
+                <h3 class="contentHeading">Edit Existing Book Request Form</h3>
+                <!-- Dropdown menu for viewing by semester -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                        id="viewRequestsSemesterDropdown" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Edit by Semester
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="editRequestsSemesterDropdown">
+                        <li><a class="dropdown-item" href='#' onclick="editRequestForm('Fall 2021')">Fall 2021</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="editRequestForm('Spring 2022')">Spring 2022</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="editRequestForm('Summer 2022')">Summer 2022</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="editRequestForm('Fall 2022')">Fall 2022</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="editRequestForm('Spring 2023')">Spring 2023</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="editRequestForm('Summer 2023')">Summer 2023</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="editRequestForm('Fall 2023')">Fall 2023</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="editRequestForm('Spring 2024')">Spring 2024</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="editRequestForm('Summer 2024')">Summer 2024</a></li>
+                        <li><a class="dropdown-item" href='#' onclick="editRequestForm('Fall 2024')">Fall 2024</a></li>
+                    </ul>
+                </div>
             </div>
+
         </div>
     </div>
 </body>
