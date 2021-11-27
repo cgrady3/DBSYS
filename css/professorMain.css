@@ -39,6 +39,14 @@
     max-width: 500px;
 }
 
+.newRequestForm {
+    max-width: 500px;
+}
+
+#newRequestSubmit {
+    margin-top: 10px;
+}
+
 .contentHeading {
     margin-top: 5px;
 }

@@ -6,6 +6,10 @@ function doChangePassword() {
     alert("I don't work yet! :)");
 }
 
+function doSubmitNewBookRequest() {
+    alert("I don't work yet! :)");
+}
+
 //#################################################################################################
 //                                   Front End Handler Functions
 //#################################################################################################
