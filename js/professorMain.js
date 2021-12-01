@@ -6,8 +6,17 @@ function doChangePassword() {
     alert("I don't work yet! :)");
 }
 
+// TODO: Implement, does nothing at the moment
 function doSubmitNewBookRequest() {
     alert("I don't work yet! :)");
+
+    // Check the database to see if any request forms exist for the selected term
+
+    // If the request form exists, display a message to the user that the form already exists
+    // and they must "Edit Existing Form" to make changes to it
+
+    // If the request form does not exist, display a success message to the user that a new form
+    // was created
 }
 
 //#################################################################################################
@@ -16,11 +25,24 @@ function doSubmitNewBookRequest() {
 // TODO: Implement, does nothing at the moment
 function viewRequestForm(semester) {
     alert("The selected semester is : " + semester + " and I don't do anything else yet :(");
+
+    // Check the database to see if any request forms exist for the selected term
+
+    // If the request form exists, import its information into a table to display to the user
+
+    // If the request form does not exist, display a message to the user
 }
 
 // TODO: Implement, does nothing at the moment
 function editRequestForm(semester) {
-    alert("The selected semester is : " + semester + " and I don't do anything else yet :(");  
+    alert("The selected semester is : " + semester + " and I don't do anything else yet :(");
+
+    // Check the database to see if any request forms exist for the selected term
+
+    // If the request form exists, import its information into a table and allow the user to
+    // add books, delete books, or delete the current request form
+
+    // If the request form does not exist, display a message to the user
 }
 
 //#################################################################################################

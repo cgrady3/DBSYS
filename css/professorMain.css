@@ -6,7 +6,7 @@
 
 #mainContainer {
     background-color: rgba(0, 0, 0, 0.192);
-    height: 600px;
+    height: 650px;
     max-width: 70%;
     max-height: 70%;
     border-radius: 10px;
@@ -35,6 +35,26 @@
     border-bottom-right-radius: 10px;
 }
 
+.requestForm {
+    height: 475px;
+    background-color:rgba(255, 219, 189, 0.671);
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+#requestFormTitle {
+    padding-left: 10px;
+}
+
+.tableWrapper {
+    max-height: 416px;
+}
+
+.tableButton {
+    height: 27px;
+    line-height: 0px;
+}
+
 #newPassword {
     max-width: 500px;
 }
@@ -44,7 +64,7 @@
 }
 
 #newRequestSubmit {
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .contentHeading {
