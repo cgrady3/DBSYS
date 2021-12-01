@@ -1,0 +1,76 @@
+
+#mainHeading {
+    margin-top: 80px;
+    max-width: 70%;
+}
+
+#mainContainer {
+    background-color: rgba(0, 0, 0, 0.192);
+    height: 650px;
+    max-width: 70%;
+    max-height: 70%;
+    border-radius: 10px;
+    padding: 0px;
+}
+
+#mainToolbar {
+    background-color: rgb(102, 102, 102);
+    height: 40px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: inherit;
+    margin: auto;
+}
+
+.toolbarButton {
+    margin-top: 4px;
+    margin-left: 2px;
+    margin-right: 2px;
+    height: 32px;
+}
+
+#mainContent {
+    height: calc(100% - 40px);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.requestForm {
+    height: 475px;
+    background-color:rgba(255, 219, 189, 0.671);
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+#requestFormTitle {
+    padding-left: 10px;
+}
+
+.tableWrapper {
+    max-height: 416px;
+}
+
+.tableButton {
+    height: 27px;
+    line-height: 0px;
+}
+
+#newPassword {
+    max-width: 500px;
+}
+
+.newRequestForm {
+    max-width: 500px;
+}
+
+#newRequestSubmit {
+    margin-top: 12px;
+}
+
+.contentHeading {
+    margin-top: 5px;
+}
+
+#returnToLogin {
+    margin-left: 5px;
+}
