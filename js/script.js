@@ -1,4 +1,4 @@
-var urlBase = "http://contactfulDelivery.club/API";
+var urlBase = "http://dbsys-shy4s.ondigitalocean.app/API";
 var localURLBase = "http://localhost:5500/API";
 var extension = ".php";
 var UserID = 0;
@@ -11,13 +11,15 @@ window.onload = function () {
 function loginUser() {
   UserID = 0;
 
-  var form = document.getElementById("login-form");
+  var form = document.("#login-form");
   function handleForm(event) {
     event.preventDefault();
   }
+
   form.addEventListener("submit", handleForm);
   var login = $("#user-email").val().trim().toLowerCase();
   var Password = $("#user-password").val().trim();
+
   // hashing password
   Password = md5(Password);
 
