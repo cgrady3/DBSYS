@@ -13,7 +13,7 @@ function validateUser() {
   if (UserID <= 0) doLogout();
 }
 
-var urlBase = "http://contactfulDelivery.club/API";
+var urlBase = "http://dbsys-shy4s.ondigitalocean.app/API";
 var extension = ".php";
 
 var selectedContact, selectedCard;

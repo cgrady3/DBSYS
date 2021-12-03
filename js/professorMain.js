@@ -1,3 +1,6 @@
+var urlBase = "http://dbsys-shy4s.ondigitalocean.app/API";
+var extension = ".php";
+
 //#################################################################################################
 //                                     API Calling Functions
 //#################################################################################################
@@ -49,11 +52,9 @@ function editRequestForm(semester) {
 //                                        JQuery Functions
 //#################################################################################################
 // Updates the View Requests dropdown label text to match the selected semester
-$(".dropdown-menu li a").click(function(){
-    $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
-    $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+$("#semester").click(function(){
+    var semester = 
 });
-
 
 //#################################################################################################
 //                                 Main Content View Controllers

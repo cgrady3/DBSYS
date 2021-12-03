@@ -2,7 +2,7 @@
 	// config db 
 	$dbHost     = "db-mysql-nyc3-24748-do-user-10242737-"; 
 	$dbUsername = "doadmin"; 
-	$dbPassword = "YdnsPnEEPp1TBo1k "; 
+	$dbPassword = "YdnsPnEEPp1TBo1k"; 
 	$dbName     = "DB systems"; 
 	 
 	// establish db connection 
