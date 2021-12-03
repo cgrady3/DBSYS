@@ -1,5 +1,11 @@
 var urlBase = "http://dbsys-shy4s.ondigitalocean.app/API";
 var extension = ".php";
+var fid;
+
+window.onload = function () {
+    readCookie();
+    if (fid <= 0) doLogout();
+};
 
 //#################################################################################################
 //                                     API Calling Functions
@@ -26,15 +32,36 @@ function doSubmitNewBookRequest() {
 //                                   Front End Handler Functions
 //#################################################################################################
 // TODO: Implement, does nothing at the moment
-function viewRequestForm(semester) {
-    alert("The selected semester is : " + semester + " and I don't do anything else yet :(");
+$(".semester").click((e) => {
+  e.preventDefault();
+  $("#requestFormTableBody").empty();
 
-    // Check the database to see if any request forms exist for the selected term
+  var url = urlBase + "/SearchProfsSemesterOrders" + extension;
+  var xhr = new XMLHttpRequest();
 
-    // If the request form exists, import its information into a table to display to the user
+  var semester = this.val()
+  var search = '{"fid" : "' + fid + '", "semester" : "' + semester + '"}';
 
-    // If the request form does not exist, display a message to the user
-}
+  xhr.open("PUT", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        var jsonObject = JSON.parse(xhr.responseText);        
+        if (jsonObject.length === undefined) {
+          $("#searchMsg").text("No contacts found");
+          return;
+        } else {
+            createOrderTable(jsonObject)
+        }
+      }
+    };
+
+    xhr.send(search);
+  } catch (err) {
+    document.getElementById("contactResult").innerHTML = err.message;
+  }
+})
 
 // TODO: Implement, does nothing at the moment
 function editRequestForm(semester) {
@@ -105,4 +132,23 @@ function clearWorkspaceWindow() {
     $("#newRequestContent").hide();
     $("#viewRequestsContent").hide();
     $("#editRequestContent").hide();  
+}
+
+function createOrderTable(orders) {
+    var template = $("#orderForm");
+    var order = template.clone()
+
+    for (i = 0; i < orders.length; i++) {
+        $("#class").text(orders.class)
+        $("#title").text(orders.title)
+        $("#authors").text(orders.authors)
+        $("#edition").text(orders.edition)
+        $("#publisher").text(orders.publisher)
+        $("#isbn").text(orders.isbn)
+
+        $(".editOrder").attr("orderID", orders.orderID)
+        $(".deleteOrder").attr("orderID", orders.orderID)
+
+        $("#requestFormTableBody").append(order)
+    }
 }
