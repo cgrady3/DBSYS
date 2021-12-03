@@ -1,0 +1,29 @@
+#mainHeading {
+    margin-top: 80px;
+    max-width: 70%;
+}
+
+#mainContainer {
+    background-color: rgba(0, 0, 0, 0.192);
+    height: 650px;
+    max-width: 70%;
+    max-height: 70%;
+    border-radius: 10px;
+    padding: 0px;
+}
+
+#mainToolbar {
+    background-color: rgb(102, 102, 102);
+    height: 40px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: inherit;
+    margin: auto;
+}
+
+.toolbarButton {
+    margin-top: 4px;
+    margin-left: 2px;
+    margin-right: 2px;
+    height: 32px;
+}
