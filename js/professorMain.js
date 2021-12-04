@@ -1,45 +1,133 @@
 var urlBase = "http://dbsys-shy4s.ondigitalocean.app/API";
 var extension = ".php";
 var fid;
+var currSemester;
 
 window.onload = function () {
-    readCookie();
-    if (fid <= 0) doLogout();
+  readCookie();
+  if (fid <= 0) doLogout();
 };
 
-//#################################################################################################
-//                                     API Calling Functions
-//#################################################################################################
-// TODO: Implement, does nothing at the moment
 function doChangePassword() {
-    alert("I don't work yet! :)");
+  alert("I don't work yet! :)");
 }
 
-// TODO: Implement, does nothing at the moment
-function doSubmitNewBookRequest() {
-    alert("I don't work yet! :)");
-
-    // Check the database to see if any request forms exist for the selected term
-
-    // If the request form exists, display a message to the user that the form already exists
-    // and they must "Edit Existing Form" to make changes to it
-
-    // If the request form does not exist, display a success message to the user that a new form
-    // was created
-}
-
-//#################################################################################################
-//                                   Front End Handler Functions
-//#################################################################################################
-// TODO: Implement, does nothing at the moment
+// set current semester and start create table process
 $(".semester").click((e) => {
   e.preventDefault();
+
+  currSemester = this.val();
+
+  loadOrders(currSemester);
+});
+
+// prefill modal fields for prof to edit
+$("#editOrder").on("click", (e) => {
+  e.preventDefault();
+
+  var search = '{"oid" : "' + $(this).attr("orderID") + '"}';
+
+  var url = urlBase + "/GetOrder" + extension;
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        var jsonObject = JSON.parse(xhr.responseText);
+
+        var courseResponse = jsonObject.course;
+        var courseArr = courseResponse.split("");
+        var semesterResponse = jsonObject.semester;
+        var semesterArr = semesterResponse.split(" ");
+
+        $("#order-subject").val(courseArr[0]);
+        $("#order-courseNumber").val(courseArr[1]);
+        $("#order-semester").val(semesterArr[0]);
+        $("#order-year").val(semesterArr[1]);
+        $("#order-title").val(jsonObject.title);
+        $("#order-edition").val(jsonObject.edition);
+        $("#order-authors").val(jsonObject.authors);
+        $("#order-publisher").val(jsonObject.publisher);
+        $("#order-isbn").val(jsonObject.isbn);
+        $("#error-message").text("");
+      }
+    };
+    xhr.send(search);
+  } catch (err) {
+    document.getElementById("orderResult").innerHTML = err.message;
+  }
+});
+
+$("#submitOrder").on("click", (e) => {
+  e.preventDefault();
+
+  var subject = $("#order-subject").val();
+  var courseNumber = $("#order-courseNumber").val();
+  var course = subject + " " + courseNumber;
+  var season = $("#order-semester").val();
+  var year = $("#order-year").val();
+  var semester = season + " " + year;
+  var isbn = $("#order-isbn").val();
+  var uniqueID = fid + subject + courseNumber + season + year + isbn;
+
+  var order =
+    '{"fid" : "' +
+    fid +
+    '", "course" : "' +
+    course +
+    '", "semester" : "' +
+    semester +
+    '", "title" : "' +
+    $("#order-title").val() +
+    '", "edition" : "' +
+    $("#order-edition").val() +
+    '", "authors" : "' +
+    $("#order-authors").val() +
+    '", "publisher" : "' +
+    $("#order-publisher").val() +
+    '", "isbn" : "' +
+    isbn +
+    '", "uniqueID" : "' +
+    uniqueID +
+    '"}';
+
+  var url = urlBase + "/CreateNewOrder" + extension;
+  var xhr = new XMLHttpRequest();
+  xhr.open("PUT", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        // Close modal and clear fields
+        $("#orderModal").modal("hide");
+        $("#order-subject").val("");
+        $("#order-courseNumber").val("");
+        $("#order-semester").val("");
+        $("#order-year").val("");
+        $("#order-title").val("");
+        $("#order-edition").val("");
+        $("#order-authors").val("");
+        $("#order-publisher").val("");
+        $("#order-isbn").val("");
+        $("#error-message").text("");
+
+        loadOrders(currSemester);
+      }
+    };
+    xhr.send(order);
+  } catch (err) {
+    document.getElementById("orderResult").innerHTML = err.message;
+  }
+});
+
+// load order form for the currently selected semester
+let loadOrders = (semester) => {
   $("#requestFormTableBody").empty();
 
-  var url = urlBase + "/SearchProfsSemesterOrders" + extension;
+  var url = urlBase + "/GetProfsSemesterOrders" + extension;
   var xhr = new XMLHttpRequest();
 
-  var semester = this.val()
   var search = '{"fid" : "' + fid + '", "semester" : "' + semester + '"}';
 
   xhr.open("PUT", url, true);
@@ -47,108 +135,58 @@ $(".semester").click((e) => {
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
-        var jsonObject = JSON.parse(xhr.responseText);        
+        var jsonObject = JSON.parse(xhr.responseText);
         if (jsonObject.length === undefined) {
-          $("#searchMsg").text("No contacts found");
+          $("#searchMsg").text("No orders found");
           return;
         } else {
-            createOrderTable(jsonObject)
+          createOrderTable(jsonObject);
         }
       }
     };
 
     xhr.send(search);
   } catch (err) {
-    document.getElementById("contactResult").innerHTML = err.message;
+    document.getElementById("orderResult").innerHTML = err.message;
   }
-})
+};
 
-// TODO: Implement, does nothing at the moment
-function editRequestForm(semester) {
-    alert("The selected semester is : " + semester + " and I don't do anything else yet :(");
+// build table of order form
+let createOrderTable = (orders) => {
+  var template = $("#orderForm");
+  var order = template.clone();
 
-    // Check the database to see if any request forms exist for the selected term
+  for (var i = 0; i < orders.length; i++) {
+    $("#class").text(orders.class);
+    $("#title").text(orders.title);
+    $("#authors").text(orders.authors);
+    $("#edition").text(orders.edition);
+    $("#publisher").text(orders.publisher);
+    $("#isbn").text(orders.isbn);
 
-    // If the request form exists, import its information into a table and allow the user to
-    // add books, delete books, or delete the current request form
+    $(".editOrder").attr("orderID", orders.orderID);
+    $(".deleteOrder").attr("orderID", orders.orderID);
 
-    // If the request form does not exist, display a message to the user
-}
+    $("#requestFormTableBody").append(order);
+  }
+};
 
-//#################################################################################################
-//                                        JQuery Functions
-//#################################################################################################
-// Updates the View Requests dropdown label text to match the selected semester
-$("#semester").click(function(){
-    var semester = 
-});
-
-//#################################################################################################
-//                                 Main Content View Controllers
-//#################################################################################################
-function showChangePasswordContent() {
-    // Toggle all other Content off
-    $("#viewRequestsContent").hide();
-    $("#newRequestContent").hide();
-    $("#editRequestContent").hide();
-    
-    // Show Change Password Content
-    $("#changePasswordContent").show();  
-}
-
-function showViewBookRequestsContent() {
-    // Toggle all other Content off
-    $("#changePasswordContent").hide();
-    $("#newRequestContent").hide();
-    $("#editRequestContent").hide();
-    
-    // Show View Existing Request Content
-    $("#viewRequestsContent").show();  
-}
-
-function showNewBookRequestContent() {
-    // Toggle all other Content off
-    $("#changePasswordContent").hide();
-    $("#viewRequestsContent").hide();
-    $("#editRequestContent").hide();
-    
-    // Show View Existing Request Content
-    $("#newRequestContent").show();  
-}
-
-function showEditRequestContent() {
-    // Toggle all other Content off
-    $("#changePasswordContent").hide();
-    $("#newRequestContent").hide();
-    $("#viewRequestsContent").hide();
-    
-    // Show View Existing Request Content
-    $("#editRequestContent").show();  
-}
-
-function clearWorkspaceWindow() {
-    // Toggle all Content off
-    $("#changePasswordContent").hide();
-    $("#newRequestContent").hide();
-    $("#viewRequestsContent").hide();
-    $("#editRequestContent").hide();  
-}
-
-function createOrderTable(orders) {
-    var template = $("#orderForm");
-    var order = template.clone()
-
-    for (i = 0; i < orders.length; i++) {
-        $("#class").text(orders.class)
-        $("#title").text(orders.title)
-        $("#authors").text(orders.authors)
-        $("#edition").text(orders.edition)
-        $("#publisher").text(orders.publisher)
-        $("#isbn").text(orders.isbn)
-
-        $(".editOrder").attr("orderID", orders.orderID)
-        $(".deleteOrder").attr("orderID", orders.orderID)
-
-        $("#requestFormTableBody").append(order)
+// read cookie to get fid
+function readCookie() {
+  fid = -1;
+  var data = document.cookie;
+  var splits = data.split(",");
+  for (let i = 0; i < splits.length; i++) {
+    var thisOne = splits[i].trim();
+    var tokens = thisOne.split("=");
+    if (tokens[0] === "fid") {
+      fid = parseInt(tokens[1].trim());
     }
+  }
+}
+
+function doLogout() {
+  fid = 0;
+  document.cookie = "fid = 0; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+  window.location.href = "../index.html";
 }

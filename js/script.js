@@ -41,9 +41,13 @@ function loginUser() {
 
         fid = jsonObject.results[0];
         saveCookie();
-        window.location.href = "/pages/contact.html";
+        if (jsonObject.results[1])
+          window.location.href = "/pages/professorMain.html";
+        else  
+          window.location.href = "/pages/adminMain.html";
       }
     };
+
     xhr.send(jsonPayload);
   } catch (err) {
     alert(err.message);
@@ -56,6 +60,7 @@ function signUp() {
   var Email = $("#user-email").val().trim().toLowerCase();
   var Password = $("#user-password").val().trim();
   var Name = $("#name").val().trim().toLowerCase();
+  var facultyType = $("#facultyType").val()
 
   var form = $("#login-form");
 
@@ -95,8 +100,8 @@ function signUp() {
       Password +
       '", "name" : "' +
       Name +
-      '", "isStaff" : "' +
-      0 +
+      '", "isProf" : "' +
+      facultyType +
       '"}';
 
   // URL path    
@@ -130,7 +135,7 @@ function signUp() {
 }
 
 function saveCookie() {
-  var minutes = 20;
+  var minutes = 60;
   var date = new Date();
   date.setTime(date.getTime() + minutes * 60 * 1000);
   document.cookie = "fid=" + fid + ";expires=" + date.toGMTString();
