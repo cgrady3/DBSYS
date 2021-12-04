@@ -5,7 +5,7 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("SELECT * FROM order WHERE fid=? AND semester = ? ORDER BY cid");
+	$stmt = $conn->prepare("SELECT * FROM order WHERE fid=? AND semester=? ORDER BY cid");
 	$stmt->bind_param("is", $inData["fid"], $inData["semester"]);
 	$stmt->execute();
 

@@ -60,13 +60,14 @@
                 
             <!-- Template for Order Form Content -->
             <template id="orderForm">
-                <tr id="order">
-                    <th scope="row" id="class"></th>
-                    <td id="title"></td>
-                    <td id="authors"></td>
-                    <td id="edition"></td>
-                    <td id="publisher"></td>
-                    <td id="isbn"></td>
+                <tr>
+                    <th scope="row" class="class"></th>
+                    <td class="title"></td>
+                    <td class="authors"></td>
+                    <td class="edition"></td>
+                    <td class="publisher"></td>
+                    <td class="isbn"></td>
+                    <td class="date"></td>
                     <td>
                         <button type="button" class="btn btn-light tableButton editOrder">Edit</button>
                     </td>
@@ -177,6 +178,8 @@
                     <input id="order-publisher" type="text" name="publisher" class="form-control" required>
                     <label class="inputPad" for="order-isbn">ISBN</label>
                     <input id="order-isbn" type="text" name="isbn" class="form-control" required>
+                    <label class="inputPad" for="order-date">Order By Date</label>
+                    <input id="order-date" type="text" name="date" class="form-control" placeholder="YYYY-MM-DD" required>
                     <p class="error-message" id="error-message">Invalid field</p>
                 </div>
                 <div class="modal-footer">

@@ -5,8 +5,8 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("DELETE FROM Users WHERE UserID=?");
-	$stmt->bind_param("s", $inData["UserID"]);
+	$stmt = $conn->prepare("DELETE FROM Users WHERE fid=?");
+	$stmt->bind_param("i", $inData["fid"]);
 	$stmt->execute();
 
 	returnWithInfo($stmt->affected_rows);

@@ -50,6 +50,7 @@ $("#editOrder").on("click", (e) => {
         $("#order-authors").val(jsonObject.authors);
         $("#order-publisher").val(jsonObject.publisher);
         $("#order-isbn").val(jsonObject.isbn);
+        $("#order-date").val(jsonObject.orderBy)
         $("#error-message").text("");
       }
     };
@@ -64,7 +65,7 @@ $("#submitOrder").on("click", (e) => {
 
   var subject = $("#order-subject").val();
   var courseNumber = $("#order-courseNumber").val();
-  var course = subject + " " + courseNumber;
+  var cid = subject + " " + courseNumber;
   var season = $("#order-semester").val();
   var year = $("#order-year").val();
   var semester = season + " " + year;
@@ -75,7 +76,9 @@ $("#submitOrder").on("click", (e) => {
     '{"fid" : "' +
     fid +
     '", "course" : "' +
-    course +
+    cid +
+    '", "orderBy" : "' +
+    $("#order-date").val() +
     '", "semester" : "' +
     semester +
     '", "title" : "' +
@@ -110,6 +113,7 @@ $("#submitOrder").on("click", (e) => {
         $("#order-authors").val("");
         $("#order-publisher").val("");
         $("#order-isbn").val("");
+        $("#order-date").val("");
         $("#error-message").text("");
 
         loadOrders(currSemester);
@@ -157,15 +161,16 @@ let createOrderTable = (orders) => {
   var order = template.clone();
 
   for (var i = 0; i < orders.length; i++) {
-    $("#class").text(orders.class);
-    $("#title").text(orders.title);
-    $("#authors").text(orders.authors);
-    $("#edition").text(orders.edition);
-    $("#publisher").text(orders.publisher);
-    $("#isbn").text(orders.isbn);
+    order.find(".class").text(orders[i].class);
+    order.find(".title").text(orders[i].title);
+    order.find(".authors").text(orders[i].authors);
+    order.find(".edition").text(orders[i].edition);
+    order.find(".publisher").text(orders[i].publisher);
+    order.find(".isbn").text(orders[i].isbn);
+    order.find(".date").text(orders[i].orderBy)
 
-    $(".editOrder").attr("orderID", orders.orderID);
-    $(".deleteOrder").attr("orderID", orders.orderID);
+    order.find(".editOrder").attr("orderID", orders[i].orderID);
+    order.find(".deleteOrder").attr("orderID", orders[i].orderID);
 
     $("#requestFormTableBody").append(order);
   }
