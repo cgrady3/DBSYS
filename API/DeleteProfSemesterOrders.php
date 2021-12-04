@@ -5,8 +5,8 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("DELETE FROM order WHERE uniqueID=?");
-	$stmt->bind_param("s", $inData["uniqueID"]);
+	$stmt = $conn->prepare("DELETE FROM order WHERE fid=? AND semester=?");
+	$stmt->bind_param("is", $inData["fid"], $inData["semester"]);
 	$stmt->execute();
 
 	returnWithInfo($stmt->affected_rows);

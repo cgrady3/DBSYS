@@ -5,12 +5,12 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("SELECT * FROM Contacts WHERE ContactID=? AND UserID=?");
-	$stmt->bind_param("ss", $inData["ContactID"], $inData["UserID"]);
+	$stmt = $conn->prepare("SELECT * FROM order WHERE oid=?");
+    $stmt->bind_param("i", $inData["orderID"]);
 	$stmt->execute();
 
 	$row = $stmt->get_result();
-	returnWithInfo($row->fetch_assoc());
+	echo json_encode($row->fetch_assoc());
 
 	$stmt->close();
 	$conn->close();
