@@ -1,4 +1,4 @@
-var UserID = 0;
+var fid = 0;
 var updatePass = false;
 var updateEmail = false;
 var updateFirst = false;
@@ -7,15 +7,15 @@ var updateLast = false;
 window.onload = function () {
   validateUser();
   $("#edit-error-message").text("");
-  if (UserID >= 0) getNumContacts();
+  if (fid >= 0) getNumContacts();
 };
 
 function validateUser() {
   readCookie();
-  if (UserID <= 0) doLogout();
+  if (fid <= 0) doLogout();
 }
 
-var urlBase = "http://dbsys-shy4s.ondigitalocean.app/API";
+var urlBase = "http://ucfbookstore.live/API";
 var extension = ".php";
 
 $("#edit-user-btn").on("click", function (event) {
@@ -66,7 +66,7 @@ $("#delete-user-Btn").on("click", function (event) {
       )
   ) {
     // get contact info
-    var payload = '{"UserID" : "' + UserID + '"}';
+    var payload = '{"fid" : "' + fid + '"}';
     // send request to api
     var url = urlBase + "/DeleteUser" + extension;
     var xhr = new XMLHttpRequest();
@@ -91,7 +91,7 @@ $("#update-userBtn").on("click", function (event) {
   var url = urlBase + "/GetUser" + extension;
   var xhr = new XMLHttpRequest();
 
-  var search = '{"UserID" : "' + UserID + '"}';
+  var search = '{"fid" : "' + fid + '"}';
 
   xhr.open("PUT", url, true);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -165,7 +165,7 @@ function getNumContacts() {
   var url = urlBase + "/SearchAllContacts" + extension;
   var xhr = new XMLHttpRequest();
 
-  var search = '{"UserID" : "' + UserID + '"}';
+  var search = '{"fid" : "' + fid + '"}';
 
   xhr.open("PUT", url, true);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -189,7 +189,7 @@ function getNumContacts() {
 }
 
 function updateUserEmail(Email) {
-  var user = '{"Email" : "' + Email + '", "UserID" : "' + UserID + '"}';
+  var user = '{"Email" : "' + Email + '", "fid" : "' + fid + '"}';
 
   var url = urlBase + "/UpdateUserEmail" + extension;
   var xhr = new XMLHttpRequest();
@@ -215,7 +215,7 @@ function updateUserEmail(Email) {
 }
 
 function updateUserPass(Password) {
-  var user = '{"UserID" : "' + UserID + '", "Password" : "' + Password + '"}';
+  var user = '{"fid" : "' + fid + '", "Password" : "' + Password + '"}';
 
   var url = urlBase + "/UpdateUserPass" + extension;
   var xhr = new XMLHttpRequest();
@@ -242,7 +242,7 @@ function updateUserPass(Password) {
 }
 
 function updateUserFirst(FirstName) {
-  var user = '{"FirstName" : "' + FirstName + '", "UserID" : "' + UserID + '"}';
+  var user = '{"FirstName" : "' + FirstName + '", "fid" : "' + fid + '"}';
 
   var url = urlBase + "/UpdateUserFirst" + extension;
   var xhr = new XMLHttpRequest();
@@ -269,7 +269,7 @@ function updateUserFirst(FirstName) {
 }
 
 function updateUserLast(LastName) {
-  var user = '{"LastName" : "' + LastName + '", "UserID" : "' + UserID + '"}';
+  var user = '{"LastName" : "' + LastName + '", "fid" : "' + fid + '"}';
 
   var url = urlBase + "/UpdateUserLast" + extension;
   var xhr = new XMLHttpRequest();
@@ -301,20 +301,20 @@ $("#signOut-Btn").on("click", function (event) {
 });
 
 function readCookie() {
-  UserID = -1;
+  fid = -1;
   var data = document.cookie;
   var splits = data.split(",");
   for (let i = 0; i < splits.length; i++) {
     var thisOne = splits[i].trim();
     var tokens = thisOne.split("=");
-    if (tokens[0] === "UserID") {
-      UserID = parseInt(tokens[1].trim());
+    if (tokens[0] === "fid") {
+      fid = parseInt(tokens[1].trim());
     }
   }
 }
 
 function doLogout() {
-  UserID = 0;
-  document.cookie = "UserID = 0; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+  fid = 0;
+  document.cookie = "fid = 0; expires = Thu, 01 Jan 1970 00:00:00 GMT";
   window.location.href = "../index.html";
 }

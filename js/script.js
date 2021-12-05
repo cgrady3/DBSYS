@@ -1,4 +1,4 @@
-var urlBase = "http://dbsys-shy4s.ondigitalocean.app/API";
+var urlBase = "http://ucfbookstore.live/API";
 var extension = ".php";
 var fid;
 

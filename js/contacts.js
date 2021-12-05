@@ -1,6 +1,6 @@
 // Test Comment
 
-var UserID = 0;
+var fid = 0;
 
 window.onload = function () {
   validateUser();
@@ -10,10 +10,10 @@ window.onload = function () {
 
 function validateUser() {
   readCookie();
-  if (UserID <= 0) doLogout();
+  if (fid <= 0) doLogout();
 }
 
-var urlBase = "http://dbsys-shy4s.ondigitalocean.app/API";
+var urlBase = "http://ucfbookstore.live/API";
 var extension = ".php";
 
 var selectedContact, selectedCard;
@@ -33,11 +33,11 @@ $("#searchBox").on("input", function (event) {
   if (isnum)
   {
     var phone = input.replace(/[^0-9]/g,'');
-    var search = '{"Search" : "' + input + '", "UserID" : "' + UserID + '", "Phone" : "' + phone + '"}';
+    var search = '{"Search" : "' + input + '", "fid" : "' + fid + '", "Phone" : "' + phone + '"}';
   }
   else
   {
-    var search = '{"Search" : "' + input + '", "UserID" : "' + UserID + '", "Phone" : "' + input + '"}';
+    var search = '{"Search" : "' + input + '", "fid" : "' + fid + '", "Phone" : "' + input + '"}';
   }
   var url = urlBase + "/SearchContacts" + extension;
   var xhr = new XMLHttpRequest();
@@ -75,7 +75,7 @@ $("#searchAll").on("click", function (event) {
   var url = urlBase + "/SearchAllContacts" + extension;
   var xhr = new XMLHttpRequest();
 
-  var search = '{"UserID" : "' + UserID + '"}';
+  var search = '{"fid" : "' + fid + '"}';
 
 
   xhr.open("PUT", url, true);
@@ -157,8 +157,8 @@ $("#add-contact-btn").on("click", function (event) {
       FullName +
       '", "Notes" : "' +
       Notes +
-      '", "UserID" : "' +
-      UserID +
+      '", "fid" : "' +
+      fid +
       '"}';
 
   var url = urlBase + "/AddContact" + extension;
@@ -253,8 +253,8 @@ $("#edit-contact-btn").on("click", function (event) {
       FullName +
       '", "Notes" : "' +
       Notes +
-      '", "UserID" : "' +
-      UserID +
+      '", "fid" : "' +
+      fid +
       '", "ContactID" : "' +
       ContactID +
       '"}';
@@ -288,8 +288,8 @@ $("#delete-contact-btn").on("click", function (event) {
   ) {
     // get contact info
     var payload =
-        '{"UserID" : "' +
-        UserID +
+        '{"fid" : "' +
+        fid +
         '", "ContactID" : "' +
         selectedContact.ContactID +
         '"}';
@@ -390,21 +390,21 @@ function selectContact() {
 }
 
 function readCookie() {
-  UserID = -1;
+  fid = -1;
   var data = document.cookie;
   var splits = data.split(",");
   for (let i = 0; i < splits.length; i++) {
     var thisOne = splits[i].trim();
     var tokens = thisOne.split("=");
-    if (tokens[0] === "UserID") {
-      UserID = parseInt(tokens[1].trim());
+    if (tokens[0] === "fid") {
+      fid = parseInt(tokens[1].trim());
     }
   }
 }
 
 function doLogout() {
-  UserID = 0;
-  document.cookie = "UserID = 0; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+  fid = 0;
+  document.cookie = "fid = 0; expires = Thu, 01 Jan 1970 00:00:00 GMT";
   window.location.href = "../index.html";
 }
 
