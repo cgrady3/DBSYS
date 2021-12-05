@@ -7,7 +7,7 @@ window.onload = function () {
   $("#signup-error").text("");
 };
 
-function loginUser() {
+$("#signIn").on("click",() => {
   fid = 0;
 
   var form = $("#login-form");
@@ -52,9 +52,9 @@ function loginUser() {
   } catch (err) {
     alert(err.message);
   }
-}
+})
 
-function signUp() {
+$("#signUp").on("click", () => {
   var error = true;
 
   var Email = $("#user-email").val().trim().toLowerCase();
@@ -137,7 +137,7 @@ function signUp() {
     alert(err);
     location.reload();
   }
-}
+})
 
 function saveCookie() {
   var minutes = 60;

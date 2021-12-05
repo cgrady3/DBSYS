@@ -3,15 +3,14 @@
 <html lang="en">
 
 <head>
-
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Textbook Order System</title>
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-    <link rel="manifest" href="/images/site.webmanifest">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+	<link rel="manifest" href="/images/site.webmanifest">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 	<link href="../css/styles.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery.js"></script>
@@ -27,31 +26,32 @@
 			<div class="row d-flex justify-content-center" id="logo">
 				<div class="card col-xs">
 					<div class="card-body">
-						<form id="login-form" action="../js/script.js" method="POST">
-							<div class="form-group">
-								<label for="userName">Username</label>
-								<input id="user-email" type="email" name="email" class="form-control"
+						<div class="form-group">
+							<label for="userName">Username</label>
+							<input id="user-email" type="email" name="email" class="form-control" placeholder="Email"
+								required>
 
-									placeholder="Email" required>
-
-							</div>
-							<div class="form-group">
-								<label for="inputPassword">Password</label>
-								<input id="user-password" type="password" name="password" class="form-control"
-									placeholder="Password" required>
-								<small id="passwordVal" class="form-text text-muted">Password must be 8-15 characters
-									long</small>
-								<p class="error-message" id="login-error"></p>
-							</div>
-							<button type="submit" class="btn btn-custom btn-sm login" onclick=loginUser()>
-								Login
-							</button>
-						</form>
-						<a class="btn btn-sm btn-outline-secondary" id="signUp" href="/pages/signUp.html">Create Account</a>
-						<a class="btn btn-sm btn-outline-secondary" id="forgotPassword" href="/pages/forgotPassword.html">Forgot Password?</a>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword">Password</label>
+							<input id="user-password" type="password" name="password" class="form-control"
+								placeholder="Password" required>
+							<small id="passwordVal" class="form-text text-muted">Password must be 8-15 characters
+								long</small>
+							<p class="error-message" id="login-error"></p>
+						</div>
+						<button type="submit" class="btn btn-custom btn-sm login" id="signIn">
+							Login
+						</button>
+						<a class="btn btn-sm btn-outline-secondary" id="signUp" href="/pages/signUp.html">Create
+							Account</a>
+						<a class="btn btn-sm btn-outline-secondary" id="forgotPassword"
+							href="/pages/forgotPassword.html">Forgot Password?</a>
 						<br>
-						<a class="btn btn-sm btn-outline-secondary" id="signUp" href="/pages/professorMain.html">Testing: Professor Main Page</a>
-						<a class="btn btn-sm btn-outline-secondary" id="signUp" href="/pages/adminMain.html">Testing: Admin Main Page</a>
+						<a class="btn btn-sm btn-outline-secondary" id="signUp"
+							href="/pages/professorMain.html">Testing: Professor Main Page</a>
+						<a class="btn btn-sm btn-outline-secondary" id="signUp" href="/pages/adminMain.html">Testing:
+							Admin Main Page</a>
 					</div>
 				</div>
 			</div>
@@ -59,4 +59,3 @@
 </body>
 
 </html>
-
