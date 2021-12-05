@@ -29,9 +29,6 @@
                     <div class="card-body">
                         <form id="login-form" action="../js/script.js" method="POST">
                             <div class="form-group">
-                                <!-- <label for="firstName">First Name</label>
-                                <input id="first-name" type="text" class="form-control" placeholder="First Name"
-                                    required> -->
                                 <label for="name">Name</label>
                                 <input id="name" type="text" class="form-control" placeholder="Name" required>
                                 <label for="userName">Email</label>
@@ -45,18 +42,20 @@
                                 <small id="passwordVal" class="form-text text-muted">Password must be 8-15 characters
                                     long</small>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                  Professor
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                  Staff
-                                </label>
-                              </div>
+                            <div class="row">
+                                <div class="form-check col">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                    Professor
+                                    </label>
+                                </div>
+                                <div class="form-check col">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                    Staff
+                                    </label>
+                                </div>
+                            </div>
                             <p class="error-message" id="signup-error"></p>
                             <button type="submit" class="btn btn-custom btn-sm login" id="addContact" onclick=signUp()>
                                 Sign Up
