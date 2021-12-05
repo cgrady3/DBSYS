@@ -166,7 +166,7 @@ function getOrder(){
   var url = urlBase + "/GetOrder" + extension;
 
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", url, true);
+  xhr.open("GET", url, false);
   xhr.send(null);
   return xhr.responseText;
 
