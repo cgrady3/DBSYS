@@ -100,7 +100,7 @@ function signUp() {
       Password +
       '", "name" : "' +
       Name +
-      '", "isProf" : "' +
+      '", "isStaff" : "' +
       facultyType +
       '"}';
 
@@ -123,8 +123,13 @@ function signUp() {
 
         fid = jsonObject.fid;
         saveCookie();
-
-        window.location.href = "contact.html";
+        
+        if (facultyType) {
+          window.location.href = "adminMain.html";
+        }
+        else {
+          window.location.href = "professorMain.html";
+        }
       }
     };
     xhr.send(jsonPayload);
