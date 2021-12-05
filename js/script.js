@@ -7,7 +7,7 @@ window.onload = function () {
   $("#signup-error").text("");
 };
 
-$("#signIn").on("click",() => {
+$("#signIn").click(function() {
   fid = 0;
 
   var form = $("#login-form");
@@ -54,7 +54,7 @@ $("#signIn").on("click",() => {
   }
 })
 
-$("#signUp").on("click", funciton (){
+$("#signUp").click(function() {
   var error = true;
 
   var Email = $("#user-email").val().trim().toLowerCase();
@@ -100,7 +100,7 @@ $("#signUp").on("click", funciton (){
       Password +
       '", "name" : "' +
       Name +
-      '", "isStaff" : "' +
+      '", "isProf" : "' +
       facultyType +
       '"}';
 
@@ -123,13 +123,8 @@ $("#signUp").on("click", funciton (){
 
         fid = jsonObject.fid;
         saveCookie();
-        
-        if (facultyType) {
-          window.location.href = "adminMain.html";
-        }
-        else {
-          window.location.href = "professorMain.html";
-        }
+
+        window.location.href = "contact.html";
       }
     };
     xhr.send(jsonPayload);
