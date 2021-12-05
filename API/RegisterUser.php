@@ -19,7 +19,7 @@
 		$stmt->bind_param("ssss", $inData["name"], $inData["email"], $inData["password"], $inData["isStaff"]);
 		$stmt->execute();
 
-		$stmt = $conn->prepare("SELECT fid FROM faculty WHERE email=?");
+		$stmt = $conn->prepare("SELECT * FROM faculty WHERE email=?");
 		$stmt->bind_param("s", $inData["email"]);
 		$stmt->execute();
 

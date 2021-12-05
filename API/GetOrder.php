@@ -5,8 +5,8 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("SELECT * FROM order WHERE oid=?");
-    $stmt->bind_param("i", $inData["orderID"]);
+	$stmt = $conn->prepare("SELECT * FROM order WHERE uniqueID=?");
+    $stmt->bind_param("i", $inData["uniqueID"]);
 	$stmt->execute();
 
 	$row = $stmt->get_result();

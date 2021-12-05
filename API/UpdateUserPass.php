@@ -5,8 +5,8 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("UPDATE Users SET Password=? WHERE UserID=?");
-	$stmt->bind_param("ss", $inData["Password"], $inData["UserID"]);
+	$stmt = $conn->prepare("UPDATE faculty SET password=? WHERE fid=?");
+	$stmt->bind_param("ss", $inData["password"], $inData["fid"]);
 
 	$stmt->execute();
 
