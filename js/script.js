@@ -54,7 +54,7 @@ $("#signIn").on("click",() => {
   }
 })
 
-$("#signUp").on("click", () => {
+$("#signUp").on("click", funciton (){
   var error = true;
 
   var Email = $("#user-email").val().trim().toLowerCase();
