@@ -159,3 +159,16 @@ function readCookie() {
     $("userName").innerHTML = "Logged in as " + FirstName + " " + LastName;
   }
 }
+
+function getOrder(){
+
+  // URL path    
+  var url = urlBase + "/GetOrder" + extension;
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.send(null);
+  return xhr.responseText;
+
+
+}
