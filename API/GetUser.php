@@ -5,8 +5,8 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("SELECT * FROM Users WHERE UserID=?");
-	$stmt->bind_param("s", $inData["UserID"]);
+	$stmt = $conn->prepare("SELECT * FROM Users WHERE fid=?");
+	$stmt->bind_param("s", $inData["fid"]);
 	$stmt->execute();
 
 	$row = $stmt->get_result();

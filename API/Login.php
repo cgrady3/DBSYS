@@ -5,8 +5,8 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("SELECT UserID FROM Users WHERE Email=? AND Password=?");
-	$stmt->bind_param("ss", $inData["Email"], $inData["Password"]);
+	$stmt = $conn->prepare("SELECT * FROM faculty WHERE email=? AND password=?");
+	$stmt->bind_param("ss", $inData["email"], $inData["password"]);
 	$stmt->execute();
 
 	$result = $stmt->get_result();
