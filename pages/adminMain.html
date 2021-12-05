@@ -37,7 +37,7 @@
             <button class="btn btn-sm btn-outline-light toolbarButton"
                 onclick="Placeholder()">Broadcast Reminder</button>
             <button class="btn btn-sm btn-outline-light toolbarButton"
-                onclick="Placeholder()">Invite Professors</button>
+                onclick="placeholder()">Invite Professors</button>
             <button class="btn btn-sm btn-outline-light ml-auto toolbarButton"
                 onclick="showBookRequestContent()">View Book Request</button>
         </div>
@@ -78,7 +78,8 @@
             </div>
 
             <!-- Delete Admin Account Content -->
-
+            <input type="button" onclick="CreateTableFromJSON()" value="Create Table From JSON" />
+            <p id="showData"></p>
             <!-- View Faculty Content -->
 
             <!-- Broadcast Reminder Content -->
@@ -87,6 +88,7 @@
 
             <!-- View Book Request Content -->
             <!-- View Book Request Forms Content -->
+            <!-- Maybe make it so you first generate a list of professors and then clicking on that professor can generate a list of their book request -->
             <div class="" id="viewRequestsContent" style="display:none">
                 <h3 class="contentHeading">View/Edit Book Request Forms</h3>
                 <!-- Dropdown menu for viewing by semester -->
