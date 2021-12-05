@@ -10,13 +10,6 @@ window.onload = function () {
 $("#signIn").click(function() {
   fid = 0;
 
-  var form = $("#login-form");
-
-  function handleForm(event) {
-    event.preventDefault();
-  }
-
-  form.addEventListener("submit", handleForm);
   var login = $("#user-email").val().trim().toLowerCase();
   var Password = $("#user-password").val().trim();
 
@@ -61,14 +54,6 @@ $("#signUp").click(function() {
   var Password = $("#user-password").val().trim();
   var Name = $("#name").val().trim().toLowerCase();
   var facultyType = $("#facultyType").val()
-
-  var form = $("#login-form");
-
-  function handleForm(event) {
-    event.preventDefault();
-  }
-
-  form.addEventListener("submit", handleForm);
 
   // validate email format
   var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
