@@ -23,8 +23,8 @@
 		returnWithError("Faculty Account Already Exists");
 	}
 	else{
-		$stmt = $conn->prepare("INSERT INTO faculty (fid, name, email, password, isStaff) VALUES(?, ?, ?, ?, ?)");
-		$stmt->bind_param("isssi", $inData["fid"], $inData["name"], $inData["email"], $inData["password"], $inData["isStaff"]);
+		$stmt = $conn->prepare("INSERT INTO faculty (name, email, password, isStaff) VALUES(?, ?, ?, ?, ?)");
+		$stmt->bind_param("sssi",  $inData["name"], $inData["email"], $inData["password"], $inData["isStaff"]);
 		$stmt->execute();
 
 		// $stmt = $conn->prepare("SELECT * FROM faculty WHERE email=?");
