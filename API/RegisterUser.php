@@ -32,13 +32,13 @@
 		$stmt->execute();
 
 		$result = $stmt->get_result();
-		if($result->fetch_assoc() == false){
+		//if($result->fetch_assoc() == false){
 		 	//$result = $conn->query($sql);
-		}
-		else{
-			echo json_encode($result->fetch_assoc());
-		}
-		
+		//}
+		//else{
+			//echo json_encode($result->fetch_assoc());
+		//}
+		echo json_encode($result->fetch_assoc());
 	}
 
 	$stmt->close();
