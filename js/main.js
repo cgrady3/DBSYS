@@ -472,6 +472,7 @@ let updateName = (facultyID, name) => {
 function readCookie() {
   fid = -1;
   var data = document.cookie;
+  console.log("data: " + data)
   var splits = data.split(";");
   for (let i = 0; i < splits.length; i++) {
     var thisOne = splits[i].trim();
