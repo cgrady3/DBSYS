@@ -33,7 +33,7 @@ $("#signIn").click(function() {
         }
 
         fid = jsonObject.results[0];
-        isStaff = jsonObject.resuts[1];
+        isStaff = jsonObject.results[1];
         saveCookie();
 
         window.location.href = "main.html";
