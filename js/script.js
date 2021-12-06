@@ -32,8 +32,8 @@ $("#signIn").click(function() {
           return;
         }
 
-        fid = jsonObject.results[0];
-        isStaff = jsonObject.results[1];
+        fid = jsonObject.fid;
+        isStaff = jsonObject.isStaff;
         saveCookie();
 
         window.location.href = "main.html";
