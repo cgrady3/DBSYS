@@ -25,5 +25,6 @@
 	function returnLoginInfo($fid, $isStaff)
 	{
 		$retValue = '{"fid":"' . $fid . '","isStaff":"' . $isStaff . '","error":""}';
+		sendResultInfoAsJson( $retValue );
 	}
 ?>
