@@ -5,7 +5,7 @@
 	
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("DELETE FROM order WHERE uniqueID=?");
+	$stmt = $conn->prepare("DELETE FROM orders WHERE uniqueID=?");
 	$stmt->bind_param("s", $inData["uniqueID"]);
 	$stmt->execute();
 

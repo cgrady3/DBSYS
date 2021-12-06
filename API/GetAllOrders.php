@@ -5,7 +5,7 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("SELECT * FROM order");
+	$stmt = $conn->prepare("SELECT * FROM orders");
 	$stmt->execute();
 
 	$result = $stmt->get_result();
