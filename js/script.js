@@ -121,24 +121,6 @@ function saveCookie() {
   var minutes = 60;
   var date = new Date();
   date.setTime(date.getTime() + minutes * 60 * 1000);
-  document.cookie = "fid=" + fid + ";isStaff=" + isStaff + ";expires=" + date.toGMTString();
+  document.cookie = "fid=" + fid + "=isStaff=" + isStaff + ";expires=" + date.toGMTString();
 }
 
-function readCookie() {
-  fid = -1;
-  var data = document.cookie;
-  var splits = data.split(",");
-  for (let i = 0; i < splits.length; i++) {
-    var thisOne = splits[i].trim();
-    var tokens = thisOne.split("=");
-    if (tokens[0] === "fid") {
-      fid = parseInt(tokens[1].trim());
-    }
-  }
-
-  if (fid <= 0) {
-    window.location.href = "index.html";
-  } else {
-    $("userName").innerHTML = "Logged in as " + FirstName + " " + LastName;
-  }
-}
