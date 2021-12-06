@@ -1,5 +1,5 @@
 //var urlBase = "http://ucfbookstore.live/API";
-var urlBase = "http://www.databases-group25-project.com/API"
+var urlBase = "https://www.databases-group25-project.com/API"
 var extension = ".php";
 var fid;
 var isStaff;
