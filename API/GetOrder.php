@@ -5,7 +5,7 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("SELECT * FROM order WHERE uniqueID=?");
+	$stmt = $conn->prepare("SELECT * FROM orders WHERE uniqueID=?");
     $stmt->bind_param("i", $inData["uniqueID"]);
 	$stmt->execute();
 

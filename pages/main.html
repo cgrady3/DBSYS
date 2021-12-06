@@ -15,9 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/professorMain.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
@@ -31,8 +29,8 @@
     <div class="container-fluid" id="mainHeading">
         <div class="row d-flex justify-content-center">
             <h1>Welcome to the UCF Bookstore Main Page</h1>
-            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-bs-toggle="modal"
-                data-bs-target="#editUserPasswordModal">Change
+            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-toggle="modal"
+                data-target="#editUserPasswordModal">Change
                 Password</button>
             <a class="btn btn-sm btn-outline-secondary align-self-center p-2" id="returnToLogin"
                 href="/index.html">Return to Login</a>
@@ -41,19 +39,19 @@
     <div class="container-fluid" id="mainContainer">
         <div class="container-fluid d-flex" id="profMainToolbar">
             <button class="btn btn-sm btn-outline-light toolbarButton viewForms">View/Edit Book Request Forms</button>
-            <button class="btn btn-sm btn-outline-light toolbarButton" data-bs-toggle="modal"
-                data-bs-target="#orderModal">Create New Book Request</button>
+            <button class="btn btn-sm btn-outline-light toolbarButton" data-toggle="modal"
+                data-target="#orderModal">Create New Book Request</button>
         </div>
         <div class="container-fluid d-flex" id="adminMainToolbar">
             <button class="btn btn-sm btn-outline-light toolbarButton viewForms">View/Submit Book Request Forms</button>
-            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-bs-toggle="modal"
-                data-bs-target="#editFacultyModal">Change/Delete Faculty Member's Information</button>
-            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-bs-toggle="modal"
-                data-bs-target="#newFacultyAcct">Create a New Faculty Account</button>
-            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-bs-toggle="modal"
-                data-bs-target="#adminEditPasswordModal">Change an Admin Accounts Password</button>
-            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-bs-toggle="modal"
-                data-bs-target="#deleteAdminAcctModal">Delete an Admin Account</button>
+            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-toggle="modal"
+                data-target="#editFacultyModal">Change/Delete Faculty Member's Information</button>
+            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-toggle="modal"
+                data-target="#newFacultyAcct">Create a New Faculty Account</button>
+            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-toggle="modal"
+                data-target="#adminEditPasswordModal">Change an Admin Accounts Password</button>
+            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-toggle="modal"
+                data-target="#deleteAdminAcctModal">Delete an Admin Account</button>
         </div>
         <div class="container-fluid" id="mainContent">
 
@@ -110,25 +108,25 @@
                         Select Semester
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="newRequestSemesterDropdown">
-                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Fall
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Fall
                                 2021</a></li>
-                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Spring
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Spring
                                 2022</a></li>
-                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Summer
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Summer
                                 2022</a></li>
-                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Fall
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Fall
                                 2022</a></li>
-                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Spring
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Spring
                                 2023</a></li>
-                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Summer
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Summer
                                 2023</a></li>
-                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Fall
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Fall
                                 2023</a></li>
-                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Spring
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Spring
                                 2024</a></li>
-                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Summer
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Summer
                                 2024</a></li>
-                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Fall
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Fall
                                 2024</a></li>
                     </ul>
                 </div>
@@ -142,7 +140,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title w-100 text-center">Order Form</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -180,7 +178,7 @@
                     <p class="error-message" id="error-message">Invalid field</p>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-outline-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <button class="btn btn-custom" type="submit" id="submitOrder">Submit</button>
                 </div>
             </div>
@@ -193,7 +191,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title w-100 text-center">Change Account Password</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -205,7 +203,7 @@
                     <div class="container-fluid">
                         <div class="row justify-content-around">
                             <div class="col-xs">
-                                <button class="btn btn-danger" type="submit" data-bs-dismiss="modal" id="deleteUser">
+                                <button class="btn btn-danger" type="submit" data-dismiss="modal" id="deleteUser">
                                     Delete Account
                                 </button>
                             </div>
@@ -225,7 +223,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title w-100 text-center">Update Faculty Account Information</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -243,7 +241,7 @@
                     <div class="container-fluid">
                         <div class="row justify-content-around">
                             <div class="col-xs">
-                                <button class="btn btn-danger" type="submit" data-bs-dismiss="modal" id="deleteUser">
+                                <button class="btn btn-danger" type="submit" data-dismiss="modal" id="deleteUser">
                                     Delete Account
                                 </button>
                             </div>
@@ -263,7 +261,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title w-100 text-center">Create New Faculty Acct</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -328,7 +326,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title w-100 text-center">Change Faculty Account Password</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -344,7 +342,7 @@
                     <div class="container-fluid">
                         <div class="row justify-content-around">
                             <div class="col-xs">
-                                <button class="btn btn-danger" type="submit" data-bs-dismiss="modal" id="deleteUser">
+                                <button class="btn btn-danger" type="submit" data-dismiss="modal" id="deleteUser">
                                     Delete Account
                                 </button>
                             </div>
@@ -364,7 +362,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title w-100 text-center">Delete Faculty Acct</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -378,7 +376,7 @@
                     <div class="container-fluid">
                         <div class="row justify-content-around">
                             <div class="col-xs">
-                                <button class="btn btn-danger" type="submit" data-bs-dismiss="modal"
+                                <button class="btn btn-danger" type="submit" data-dismiss="modal"
                                     id="deleteAdminAcct">
                                     Delete Account
                                 </button>
