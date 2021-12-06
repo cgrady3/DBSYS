@@ -1,4 +1,5 @@
-var urlBase = "http://ucfbookstore.live/API";
+//var urlBase = "http://ucfbookstore.live/API";
+var urlBase = "http://databa14.wwwmi3-ss66.a2hosted.com/API";
 var extension = ".php";
 var fid;
 var currSemester;
