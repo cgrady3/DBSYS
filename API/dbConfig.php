@@ -1,13 +1,13 @@
 <?php
-	// (header('Access-Control-Allow-Origin: *');
-	// header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-	// heade"Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
+	header('Access-Control-Allow-Origin: *');
+	header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+	header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
 
 	// config db 
-	$dbHost     = "localhost"; 
-	$dbUsername = "TheBeast"; 
-	$dbPassword = "WeLoveCOP4710"; 
-	$dbName     = "COP4710"; 
+	$dbHost     = "mi3-ss66.a2hosting.com"; 
+	$dbUsername = "databa14_doadmin"; 
+	$dbPassword = "Fall2021Group25m"; 
+	$dbName     = "databa14_group25database"; 
 	 
 	// establish db connection 
 	$conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName); 

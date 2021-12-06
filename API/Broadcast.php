@@ -1,34 +1,9 @@
 <?php
     // include database connection file
-	//include "dbConfig.php";
-	//include "returnFunctions.php";
-	include "A2HostingDBConfig.php";
+	include "dbConfig.php";
 	include "returnFunctions.php";
     $url = 'https://api.elasticemail.com/v2/email/send';
-    /*
 
-    $inData = getRequestInfo();
-
-	$stmt = $conn->prepare("SELECT email FROM faculty");
-	$stmt->execute();
-
-	$result = $stmt->get_result();
-	$rows = array();
-
-  	if ($result->num_rows > 0) {
-		while($row = $result->fetch_assoc()){
-			$rows[] = $row;
-		}
-		echo json_encode($rows);
-  	}
-    	else {
-		returnWithError("No Orders Found");
-  	}
-
-	$stmt->close();
-	$conn->close();
-
-*/
     try{
         $post = array('from' => 'databasesgroup25project@gmail.com',
 		'fromName' => 'Book Order Store',
@@ -53,9 +28,8 @@
         curl_close ($ch);
 		
         echo $result;	
-}
-catch(Exception $ex){
-	echo $ex->getMessage();
-}
-
+	}
+	catch(Exception $ex){
+		echo $ex->getMessage();
+	}
 ?>
