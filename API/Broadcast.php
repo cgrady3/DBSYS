@@ -9,7 +9,7 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("SELECT email FROM faculty");
+	$stmt = $conn->prepare("SELECT email FROM faculty where isStaff=1");
 	$stmt->execute();
 
 	$result = $stmt->get_result();
