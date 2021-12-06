@@ -1,7 +1,7 @@
 <?php
-	// header('Access-Control-Allow-Origin: *');
-	// header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-	// header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
+	header('Access-Control-Allow-Origin: *');
+	header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+	header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
 
 	// config db 
 	$dbHost     = "db-mysql-nyc3-24748-do-user-10242737-0.b.db.ondigitalocean.com"; 
