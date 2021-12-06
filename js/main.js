@@ -11,11 +11,9 @@ window.onload = function () {
   $("#viewRequestsContent").hide();
 
   if (isStaff == 1) {
-    console.log("is staff")
     $(".adminTools").show();
     $(".profTools").hide();
   } else {
-    console.log("is prof")
     $(".profTools").show();
     $(".adminTools").hide();
   }

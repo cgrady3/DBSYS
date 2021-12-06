@@ -5,7 +5,6 @@
 }
 
 #mainContainer {
-    background-color: rgba(0, 0, 0, 0.192);
     height: 650px;
     max-width: 70%;
     max-height: 70%;
@@ -73,4 +72,17 @@
 
 #returnToLogin {
     margin-left: 5px;
+}
+
+.p-2 {
+    border: none;
+    background-color: none;
+}
+
+.profTools {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
