@@ -472,7 +472,7 @@ let updateName = (facultyID, name) => {
 function readCookie() {
   fid = -1;
   var data = document.cookie;
-  var splits = data.split(",");
+  var splits = data.split(";");
   for (let i = 0; i < splits.length; i++) {
     var thisOne = splits[i].trim();
     var tokens = thisOne.split("=");
