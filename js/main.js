@@ -474,17 +474,11 @@ function readCookie() {
   var data = document.cookie;
   console.log("data: " + data)
   var splits = data.split(";");
-  for (let i = 0; i < splits.length; i++) {
-    var thisOne = splits[i].trim();
-    var tokens = thisOne.split("=");
-    console.log("tokens: " + tokens);
-    if (tokens[0] === "fid") {
-      fid = parseInt(tokens[1].trim());
-    }
-    if (tokens[0] === "isStaff") {
-      isStaff = parseInt(tokens[1].trim());
-    }
-  }
+  var thisOne = splits[i].trim();
+  var tokens = thisOne.split("=");
+  console.log("tokens: " + tokens);
+  fid = tokens[1];
+  isStaff = tokens[3];
 }
 
 function doLogout() {
