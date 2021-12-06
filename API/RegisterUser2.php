@@ -45,7 +45,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
         $stmt = $conn->prepare("INSERT INTO faculty (name, email, password, isStaff) VALUES (?,?,?,?)");
         // Now let's bind our variables to those ?s in the above line
-        $stmt->bind_param("ssss", $name, $email, $password, $isStaff);
+        $stmt->bind_param("ssss", $inData["name"], $inData["email"], $inData["password"], $inData["isStaff"]);
         // Send the now prepared command!
         $stmt->execute();
 
