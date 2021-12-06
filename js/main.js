@@ -6,7 +6,7 @@ var isStaff;
 
 window.onload = function () {
   readCookie();
-  console.log("fid: " + fid + " isStaf: " + isStaff);
+  console.log("fid: " + fid + " isStaff: " + isStaff);
   if (fid <= 0) doLogout();
 
   $("#viewRequestsContent").hide();
@@ -476,6 +476,7 @@ function readCookie() {
   for (let i = 0; i < splits.length; i++) {
     var thisOne = splits[i].trim();
     var tokens = thisOne.split("=");
+    console.log("tokens: " + tokens);
     if (tokens[0] === "fid") {
       fid = parseInt(tokens[1].trim());
     }
