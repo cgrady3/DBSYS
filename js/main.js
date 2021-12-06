@@ -475,7 +475,7 @@ function readCookie() {
   console.log("data: " + data)
   var splits = data.split(";");
   // var thisOne = splits[0].trim();
-  var tokens = thisOne.split("=");
+  var tokens = splits.split("=");
   console.log("tokens: " + tokens);
   fid = tokens[1];
   isStaff = tokens[3];
