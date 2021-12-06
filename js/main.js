@@ -11,7 +11,7 @@ window.onload = function () {
 
   $("#viewRequestsContent").hide();
 
-  if (isStaff) {
+  if (isStaff == 1) {
     $("#adminMainToolbar").show();
     $("#profMainToolbar").hide();
   } else {
@@ -468,17 +468,13 @@ let updateName = (facultyID, name) => {
   }
 };
 
-// read cookie to get fid
 function readCookie() {
-  fid = -1;
   var data = document.cookie;
-  console.log("data: " + data)
   var splits = data.split(";");
-    var thisOne = splits[0].trim();
-    var tokens = thisOne.split("=");
-    console.log("tokens: " + tokens);
-    fid = parseInt(tokens[1].trim());
-    isStaff = parseInt(tokens[3].trim());
+  var thisOne = splits[0].trim();
+  var tokens = thisOne.split("=");
+  fid = parseInt(tokens[1].trim());
+  isStaff = parseInt(tokens[3].trim());
 }
 
 function doLogout() {
