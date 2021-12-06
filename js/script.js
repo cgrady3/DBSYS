@@ -18,7 +18,7 @@ $("#signIn").click(function() {
 
   var jsonPayload =
       '{"Email" : "' + login + '", "Password" : "' + Password + '"}';
-  var url = urlBase + "/Login" + extension;
+  var url = urlBase + "/Login2" + extension;
 
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
