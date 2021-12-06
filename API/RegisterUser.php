@@ -17,7 +17,7 @@
 	$stmt->execute();
 
 	$result = $stmt->get_result();
-	$stmt->close();
+	$stmt->reset();
 
 	if ($result->num_rows > 0){
 		returnWithError("Faculty Account Already Exists");
