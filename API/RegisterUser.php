@@ -27,9 +27,9 @@
 		$stmt->bind_param("sssi",  $inData["name"], $inData["email"], $inData["password"], $inData["isStaff"]);
 		$stmt->execute();
 
-		// $stmt = $conn->prepare("SELECT * FROM faculty WHERE email=?");
-		// $stmt->bind_param("s", $inData["email"]);
-		// $stmt->execute();
+		$stmt = $conn->prepare("SELECT * FROM faculty WHERE email=?");
+		$stmt->bind_param("s", $inData["email"]);
+		$stmt->execute();
 
 		$result = $stmt->get_result();
 		if($result->fetch_assoc() == false){
