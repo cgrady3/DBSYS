@@ -109,7 +109,7 @@ $("#signUp").click(function() {
         // isStaff = jsonObject.isStaff;
         // saveCookie();
 
-        window.location.href = "main.html";
+        // window.location.href = "main.html";
       }
     };
     xhr.send(jsonPayload);
