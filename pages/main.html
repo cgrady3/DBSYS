@@ -44,7 +44,7 @@
             <button class="btn btn-sm btn-outline-light toolbarButton" data-bs-toggle="modal"
                 data-bs-target="#orderModal">Create New Book Request</button>
         </div>
-        <div class="container-fluid d-flex" id="AdminMainToolbar">
+        <div class="container-fluid d-flex" id="adminMainToolbar">
             <button class="btn btn-sm btn-outline-light toolbarButton viewForms">View/Submit Book Request Forms</button>
             <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-bs-toggle="modal"
                 data-bs-target="#editFacultyModal">Change/Delete Faculty Member's Information</button>
@@ -322,38 +322,6 @@
         </div>
     </div>
 
-    <!-- modal for delete admin acct -->
-    <div class="modal fade" tabindex="-1" id="deleteAdminAcctModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title w-100 text-center">Delete Faculty Acct</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <label class="inputPad" for="fid">Faculty ID</label>
-                    <div class="row mx-auto">
-                        <input id="deletefacultyID" type="text" name="fid" class="form-control hidden" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="container-fluid">
-                        <div class="row justify-content-around">
-                            <div class="col-xs">
-                                <button class="btn btn-danger" type="submit" data-bs-dismiss="modal"
-                                    id="deleteAdminAcct">
-                                    Delete Account
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- modal for change admin acct password -->
     <div class="modal fade" tabindex="-1" id="adminEditPasswordModal">
         <div class="modal-dialog">
@@ -382,6 +350,38 @@
                             </div>
                             <div class="col-xs">
                                 <button class="btn btn-custom" type="submit" id="editFacultypassword">Save Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- modal for delete admin acct -->
+    <div class="modal fade" tabindex="-1" id="deleteAdminAcctModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center">Delete Faculty Acct</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label class="inputPad" for="fid">Faculty ID</label>
+                    <div class="row mx-auto">
+                        <input id="deletefacultyID" type="text" name="fid" class="form-control hidden" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="row justify-content-around">
+                            <div class="col-xs">
+                                <button class="btn btn-danger" type="submit" data-bs-dismiss="modal"
+                                    id="deleteAdminAcct">
+                                    Delete Account
+                                </button>
                             </div>
                         </div>
                     </div>

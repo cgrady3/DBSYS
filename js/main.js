@@ -1,4 +1,3 @@
-//var urlBase = "http://ucfbookstore.live/API";
 var urlBase = "http://www.databases-group25-project.com/API";
 var extension = ".php";
 var fid;
@@ -7,16 +6,17 @@ var isStaff;
 
 window.onload = function () {
   readCookie();
+  console.log("fid: " + fid + " isStaf: " + isStaff);
   if (fid <= 0) doLogout();
 
   $("#viewRequestsContent").hide();
 
   if (isStaff) {
-    $("#AdminMainToolbar").show();
+    $("#adminMainToolbar").show();
     $("#profMainToolbar").hide();
   } else {
     $("#profMainToolbar").show();
-    $("#AdminMainToolbar").hide();
+    $("#adminMainToolbar").hide();
   }
 };
 
