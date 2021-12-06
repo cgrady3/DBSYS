@@ -33,7 +33,7 @@
 
 		$result = $stmt->get_result();
 		if($result->fetch_assoc() == false){
-			// $result = $conn->query($sql);
+		 	$result = $conn->query($sql);
 		}
 		else{
 			echo json_encode($result->fetch_assoc());
