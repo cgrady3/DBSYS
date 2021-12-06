@@ -146,7 +146,7 @@ $("#sendForgotPasswordEmail").click(function () {
 
   var jsonPayload = '{"email" : "' + Email + '"}';
 
-  var url = urlBase + "/GetUserByEmail.php" + extension;
+  var url = urlBase + "/GetUserByEmail" + extension;
   
   var xhr = new XMLHttpRequest();
   xhr.open("GET", url, true);
@@ -182,13 +182,48 @@ $("#sendForgotPasswordEmail").click(function () {
   $newPassword = generateTempPassword();
 
   // Assign new password to user in database
+  assignTempPassword(newPassword, jsonObject.fid);
 
+  // Send an email to the user containing the new password
+  sendForgotPasswordEmail(newPassword, Email);
 
 });
 
-// Updates the user in the database with the new password
-function assignTempPassword(newPassword) {
+// Send an email to the user with the new password
+function sendForgotPasswordEmail(newPassword, Email) {
 
+}
+
+// Updates the user in the database with the new password
+function assignTempPassword(newPassword, fid) {
+
+  // Build json package (send password, fid)
+  var jsonPayload = '{"password" : "' + newPassword + '", "fid": "' + fid + '"}';
+
+  // Call UpdateUserPass.php
+  var url = urlBase + "/UpdateUserPass" + extension;
+  
+  var xhr = new XMLHttpRequest();
+  xhr.open("PUT", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        var jsonObject = JSON.parse(xhr.responseText);
+
+        if (jsonObject.error !== undefined) {
+          $("#forgot-password-error").text("Failed to change user password to a temporary one");
+          return;
+        }
+        // Successfully changed user password at this point
+      }
+    };
+    xhr.send(jsonPayload);
+  } catch (err) {
+    alert(err);
+    location.reload();
+  }
 }
 
 function saveCookie() {
