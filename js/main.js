@@ -6,19 +6,18 @@ var isStaff;
 
 window.onload = function () {
   readCookie();
-  console.log("fid: " + fid + " isStaff: " + isStaff);
   if (fid <= 0) doLogout();
 
   $("#viewRequestsContent").hide();
 
   if (isStaff == 1) {
     console.log("is staff")
-    $("#adminMainToolbar").show();
-    $("#profMainToolbar").hide();
+    $(".adminTools").show();
+    $(".profTools").hide();
   } else {
     console.log("is prof")
-    $("#profMainToolbar").show();
-    $("#adminMainToolbar").hide();
+    $(".profTools").show();
+    $(".adminTools").hide();
   }
 };
 
