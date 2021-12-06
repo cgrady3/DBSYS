@@ -6,4 +6,4 @@
 <IfModule mod_headers.c>
     Header always set Content-Security-Policy "upgrade-insecure-requests;"
 </IfModule>
-#php_flag display_errors 1
+php_flag display_errors 1
