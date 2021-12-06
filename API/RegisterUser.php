@@ -15,6 +15,7 @@
 	$stmt = $conn->prepare("SELECT * FROM faculty WHERE email=?");
 	$stmt->bind_param("s", $inData["email"]);
 	$stmt->execute();
+	$stmt->close();
 
 	$result = $stmt->get_result();
 
