@@ -17,7 +17,7 @@ $("#signIn").click(function() {
   Password = md5(Password);
 
   var jsonPayload =
-      '{"Email" : "' + login + '", "Password" : "' + Password + '"}';
+      '{"email" : "' + login + '", "password" : "' + Password + '"}';
   var url = urlBase + "/Login" + extension;
 
   var xhr = new XMLHttpRequest();
