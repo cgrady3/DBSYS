@@ -32,6 +32,9 @@
 		// $stmt->execute();
 
 		$result = $stmt->get_result();
+		if($result->fetch_assoc() == false){
+			$result = $conn->query($sql)
+		}
 		echo json_encode($result->fetch_assoc());
 	}
 
