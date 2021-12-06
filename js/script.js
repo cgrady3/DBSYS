@@ -105,9 +105,9 @@ $("#signUp").click(function() {
           return;
         }
 
-        fid = jsonObject.fid;
-        isStaff = jsonObject.isStaff;
-        saveCookie();
+        // fid = jsonObject.fid;
+        // isStaff = jsonObject.isStaff;
+        // saveCookie();
 
         window.location.href = "main.html";
       }
