@@ -12,9 +12,11 @@ window.onload = function () {
   $("#viewRequestsContent").hide();
 
   if (isStaff == 1) {
+    console.log("is staff")
     $("#adminMainToolbar").show();
     $("#profMainToolbar").hide();
   } else {
+    console.log("is prof")
     $("#profMainToolbar").show();
     $("#adminMainToolbar").hide();
   }
