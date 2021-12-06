@@ -3,6 +3,7 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/databa14/public_html/
     - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp .htaccess $DEPLOYPATH
     - /bin/cp -R API $DEPLOYPATH
     - /bin/cp -R css $DEPLOYPATH
     - /bin/cp -R images $DEPLOYPATH
