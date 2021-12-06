@@ -7,8 +7,8 @@
 	include "A2HostingDBConfig.php";
 	include "returnFunctions.php";
 
-	error_reporting(E_ALL);
-	ini_set('display_errors', 'on');
+	//error_reporting(E_ALL);
+	//ini_set('display_errors', 'on');
 
 	$inData = getRequestInfo();
 
@@ -33,7 +33,7 @@
 
 		$result = $stmt->get_result();
 		if($result->fetch_assoc() == false){
-		 	$result = $conn->query($sql);
+		 	//$result = $conn->query($sql);
 		}
 		else{
 			echo json_encode($result->fetch_assoc());
