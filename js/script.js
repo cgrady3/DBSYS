@@ -1,4 +1,3 @@
-//var urlBase = "http://ucfbookstore.live/API";
 var urlBase = "https://www.databases-group25-project.com/API"
 var extension = ".php";
 var fid;
@@ -52,7 +51,6 @@ $("#signUp").click(function() {
   var Email = $("#user-email").val().trim().toLowerCase();
   var Password = $("#user-password").val().trim();
   var Name = $("#name").val().trim().toLowerCase();
-  var facultyType = $("#facultyType").val()
 
   // validate email format
   var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
@@ -85,7 +83,7 @@ $("#signUp").click(function() {
       '", "name" : "' +
       Name +
       '", "isStaff" : "' +
-      facultyType +
+      0 +
       '"}';
 
   // URL path    

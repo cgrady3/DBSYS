@@ -1,10 +1,8 @@
 <?php
     // include database connection file
-	//include "dbConfig.php";
-	//include "returnFunctions.php";
-
-	include "A2HostingDBConfig.php";
+	include "dbConfig.php";
 	include "returnFunctions.php";
+
     $url = 'https://api.elasticemail.com/v2/email/send';
     
 

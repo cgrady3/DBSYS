@@ -143,7 +143,6 @@ $("#createNewFacultyAcct").click((e) => {
   var Email = $("#user-email").val().trim().toLowerCase();
   var Password = $("#user-password").val().trim();
   var Name = $("#name").val().trim().toLowerCase();
-  var facultyType = $("#facultyType").val()
 
   // validate email format
   var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
@@ -176,7 +175,7 @@ $("#createNewFacultyAcct").click((e) => {
       '", "name" : "' +
       Name +
       '", "isStaff" : "' +
-      facultyType +
+      1 +
       '"}';
 
   // URL path    
