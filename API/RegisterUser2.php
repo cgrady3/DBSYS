@@ -24,10 +24,10 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 	//$dbName     = "databa14_group25database"; 
 	 // config db 
 	// config db 
-	$dbHost     = "localhost"; 
-	$dbUsername = "TheBeast"; 
-	$dbPassword = "WeLoveCOP4710"; 
-	$dbName     = "COP4710"; 
+	$dbHost     = "db-mysql-nyc3-24748-do-user-10242737-0.b.db.ondigitalocean.com"; 
+	$dbUsername = "doadmin"; 
+	$dbPassword = "YdnsPnEEPp1TBo1k"; 
+	$dbName     = "defaultdb"; 
 	// establish db connection 
 	$conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName); 
 	 
