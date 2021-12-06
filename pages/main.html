@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professors Main Page</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/images/site.webmanifest">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/professorMain.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../js/main.js" defer></script>
+</head>
+
+<body>
+    <div class="container-fluid" id="mainHeading">
+        <div class="row d-flex justify-content-center">
+            <h1>Welcome to the UCF Bookstore Main Page</h1>
+            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-bs-toggle="modal"
+                data-bs-target="#editUserPasswordModal">Change
+                Password</button>
+            <a class="btn btn-sm btn-outline-secondary align-self-center p-2" id="returnToLogin"
+                href="/index.html">Return to Login</a>
+        </div>
+    </div>
+    <div class="container-fluid" id="mainContainer">
+        <div class="container-fluid d-flex" id="profMainToolbar">
+            <button class="btn btn-sm btn-outline-light toolbarButton viewForms">View/Edit Book Request Forms</button>
+            <button class="btn btn-sm btn-outline-light toolbarButton" data-bs-toggle="modal"
+                data-bs-target="#orderModal">Create New Book Request</button>
+        </div>
+        <div class="container-fluid d-flex" id="AdminMainToolbar">
+            <button class="btn btn-sm btn-outline-light toolbarButton viewForms">View/Submit Book Request Forms</button>
+            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-bs-toggle="modal"
+                data-bs-target="#editFacultyModal">Change/Delete Faculty Member's Information</button>
+            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-bs-toggle="modal"
+                data-bs-target="#newFacultyAcct">Create a New Faculty Account</button>
+            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-bs-toggle="modal"
+                data-bs-target="#adminEditPasswordModal">Change an Admin Accounts Password</button>
+            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-bs-toggle="modal"
+                data-bs-target="#deleteAdminAcctModal">Delete an Admin Account</button>
+        </div>
+        <div class="container-fluid" id="mainContent">
+
+            <!-- Template for Order Form Content -->
+            <template id="orderForm">
+                <tr>
+                    <th scope="row" class="class"></th>
+                    <td class="title"></td>
+                    <td class="authors"></td>
+                    <td class="edition"></td>
+                    <td class="publisher"></td>
+                    <td class="isbn"></td>
+                    <td class="date"></td>
+                    <td>
+                        <button type="button" class="btn btn-light tableButton" id="editOrder">Edit</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-light tableButton" id="deleteOrder">Delete</button>
+                    </td>
+                </tr>
+            </template>
+
+            <!-- View Book Request Forms Content -->
+            <div class="" id="viewRequestsContent" style="display:none">
+                <h3 class="contentHeading">View/Edit Book Request Forms</h3>
+                <!-- Dropdown menu for viewing by semester -->
+                <div class="dropdown" id="selectSemester">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="viewRequestsSemesterDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        View by Semester
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="viewRequestsSemesterDropdown">
+                        <li><a class="dropdown-item semester" href='#'>Fall 2021</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Spring 2022</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Summer 2022</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Fall 2022</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Spring 2023</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Summer 2023</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Fall 2023</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Spring 2024</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Summer 2024</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Fall 2024</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- New Book Request Form Content -->
+            <div class="" id="newRequestContent" style="display:none">
+                <h3 class="contentHeading">Create New Book Request Form</h3>
+                <!-- Dropdown menu for viewing by semester -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="newRequestSemesterDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select Semester
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="newRequestSemesterDropdown">
+                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Fall
+                                2021</a></li>
+                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Spring
+                                2022</a></li>
+                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Summer
+                                2022</a></li>
+                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Fall
+                                2022</a></li>
+                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Spring
+                                2023</a></li>
+                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Summer
+                                2023</a></li>
+                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Fall
+                                2023</a></li>
+                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Spring
+                                2024</a></li>
+                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Summer
+                                2024</a></li>
+                        <li><a class="dropdown-item" href='#' data-bs-toggle="modal" data-bs-target="#orderModal">Fall
+                                2024</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for edit or create order -->
+    <div class="modal fade" tabindex="-1" id="orderModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center">Order Form</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="order-class">Class</label>
+                    <div class="row mx-auto">
+                        <div class="col-xs mr-3"> <input id="order-subject" type="text" name="subject" size="23"
+                                class="form-control" placeholder="subject" required> </div>
+                        <div class="col-xs ml-2"> <input id="order-courseNumber" type="text" name="course number"
+                                size="23" class="form-control" placeholder="course number" required> </div>
+                    </div>
+                    <div class="row mx-auto">
+                        <div class="col-xs mr-3">
+                            <label class="inputPad" for="order-semester">Semester</label>
+                            <input id="order-semester" type="text" name="semester" class="form-control" required>
+                        </div>
+                        <div class="col-xs mr-3">
+                            <label class="inputPad" for="order-year">Year</label>
+                            <input id="order-year" type="text" name="year" class="form-control" required>
+                        </div>
+                    </div>
+                    <label class="inputPad" for="order-title">Title</label>
+                    <input id="order-title" type="text" name="title" class="form-control" required>
+                    <label class="inputPad" for="order-edition">Edition</label>
+                    <input id="order-edition" type="text" name="edition" class="form-control" required>
+                    <label class="inputPad" for="order-authors ">Authors</label><br>
+                    <input id="order-authors" type="text" name="authors" class="form-control" required>
+                    <label class="inputPad" for="order-publisher">Publisher</label>
+                    <input id="order-publisher" type="text" name="publisher" class="form-control" required>
+                    <label class="inputPad" for="order-isbn">ISBN</label>
+                    <input id="order-isbn" type="text" name="isbn" class="form-control" required>
+                    <label class="inputPad" for="order-date">Order By Date</label>
+                    <input id="order-date" type="text" name="date" class="form-control" placeholder="YYYY-MM-DD"
+                        required>
+                    <p class="error-message" id="error-message">Invalid field</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-custom" type="submit" id="submitOrder">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal for change user password -->
+    <div class="modal fade" tabindex="-1" id="editUserPasswordModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center">Change Account Password</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label class="inputPad" for="password">Enter New Password</label>
+                    <input id="facutlyNewPassword" type="email" name="password" class="form-control hidden" required>
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="row justify-content-around">
+                            <div class="col-xs">
+                                <button class="btn btn-danger" type="submit" data-bs-dismiss="modal" id="deleteUser">
+                                    Delete Account
+                                </button>
+                            </div>
+                            <div class="col-xs">
+                                <button class="btn btn-custom" type="submit" id="editUserpassword">Save Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal for change faculty info -->
+    <div class="modal fade" tabindex="-1" id="editFacultyModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center">Update Faculty Account Information</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label class="inputPad" for="fid">Faculty ID</label>
+                    <div class="row mx-auto">
+                        <input id="facultyID" type="text" name="fid" class="form-control hidden" required>
+                    </div>
+                    <label class="inputPad" for="name">Name</label>
+                    <input id="facutlyNewName" type="text" name="name" class="form-control hidden" required>
+                    <label class="inputPad" for="email">Email</label>
+                    <input id="facutlyNewEmail" type="email" name="email" class="form-control hidden" required>
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="row justify-content-around">
+                            <div class="col-xs">
+                                <button class="btn btn-danger" type="submit" data-bs-dismiss="modal" id="deleteUser">
+                                    Delete Account
+                                </button>
+                            </div>
+                            <div class="col-xs">
+                                <button class="btn btn-custom" type="submit" id="editUserpassword">Save Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal for create new faculty acct -->
+    <div class="modal fade" tabindex="-1" id="newFacultyAcct">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center">Create New Faculty Acct</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row d-flex justify-content-center" id="logo">
+                        <div class="card col-xs">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input id="name" type="text" class="form-control" placeholder="Name" required>
+                                    <label for="userName">Email</label>
+                                    <input id="user-email" type="email" name="email" class="form-control"
+                                        placeholder="Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="user-password">Password</label>
+                                    <input id="user-password" type="password" name="password" class="form-control"
+                                        placeholder="Password" required>
+                                    <small id="passwordVal" class="form-text text-muted">Password must be 8-15
+                                        characters
+                                        long</small>
+                                </div>
+                                <div class="row">
+                                    <div class="form-check col">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="facultyType" value="false">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Professor
+                                        </label>
+                                    </div>
+                                    <div class="form-check col">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="facultyType" value="true">
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Staff
+                                        </label>
+                                    </div>
+                                </div>
+                                <p class="error-message" id="signup-error"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="container-fluid">
+                                    <div class="row justify-content-around">
+                                        <div class="col-xs">
+                                            <button class="btn btn-custom btn-sm login" id="createNewFacultyAcct">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal for delete admin acct -->
+    <div class="modal fade" tabindex="-1" id="deleteAdminAcctModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center">Delete Faculty Acct</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label class="inputPad" for="fid">Faculty ID</label>
+                    <div class="row mx-auto">
+                        <input id="deletefacultyID" type="text" name="fid" class="form-control hidden" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="row justify-content-around">
+                            <div class="col-xs">
+                                <button class="btn btn-danger" type="submit" data-bs-dismiss="modal"
+                                    id="deleteAdminAcct">
+                                    Delete Account
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal for change admin acct password -->
+    <div class="modal fade" tabindex="-1" id="adminEditPasswordModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center">Change Faculty Account Password</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label class="inputPad" for="fid">Faculty ID</label>
+                    <div class="row mx-auto">
+                        <input id="passwordfacultyID" type="text" name="fid" class="form-control hidden" required>
+                    </div>
+                    <label class="inputPad" for="password">Enter New Password</label>
+                    <input id="facultyNewPassword" type="email" name="password" class="form-control hidden" required>
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="row justify-content-around">
+                            <div class="col-xs">
+                                <button class="btn btn-danger" type="submit" data-bs-dismiss="modal" id="deleteUser">
+                                    Delete Account
+                                </button>
+                            </div>
+                            <div class="col-xs">
+                                <button class="btn btn-custom" type="submit" id="editFacultypassword">Save Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

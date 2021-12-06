@@ -8,6 +8,10 @@ window.onload = function () {
   if (fid <= 0) doLogout();
 };
 
+
+
+
+
 function showChangePasswordContent() {
   $("#createAdminContent").hide();
   $("#viewRequestsContent").hide();

@@ -1,6 +1,7 @@
 var urlBase = "http://ucfbookstore.live/API";
 var extension = ".php";
 var fid;
+var isStaff;
 
 window.onload = function () {
   $("#login-error").text("");
@@ -8,8 +9,6 @@ window.onload = function () {
 };
 
 $("#signIn").click(function() {
-  fid = 0;
-
   var login = $("#user-email").val().trim().toLowerCase();
   var Password = $("#user-password").val().trim();
 
@@ -33,11 +32,10 @@ $("#signIn").click(function() {
         }
 
         fid = jsonObject.results[0];
+        isStaff = jsonObject.resuts[1];
         saveCookie();
-        if (jsonObject.results[1])
-          window.location.href = "/pages/professorMain.html";
-        else  
-          window.location.href = "/pages/adminMain.html";
+
+        window.location.href = "main.html";
       }
     };
 
@@ -85,7 +83,7 @@ $("#signUp").click(function() {
       Password +
       '", "name" : "' +
       Name +
-      '", "isProf" : "' +
+      '", "isStaff" : "' +
       facultyType +
       '"}';
 
@@ -107,9 +105,10 @@ $("#signUp").click(function() {
         }
 
         fid = jsonObject.fid;
+        isStaff = jsonObject.isStaff;
         saveCookie();
 
-        window.location.href = "contact.html";
+        window.location.href = "main.html";
       }
     };
     xhr.send(jsonPayload);
@@ -123,7 +122,7 @@ function saveCookie() {
   var minutes = 60;
   var date = new Date();
   date.setTime(date.getTime() + minutes * 60 * 1000);
-  document.cookie = "fid=" + fid + ";expires=" + date.toGMTString();
+  document.cookie = "fid=" + fid + "isStaff=" + isStaff + ";expires=" + date.toGMTString();
 }
 
 function readCookie() {

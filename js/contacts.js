@@ -204,7 +204,7 @@ $("#edit-contact-btn").on("click", function (event) {
   var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
 
   var errorMsg = "";
-  // validating password length
+
   if (FirstName == "" || LastName == ""){
     errorMsg = "Must enter a first and last name";
   }else if (!regex.test(Email)) {
