@@ -5,7 +5,7 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("DELETE FROM Users WHERE fid=?");
+	$stmt = $conn->prepare("DELETE FROM faculty WHERE fid=?");
 	$stmt->bind_param("i", $inData["fid"]);
 	$stmt->execute();
 
