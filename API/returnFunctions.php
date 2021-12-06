@@ -21,4 +21,9 @@
 		$retValue = '{"results":[' . $searchResults . '],"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
+
+	function returnLoginInfo($fid, $isStaff)
+	{
+		$retValue = '{"fid":' . $fid . ',"isStaff":"' . $isStaff . '","error":""}';
+	}
 ?>

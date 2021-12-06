@@ -20,7 +20,7 @@
 
 	if(!is_null($row))
 	{
-		returnWithInfo( $row['fid'], $row['isStaff'] );
+		returnLoginInfo( $row['fid'], $row['isStaff'] );
 	}
 	else
 	{
