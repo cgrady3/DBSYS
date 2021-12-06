@@ -3,7 +3,7 @@
 	header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 	header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
 	
-	include database connection file
+	#include database connection file
 	include "dbConfig.php";
 
 	//error_reporting(E_ALL);
