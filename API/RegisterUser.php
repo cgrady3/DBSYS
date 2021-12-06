@@ -35,7 +35,10 @@
 		if($result->fetch_assoc() == false){
 			$result = $conn->query($sql);
 		}
-		echo json_encode($result->fetch_assoc());
+		else{
+			echo json_encode($result->fetch_assoc());
+		}
+		
 	}
 
 	$stmt->close();
