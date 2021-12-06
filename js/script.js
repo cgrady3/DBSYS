@@ -36,7 +36,7 @@ $("#signIn").click(function() {
         isStaff = jsonObject.isStaff;
         saveCookie();
 
-        window.location.href = "main.html";
+        window.location.href = "/pages/main.html";
       }
     };
 
