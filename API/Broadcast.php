@@ -1,9 +1,11 @@
 <?php
     // include database connection file
-	include "dbConfig.php";
+	//include "dbConfig.php";
+	//include "returnFunctions.php";
+	include "A2HostingDBConfig.php";
 	include "returnFunctions.php";
     $url = 'https://api.elasticemail.com/v2/email/send';
-    
+    /*
 
     $inData = getRequestInfo();
 
@@ -26,7 +28,7 @@
 	$stmt->close();
 	$conn->close();
 
-
+*/
     try{
         $post = array('from' => 'databasesgroup25project@gmail.com',
 		'fromName' => 'Book Order Store',

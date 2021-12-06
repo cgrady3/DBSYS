@@ -1,6 +1,8 @@
 <?php
 	// include database connection file
-	include "dbConfig.php";
+	//include "dbConfig.php";
+	//include "returnFunctions.php";
+	include "A2HostingDBConfig.php";
 	include "returnFunctions.php";
 
 	$inData = getRequestInfo();
