@@ -6,7 +6,7 @@
 	$inData = getRequestInfo();
 
 	$stmt = $conn->prepare("SELECT * FROM Users WHERE fid=?");
-	$stmt->bind_param("s", $inData["fid"]);
+	$stmt->bind_param("i", $inData["fid"]);
 	$stmt->execute();
 
 	$row = $stmt->get_result();
