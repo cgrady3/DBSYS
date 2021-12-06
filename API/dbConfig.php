@@ -1,13 +1,13 @@
 <?php
-	header('Access-Control-Allow-Origin: *');
-	header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-	header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
+	// (header('Access-Control-Allow-Origin: *');
+	// header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+	// heade"Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
 
 	// config db 
-	$dbHost     = "db-mysql-nyc3-24748-do-user-10242737-0.b.db.ondigitalocean.com"; 
-	$dbUsername = "doadmin"; 
-	$dbPassword = "YdnsPnEEPp1TBo1k"; 
-	$dbName     = "defaultdb"; 
+	$dbHost     = "localhost"; 
+	$dbUsername = "TheBeast"; 
+	$dbPassword = "WeLoveCOP4710"; 
+	$dbName     = "COP4710"; 
 	 
 	// establish db connection 
 	$conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName); 
