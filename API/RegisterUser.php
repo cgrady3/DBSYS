@@ -3,8 +3,8 @@
 	header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 	header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
 	// include database connection file
-	include "dbConfig.php";
-	//include "A2HostingDBConfig.php";
+	//include "dbConfig.php";
+	include "A2HostingDBConfig.php";
 	include "returnFunctions.php";
 
 	$inData = getRequestInfo();

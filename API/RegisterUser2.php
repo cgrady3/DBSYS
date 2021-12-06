@@ -18,11 +18,16 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
     // Connect to the sqlServer '$databaseName' on 'localhost' with the username '$databaseUser'
     // and the password '$databasePassword
 
-    $dbHost     = "mi3-ss66.a2hosting.com"; 
-	$dbUsername = "databa14_doadmin"; 
-	$dbPassword = "Fall2021Group25m"; 
-	$dbName     = "databa14_group25database"; 
-	 
+    //$dbHost     = "mi3-ss66.a2hosting.com"; 
+	//$dbUsername = "databa14_doadmin"; 
+	//$dbPassword = "Fall2021Group25m"; 
+	//$dbName     = "databa14_group25database"; 
+	 // config db 
+	// config db 
+	$dbHost     = "localhost"; 
+	$dbUsername = "TheBeast"; 
+	$dbPassword = "WeLoveCOP4710"; 
+	$dbName     = "COP4710"; 
 	// establish db connection 
 	$conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName); 
 	 
