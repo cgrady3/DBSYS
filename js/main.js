@@ -380,6 +380,7 @@ function selectOrder (){
     deadline: body[7].innerText.split(" ")[1],
   };
   selectedOrder = this;
+  console.log(selectedOrder.season + " " + selectedOrder.year)
 
   $("#order-subject").val(selectedOrder.subject);
   $("#order-courseNumber").val(selectedOrder.courseNumber);
@@ -391,7 +392,7 @@ function selectOrder (){
   $("#order-publisher").val(selectedOrder.publisher);
   $("#order-isbn").val(selectedOrder.isbn);
   $("#order-date").val(selectedOrder.deadline);
-};
+}
 
 let CreateNewOrder = (order) => {
   var newOrder =
