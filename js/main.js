@@ -633,9 +633,9 @@ function getDeadline(){
       if (this.readyState === 4 && this.status === 200) {
         
         var jsonObject = JSON.parse(xhr.responseText);
-        console.log(jsonObject);
-        console.log(jsonObject.deadline);
-        return jsonObject.deadline;
+        console.log(jsonObject[0]);
+        console.log(jsonObject[0].deadline);
+        return jsonObject[0].deadline;
 
       }
     };
