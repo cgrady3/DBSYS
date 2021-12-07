@@ -516,6 +516,66 @@ let updateName = (facultyID, name) => {
   }
 };
 
+
+$("#broadcastEmailReminder").click(function(){ 
+  
+  //call Broadcast.php
+  var url = urlBase + "/Broadcast" + extension;
+  var xhr = new XMLHttpRequest();
+  
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  // Get json object of all emails
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        var jsonObject = JSON.parse(xhr.responseText);
+        sendBroadcastEmailReminder(jsonObject);
+      }
+    };
+    xhr.send(jsonPayload);
+  } catch (err) {
+    console.log("broadcast-error");
+  }
+})
+
+function sendBroadcastEmailReminder(emails){
+  let emailList;
+  if (emails.error !== undefined) {
+    $("#broadcast-error").text(emails.error);
+    return;
+  }
+  
+  for(let i=0; i < emails.length; i++)
+  {
+    emailList.concat(emails[i], ',');
+  }
+
+  emailList.slice(0,-1);
+
+  var jsonPayload = '{"emails" : "' + emailList + '"}';
+
+  //call Broadcast.php
+  var url = urlBase + "/SendIndividualEmail" + extension;
+  var xhr = new XMLHttpRequest();
+  
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  // Get json object of all emails
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        var jsonObject = JSON.parse(xhr.responseText);
+        sendBroadcastEmailReminder(jsonObject);
+      }
+    };
+    xhr.send(jsonPayload);
+  } catch (err) {
+    console.log("broadcast-error");
+  }
+}
+
+
 function readCookie() {
   var data = document.cookie;
   var splits = data.split(";");
