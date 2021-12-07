@@ -22,7 +22,9 @@ window.onload = function () {
 $("#editUserpassword").click((e) => {
   var password = $("#facultyNewPassword").val();
 
-  var user = '{"fid" : "' + fid + '", "Password" : "' + password + '"}';
+  var hashedPassword = md5(password);
+
+  var user = '{"fid" : "' + fid + '", "password" : "' + hashedPassword + '"}';
 
   var url = urlBase + "/UpdateUserPass" + extension;
   var xhr = new XMLHttpRequest();
@@ -32,6 +34,8 @@ $("#editUserpassword").click((e) => {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         var jsonObject = JSON.parse(xhr.responseText);
+        console.log(jsonObject);
+        console.log(jsonObject.results);
         if (jsonObject.results) {
           $("#edit-error-message").text(
             "Your Account Information has been Successfully Updated"
