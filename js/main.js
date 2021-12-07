@@ -137,8 +137,6 @@ $("#deleteUserAcct").click((e) => {
     try {
       xhr.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-          $("#change-password-message").text("Account successfully deleted, logging out...");
-          sleep(1); // delay so user can view success message
           doLogout();
         }
       };
