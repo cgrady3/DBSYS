@@ -125,9 +125,10 @@ $("#signUp").click(function() {
   }
 })
 
+
 $("#sendForgotPasswordEmail").click(function () {
   var error = true;
-  userExists = false;
+  var userExists = false;
 
   var Email = $("#user-email").val().trim().toLowerCase();
 
@@ -163,26 +164,98 @@ $("#sendForgotPasswordEmail").click(function () {
   // Perform check to see if faculty member exists for the entered email
   try {
     xhr.onreadystatechange = function () {
-      //if (this.readyState === 4 && this.status === 200) {
+      if (this.readyState === 4 && this.status === 200) {
         var jsonObject = JSON.parse(xhr.responseText);
-        console.log(jsonObject);
-        console.log(jsonObject.error);
 
         if (jsonObject.error !== undefined) {
           $("#forgot-password-error").text(jsonObject.error);
           return;
         }
         // Account exists if this point is reached
-        isStaff = jsonObject.isStaff;
-        fid = jsonObject.fid;
         userExists = true;
-      //}
-    }
+      }
+    };
     xhr.send(jsonPayload);
   } catch (err) {
     console.log(err);
   }
-})
+
+  // Check if user is staff (illegal to do forgotPassword on staff account)
+  if (jsonObject.isStaff == 1) {
+    $("#forgot-password-error").text("No account for this email exists");
+    return;
+  }
+
+  // User is professor if this point is reached, generate new random password
+  $newPassword = generateTempPassword();
+
+  // Assign new password to user in database
+  assignTempPassword(newPassword, jsonObject.fid);
+
+  // Send an email to the user containing the new password
+  sendForgotPasswordEmail(newPassword, Email);
+
+});
+
+// Current attempt
+// $("#sendForgotPasswordEmail").click(function () {
+//   var error = true;
+//   userExists = false;
+
+//   var Email = $("#user-email").val().trim().toLowerCase();
+
+//   // validate email format
+//   var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
+
+//   var errorMsg = "";
+//   // validating email
+//   if (!regex.test(Email)) {
+//     errorMsg = "Invalid email";
+//   } else {
+//     error = false;
+//   }
+
+//   // if validation error reload the page and exit
+//   // this function before API call starts
+//   if (error) {
+//     $("#forgot-password-error").text(errorMsg);
+//     return;
+//   }
+
+//   // Check to see if the faculty member exists for the entered email
+//   // (only professors may request a temporary password)
+
+//   var jsonPayload = '{"email" : "' + Email + '"}';
+
+//   var url = urlBase + "/GetUserByEmail" + extension;
+  
+//   var xhr = new XMLHttpRequest();
+//   xhr.open("POST", url, true);
+//   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+//   // Perform check to see if faculty member exists for the entered email
+//   try {
+//     xhr.onreadystatechange = function () {
+//       if (this.readyState === 4 && this.status === 200) {
+//         var jsonObject = JSON.parse(xhr.responseText);
+//         console.log(jsonObject);
+//         console.log(jsonObject.error);
+
+//         if (jsonObject.error !== undefined) {
+//           $("#forgot-password-error").text(jsonObject.error);
+//           return;
+//         }
+//         // Account exists if this point is reached
+//         isStaff = jsonObject.isStaff;
+//         fid = jsonObject.fid;
+//         userExists = true;
+//       }
+//     }
+//     xhr.send(jsonPayload);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// })
 
 // Kept here temporarily for debugging
 // // Check if user is staff (illegal to do forgotPassword on staff account)
