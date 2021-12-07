@@ -6,7 +6,7 @@
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("SELECT * FROM faculty where isStaff=0");
+	$stmt = $conn->prepare("SELECT * FROM faculty");
 	$stmt->execute();
 
 	$result = $stmt->get_result();
