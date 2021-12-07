@@ -220,6 +220,7 @@ $(".semester1").click((e) => {
   if (isStaff) {
     loadSemesterOrders(currSemester);
   } else {
+    console.log("prof")
     loadProfsSemesterOrders(currSemester);
   }
 });
