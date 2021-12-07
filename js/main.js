@@ -444,14 +444,15 @@ let createOrderTable = (orders) => {
   for (var i = 0; i < orders.length; i++) {
     let order = orders[i].deadline
     var jsDate = new Date(Date.parse(order.split(/[- :]/)))
-console.log("due by: " + jsDate)
+    var dateArr = jsDate.split(" ");
+console.log("due by: " + dateArr[0] + " " + dateArr[1] + " " + dateArr[2] + " " + dateArr[3])
     body[0].textContent = "Class: " + orders[i].class;
     body[1].textContent = "Title: " + orders[i].title;
     body[2].textContent = "Authors: " + orders[i].authors;
     body[3].textContent = "Edition: " + orders[i].edition;
     body[4].textContent = "Publisher: " + orders[i].publisher;
     body[5].textContent = "ISBN: " + orders[i].isbn;
-    body[6].textContent = "Submit By: " + orders[i].orderBy;
+    body[6].textContent = "Submit By: " + orders[i].deadline;
 
     $(buttons[0]).attr("data-oid", orders[i].oid)
     $(buttons[1]).attr("data-oid", orders[i].oid)
