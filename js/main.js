@@ -443,7 +443,7 @@ let createOrderTable = (orders) => {
 
   for (var i = 0; i < orders.length; i++) {
     console.log("order #" +i+ ": " + orders[i])
-
+console.log("due by: " + orders[i].orderBy)
     body[0].textContent = "Class: " + orders[i].class;
     body[1].textContent = "Title: " + orders[i].title;
     body[2].textContent = "Authors: " + orders[i].authors;
