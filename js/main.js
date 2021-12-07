@@ -448,6 +448,7 @@ let loadSemesterOrders = (semester) => {
 
 // build table of order form
 let createOrderTable = (orders) => {
+  $("#row-1").empty();
   var template = document.getElementById("orderForm");
   var clone = template.content.firstElementChild.cloneNode(true);
   var header = clone.getElementsByClassName("card-header");

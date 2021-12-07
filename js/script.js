@@ -127,10 +127,9 @@ $("#signUp").click(function() {
   }
 })
 
-
 $("#sendForgotPasswordEmail").click(function () {
   var error = true;
-  var userExists = false;
+  userExists = false;
 
   var Email = $("#user-email").val().trim().toLowerCase();
 
@@ -238,7 +237,7 @@ function sendForgotPasswordEmail(newPassword, Email) {
 function assignTempPassword(newPassword, fid, Email) {
 
   // hashing password
-  hashedPassword = md5(newPassword);
+  var hashedPassword = md5(newPassword);
 
   // Build json package (send password, fid)
   var jsonPayload = '{"password" : "' + hashedPassword + '", "fid": "' + fid + '"}';
@@ -270,15 +269,12 @@ function assignTempPassword(newPassword, fid, Email) {
   }
 }
 
-
-
 function saveCookie() {
   var minutes = 60;
   var date = new Date();
-  date.setTime(date.getTime() + minutes * 60 * 1000);
+  date.setTime(date.getTime() + minutes * 660 * 1000);
   document.cookie = "fid=" + fid + "=isStaff=" + isStaff + ";expires=" + date.toGMTString();
 }
-
 
 // Generates an 8 character long randomized password
 function generateTempPassword() {
