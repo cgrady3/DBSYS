@@ -619,11 +619,12 @@ function getDeadline(){
   
   var url = urlBase + "/GetSemesterOrders" + extension;
   var xhr = new XMLHttpRequest();
-  var semester = $("#order-semester-reminder");
-  var year = $("#order-year-reminder");
+  var semester = $("#order-semester-reminder").val();
+  var year = $("#order-year-reminder").val();
   var semesterYear = semester + " " + year;
-
+  console.log(semesterYear);
   var jsonPayload = '{"semester" : "' + semesterYear + '"}';
+  console.log(jsonPayload);
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
   // Get json object of all emails
@@ -659,6 +660,7 @@ function sendBroadcastEmailReminder(emails){
   console.log(emailList);
 
   var deadline = getDeadline();
+  
   var jsonPayload = '{"emails" : "' + emailList + '", "date" : "' + deadline + '"}';
 
   //call sendEmail.php
