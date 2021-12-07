@@ -228,7 +228,6 @@ $(".semester1").click((e) => {
   $("#viewRequestsContent").hide();
 
   currSemester = "spring 2022"
-  console.log("currsememster: " + currSemester);
 
   if (isStaff) {
     loadSemesterOrders(currSemester);
@@ -294,7 +293,7 @@ $("#editOrder").on("click", (e) => {
       if (this.readyState === 4 && this.status === 200) {
         var jsonObject = JSON.parse(xhr.responseText);
 
-        var courseResponse = jsonObject.course;
+        var courseResponse = jsonObject.cid;
         var courseArr = courseResponse.split("");
         var semesterResponse = jsonObject.semester;
         var semesterArr = semesterResponse.split(" ");
@@ -455,7 +454,7 @@ let createOrderTable = (orders) => {
   var footer = clone.getElementsByClassName("card-footer");
 
   for (var i = 0; i < orders.length; i++) {
-    body[0].textContent = "Class: " + orders[i].class;
+    body[0].textContent = "Class: " + orders[i].cid;
     body[1].textContent = "Title: " + orders[i].title;
     body[2].textContent = "Authors: " + orders[i].authors;
     body[3].textContent = "Edition: " + orders[i].edition;
@@ -626,7 +625,6 @@ function sendBroadcastEmailReminder(emails){
     console.log("broadcast-error");
   }
 }
-
 
 function readCookie() {
   var data = document.cookie;
