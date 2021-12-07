@@ -549,7 +549,7 @@ function sendBroadcastEmailReminder(emails){
   }
 
   emailList.slice(0,-1);
-
+  console.log(emailList);
   var jsonPayload = '{"emails" : "' + emailList + '"}';
 
   //call sendEmail.php
@@ -563,7 +563,8 @@ function sendBroadcastEmailReminder(emails){
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         //var jsonObject = JSON.parse(xhr.responseText);
-        
+        console.log("success");
+        return;
       }
     };
     xhr.send(jsonPayload);
