@@ -210,8 +210,7 @@ $("#sendForgotPasswordEmail").click(function () {
 
   // // Send an email to the user containing the new password
   // sendForgotPasswordEmail(newPassword, Email);
-
-});
+})
 
 // Send an email to the user with the new password
 function sendForgotPasswordEmail(newPassword, Email) {
