@@ -436,7 +436,7 @@ let createOrderTable = (orders) => {
   var template = document.getElementById("orderForm");
   var clone = template.content.firstElementChild.cloneNode(true);
   var header = clone.getElementsByClassName("card-header");
-  var row = $("#row-1");
+  var row = document.getElementById("row-1");
   var body = clone.querySelectorAll("li");
   var buttons = clone.querySelectorAll("button");
   var footer = clone.getElementsByClassName("card-footer");
