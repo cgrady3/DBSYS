@@ -12,9 +12,15 @@
 
 	$inData = getRequestInfo();
 
+	$date = $inData["date"];
+	$messageString = "Please submit your book request by the following date \n";
+	$url = "\nhttp://www.databases-group25-project.com";
+
+
+
     $to			= $inData["emails"];
-	$subject	= 'test email';
-	$message 	= 'testing!';
+	$subject	= 'Book Request Reminder';
+	$message 	= $messageString.$date.$url;
 	$headers	= 'From: group25@databases.com'			. "\r\n" .
 					'Reply-To: group25@databases.com'	. "\r\n" .
 					'X-Mailer: PHP/' . phpversion();
