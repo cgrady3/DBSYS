@@ -84,6 +84,7 @@
 
 .word{
     display: inline-block;
+    width: 400px;
 }
 
 .card-header{
