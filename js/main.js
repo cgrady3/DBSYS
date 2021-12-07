@@ -565,7 +565,7 @@ function sendBroadcastEmailReminder(emails){
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
-        //var jsonObject = JSON.parse(xhr.responseText);
+        var jsonObject = JSON.parse(xhr.responseText);
         
       }
     };
