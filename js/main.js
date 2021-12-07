@@ -298,6 +298,7 @@ $("#submitOrder").on("click", (e) => {
   var semester = season + " " + year;
   var isbn = $("#order-isbn").val();
   var uniqueID = fid + subject + courseNumber + season + year + isbn;
+  console.log("deadline: " +$("#order-date").val())
 
   var order =
     '{"fid" : "' +
