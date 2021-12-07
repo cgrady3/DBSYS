@@ -195,82 +195,6 @@ $("#sendForgotPasswordEmail").click(function () {
   }
 });
 
-// Current attempt
-// $("#sendForgotPasswordEmail").click(function () {
-//   var error = true;
-//   userExists = false;
-
-//   var Email = $("#user-email").val().trim().toLowerCase();
-
-//   // validate email format
-//   var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
-
-//   var errorMsg = "";
-//   // validating email
-//   if (!regex.test(Email)) {
-//     errorMsg = "Invalid email";
-//   } else {
-//     error = false;
-//   }
-
-//   // if validation error reload the page and exit
-//   // this function before API call starts
-//   if (error) {
-//     $("#forgot-password-error").text(errorMsg);
-//     return;
-//   }
-
-//   // Check to see if the faculty member exists for the entered email
-//   // (only professors may request a temporary password)
-
-//   var jsonPayload = '{"email" : "' + Email + '"}';
-
-//   var url = urlBase + "/GetUserByEmail" + extension;
-  
-//   var xhr = new XMLHttpRequest();
-//   xhr.open("POST", url, true);
-//   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-//   // Perform check to see if faculty member exists for the entered email
-//   try {
-//     xhr.onreadystatechange = function () {
-//       if (this.readyState === 4 && this.status === 200) {
-//         var jsonObject = JSON.parse(xhr.responseText);
-//         console.log(jsonObject);
-//         console.log(jsonObject.error);
-
-//         if (jsonObject.error !== undefined) {
-//           $("#forgot-password-error").text(jsonObject.error);
-//           return;
-//         }
-//         // Account exists if this point is reached
-//         isStaff = jsonObject.isStaff;
-//         fid = jsonObject.fid;
-//         userExists = true;
-//       }
-//     }
-//     xhr.send(jsonPayload);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// })
-
-// Kept here temporarily for debugging
-// // Check if user is staff (illegal to do forgotPassword on staff account)
-// if (isStaff == 1 || (!userExists)) {
-//   $("#forgot-password-error").text("No account for this email exists");
-//   return;
-// }
-
-// // User is professor if this point is reached, generate new random password
-// var newPassword = generateTempPassword();
-
-// // Assign new password to user in database
-// assignTempPassword(newPassword, fid);
-
-// // Send an email to the user containing the new password
-// sendForgotPasswordEmail(newPassword, Email);
-
 // Send an email to the user with the new password
 function sendForgotPasswordEmail(newPassword, Email) {
 
@@ -282,8 +206,8 @@ function sendForgotPasswordEmail(newPassword, Email) {
   // Construct jsonPayload
   var jsonPayload = '{"message" : "' + message + '", "email" : "' + Email + '"}';
 
-  // Call sendIndividualEmail.php
-  var url = urlBase + "/sendIndividualEmail" + extension;
+  // Call sendForgotPassword.php
+  var url = urlBase + "/sendForgotPasswordEmail" + extension;
   
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
@@ -298,7 +222,8 @@ function sendForgotPasswordEmail(newPassword, Email) {
           $("#forgot-password-error").text("Failed to send forgot password email");
           return;
         }
-        // Successfully changed user password at this point
+        // Successfully sent Reset Password email at this point
+        $("#forgot-password-error").text("Email sent!");
       }
     };
     xhr.send(jsonPayload);
@@ -325,7 +250,7 @@ function assignTempPassword(newPassword, fid) {
       if (this.readyState === 4 && this.status === 200) {
         var jsonObject = JSON.parse(xhr.responseText);
 
-        if (jsonObject.error !== undefined) {
+        if (jsonObject.error !== "") {
           $("#forgot-password-error").text("Failed to change user password to a temporary one");
           return;
         }
