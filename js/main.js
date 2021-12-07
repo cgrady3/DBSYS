@@ -442,8 +442,8 @@ let createOrderTable = (orders) => {
   var footer = clone.getElementsByClassName("card-footer");
 
   for (var i = 0; i < orders.length; i++) {
-    console.log("order #" +i+ ": " + orders[i])
-console.log("due by: " + orders[i].orderBy)
+    let order = orders[i].orderBy
+console.log("due by: " + order.toString())
     body[0].textContent = "Class: " + orders[i].class;
     body[1].textContent = "Title: " + orders[i].title;
     body[2].textContent = "Authors: " + orders[i].authors;
