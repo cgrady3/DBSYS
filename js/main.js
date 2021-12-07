@@ -396,7 +396,7 @@ function selectOrder() {
     year: body[6].innerText.split(" ")[2],
     deadline: body[7].innerText.split(" ")[2],
   };
-  console.log(selectedOrder.season + " " + selectedOrder.year);
+  console.log(selectedOrder.subject + " " + selectedOrder.courseNumber);
 
   oid = selectedOrder.oid;
   $("#edit-order-subject").text(selectedOrder.subject);
