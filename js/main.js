@@ -393,16 +393,16 @@ function selectOrder (){
   console.log(selectedOrder.season + " " + selectedOrder.year)
 
   oid = selectedOrder.oid;
-  $("#order-subject").text(selectedOrder.subject);
-  $("#order-courseNumber").val(selectedOrder.courseNumber);
-  $("#order-semester").val(selectedOrder.season);
-  $("#order-year").val(selectedOrder.year);
-  $("#order-title").val(selectedOrder.title);
-  $("#order-edition").val(selectedOrder.edition);
-  $("#order-authors").val(selectedOrder.authors);
-  $("#order-publisher").val(selectedOrder.publisher);
-  $("#order-isbn").val(selectedOrder.isbn);
-  $("#order-date").val(selectedOrder.deadline);
+  $("#edit-order-subject").text(selectedOrder.subject);
+  $("#edit-order-courseNumber").val(selectedOrder.courseNumber);
+  $("#edit-order-semester").val(selectedOrder.season);
+  $("#edit-order-year").val(selectedOrder.year);
+  $("#edit-order-title").val(selectedOrder.title);
+  $("#edit-order-edition").val(selectedOrder.edition);
+  $("#edit-order-authors").val(selectedOrder.authors);
+  $("#edit-order-publisher").val(selectedOrder.publisher);
+  $("#edit-order-isbn").val(selectedOrder.isbn);
+  $("#edit-order-date").val(selectedOrder.deadline);
 }
 
 let CreateNewOrder = (order) => {
