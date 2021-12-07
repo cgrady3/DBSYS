@@ -388,7 +388,7 @@ function selectOrder (){
     isbn: body[5].innerText.split(" ")[1],
     season: body[6].innerText.split(" ")[1],
     year: body[6].innerText.split(" ")[2],
-    deadline: body[7].innerText.split(" ")[1],
+    deadline: body[7].innerText.split(" ")[2],
   };
   console.log(selectedOrder.season + " " + selectedOrder.year)
 
