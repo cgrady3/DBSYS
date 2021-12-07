@@ -117,6 +117,118 @@ $("#signUp").click(function() {
   }
 })
 
+$("#sendForgotPasswordEmail").click(function () {
+  var error = true;
+  var userExists = false;
+
+  var Email = $("#user-email").val().trim().toLowerCase();
+
+  // validate email format
+  var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
+
+  var errorMsg = "";
+  // validating email
+  if (!regex.test(Email)) {
+    errorMsg = "Invalid email";
+  } else {
+    error = false;
+  }
+
+  // if validation error reload the page and exit
+  // this function before API call starts
+  if (error) {
+    $("#forgot-password-error").text(errorMsg);
+    return;
+  }
+
+  // Check to see if the faculty member exists for the entered email
+  // (only professors may request a temporary password)
+
+  var jsonPayload = '{"email" : "' + Email + '"}';
+
+  var url = urlBase + "/GetUserByEmail" + extension;
+  
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+  // Perform check to see if faculty member exists for the entered email
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        var jsonObject = JSON.parse(xhr.responseText);
+
+        if (jsonObject.error !== undefined) {
+          $("#forgot-password-error").text(jsonObject.error);
+          return;
+        }
+        // Account exists if this point is reached
+        userExists = true;
+      }
+    };
+    xhr.send(jsonPayload);
+  } catch (err) {
+    alert(err);
+    location.reload();
+  }
+
+  // Check if user is staff (illegal to do forgotPassword on staff account)
+  if (jsonObject.isStaff == 1) {
+    $("#forgot-password-error").text("No account for this email exists");
+    return;
+  }
+
+  // User is professor if this point is reached, generate new random password
+  $newPassword = generateTempPassword();
+
+  // Assign new password to user in database
+  assignTempPassword(newPassword, jsonObject.fid);
+
+  // Send an email to the user containing the new password
+  sendForgotPasswordEmail(newPassword, Email);
+
+});
+
+// Send an email to the user with the new password
+function sendForgotPasswordEmail(newPassword, Email) {
+
+  // Construct Email message
+  var message = 'Here is your temporary password : ' + newPassword +
+                '\n ';
+}
+
+// Updates the user in the database with the new password
+function assignTempPassword(newPassword, fid) {
+
+  // Build json package (send password, fid)
+  var jsonPayload = '{"password" : "' + newPassword + '", "fid": "' + fid + '"}';
+
+  // Call UpdateUserPass.php
+  var url = urlBase + "/UpdateUserPass" + extension;
+  
+  var xhr = new XMLHttpRequest();
+  xhr.open("PUT", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        var jsonObject = JSON.parse(xhr.responseText);
+
+        if (jsonObject.error !== undefined) {
+          $("#forgot-password-error").text("Failed to change user password to a temporary one");
+          return;
+        }
+        // Successfully changed user password at this point
+      }
+    };
+    xhr.send(jsonPayload);
+  } catch (err) {
+    alert(err);
+    location.reload();
+  }
+}
+
 function saveCookie() {
   var minutes = 60;
   var date = new Date();
@@ -124,3 +236,16 @@ function saveCookie() {
   document.cookie = "fid=" + fid + "=isStaff=" + isStaff + ";expires=" + date.toGMTString();
 }
 
+
+// Generates an 8 character long randomized password
+function generateTempPassword() {
+  var length = 8;
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * 
+charactersLength));
+ }
+ return result;
+}
