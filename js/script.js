@@ -235,6 +235,9 @@ function sendForgotPasswordEmail(newPassword, Email) {
 // Updates the user in the database with the new password
 function assignTempPassword(newPassword, fid) {
 
+  // hashing password
+  Password = md5(Password);
+
   // Build json package (send password, fid)
   var jsonPayload = '{"password" : "' + newPassword + '", "fid": "' + fid + '"}';
 
