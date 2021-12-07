@@ -99,6 +99,8 @@ $("#signUp").click(function() {
       if (this.readyState === 4 && this.status === 200) {
         var jsonObject = JSON.parse(xhr.responseText);
 
+        $("#sign-up-message").text("Signed up successfully! Logging in...");
+
         if (jsonObject.error !== undefined) {
           $("#signup-error").text(jsonObject.error);
           return;
