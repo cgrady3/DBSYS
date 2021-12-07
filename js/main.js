@@ -288,6 +288,7 @@ $("#submitOrder").on("click", (e) => {
   var courseNumber = $("#edit-order-courseNumber").val();
   var season = $("#edit-order-semester").val();
   var year = $("#edit-order-year").val();
+  var isbn = $("#edit-order-isbn").val();
 
   var cid = subject + " " + courseNumber;
   var semester = season + " " + year;
@@ -302,7 +303,7 @@ $("#submitOrder").on("click", (e) => {
     edition: $("#edit-order-edition").val(),
     authors: $("#edit-order-authors").val(),
     publisher: $("#edit-order-publisher").val(),
-    isbn: $("#edit-order-isbn").val(),
+    isbn: isbn,
     uniqueID: uniqueID,
   };
 
