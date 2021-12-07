@@ -163,20 +163,20 @@ $("#sendForgotPasswordEmail").click(function () {
   // Perform check to see if faculty member exists for the entered email
   try {
     xhr.onreadystatechange = function () {
-      if (this.readyState === 4 && this.status === 200) {
-        // var jsonObject = JSON.parse(xhr.responseText);
-        // console.log(jsonObject);
-        // console.log(jsonObject.error);
+      //if (this.readyState === 4 && this.status === 200) {
+        var jsonObject = JSON.parse(xhr.responseText);
+        console.log(jsonObject);
+        console.log(jsonObject.error);
 
-        // if (jsonObject.error !== undefined) {
-        //   $("#forgot-password-error").text(jsonObject.error);
-        //   return;
-        // }
-        // // Account exists if this point is reached
-        // isStaff = jsonObject.isStaff;
-        // fid = jsonObject.fid;
-        // userExists = true;
-      }
+        if (jsonObject.error !== undefined) {
+          $("#forgot-password-error").text(jsonObject.error);
+          return;
+        }
+        // Account exists if this point is reached
+        isStaff = jsonObject.isStaff;
+        fid = jsonObject.fid;
+        userExists = true;
+      //}
     }
     xhr.send(jsonPayload);
   } catch (err) {
