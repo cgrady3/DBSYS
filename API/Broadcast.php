@@ -19,7 +19,7 @@
 			$emailList = $emailList.$row['email'].$comma
 
 		}
-		echo json_encode($emailList);
+		echo json_encode($row['email']);
   	}
     	else {
 		returnWithError("No emails Found");
