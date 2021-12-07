@@ -128,6 +128,7 @@ $("#sendForgotPasswordEmail").click(function () {
   var error = true;
   var userExists = false;
   var userIsStaff = 0;
+  var fid = 0;
 
   var Email = $("#user-email").val().trim().toLowerCase();
 
@@ -173,6 +174,7 @@ $("#sendForgotPasswordEmail").click(function () {
         // Account exists if this point is reached
         userExists = true;
         userIsStaff = jsonObject.isStaff;
+        fid = jsonObject.fid;
       }
     };
     xhr.send(jsonPayload);
@@ -190,7 +192,7 @@ $("#sendForgotPasswordEmail").click(function () {
   var newPassword = generateTempPassword();
 
   // Assign new password to user in database
-  assignTempPassword(newPassword, jsonObject.fid);
+  assignTempPassword(newPassword, fid);
 
   // Send an email to the user containing the new password
   sendForgotPasswordEmail(newPassword, Email);
