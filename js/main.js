@@ -284,11 +284,11 @@ $(".semester4").click((e) => {
 });
 
 $("#submitOrder").on("click", (e) => {
-  var subject = $("#edit-order-subject").val();
-  var courseNumber = $("#edit-order-courseNumber").val();
-  var season = $("#edit-order-semester").val();
-  var year = $("#edit-order-year").val();
-  var isbn = $("#edit-order-isbn").val();
+  var subject = $("#order-subject").val();
+  var courseNumber = $("#order-courseNumber").val();
+  var season = $("#order-semester").val();
+  var year = $("#order-year").val();
+  var isbn = $("#order-isbn").val();
 
   var cid = subject + " " + courseNumber;
   var semester = season + " " + year;
@@ -297,12 +297,12 @@ $("#submitOrder").on("click", (e) => {
   let order = {
     fid: fid,
     cid: cid,
-    deadline: $("#edit-order-date").val(),
+    deadline: $("#order-date").val(),
     semester: semester,
-    title: $("#edit-order-title").val(),
-    edition: $("#edit-order-edition").val(),
-    authors: $("#edit-order-authors").val(),
-    publisher: $("#edit-order-publisher").val(),
+    title: $("#order-title").val(),
+    edition: $("#order-edition").val(),
+    authors: $("#order-authors").val(),
+    publisher: $("order-publisher").val(),
     isbn: isbn,
     uniqueID: uniqueID,
   };
