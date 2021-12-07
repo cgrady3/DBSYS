@@ -14,17 +14,21 @@
 
 	$result = $stmt->get_result();
 	$rows = array();
-	
+	$emailList = '';
+    $singleEmail = '';
+
+
+
   	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()){
 			
             $rows[] = $row['email'];
-			//$singleEmail = $row['email'].','
-			//$emailList .= $singleEmail
+			$singleEmail = $row['email'].','
+			$emailList .= $singleEmail
 
 		}
 		//echo json_encode($rows);
-        echo gettype($rows[0]);
+        //echo gettype($rows[0]);
 		
   	}
     	else {
