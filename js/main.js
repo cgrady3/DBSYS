@@ -622,9 +622,9 @@ function getDeadline(){
   var semester = $("#order-semester-reminder").val();
   var year = $("#order-year-reminder").val();
   var semesterYear = semester + " " + year;
-  console.log(semesterYear);
+  //console.log(semesterYear);
   var jsonPayload = '{"semester" : "' + semesterYear + '"}';
-  console.log(jsonPayload);
+ // console.log(jsonPayload);
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
   // Get json object of all emails
@@ -633,8 +633,8 @@ function getDeadline(){
       if (this.readyState === 4 && this.status === 200) {
         
         var jsonObject = JSON.parse(xhr.responseText);
-        console.log(jsonObject[0]);
-        console.log(jsonObject[0].deadline);
+        //console.log(jsonObject[0]);
+        //console.log(jsonObject[0].deadline);
         return jsonObject[0].deadline;
 
       }
@@ -664,7 +664,7 @@ function sendBroadcastEmailReminder(emails){
   var deadline = getDeadline();
   console.log(deadline);
   var jsonPayload = '{"emails" : "' + emailList + '", "date" : "' + deadline + '"}';
-
+  console.log("you missed ya chance dummy");
   //call sendEmail.php
   var url = urlBase + "/sendEmail" + extension;
   var xhr = new XMLHttpRequest();
