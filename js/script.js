@@ -156,7 +156,7 @@ $("#sendForgotPasswordEmail").click(function () {
   var url = urlBase + "/GetUserByEmail" + extension;
   
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", url, true);
+  xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
   // Perform check to see if faculty member exists for the entered email
