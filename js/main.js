@@ -399,7 +399,7 @@ function selectOrder() {
   console.log(selectedOrder.subject + " " + selectedOrder.courseNumber);
 
   oid = selectedOrder.oid;
-  $("#edit-order-subject").text(selectedOrder.subject);
+  $("#edit-order-subject").val(selectedOrder.subject);
   $("#edit-order-courseNumber").val(selectedOrder.courseNumber);
   $("#edit-order-semester").val(selectedOrder.season);
   $("#edit-order-year").val(selectedOrder.year);
@@ -545,7 +545,6 @@ let createOrderTable = (order) => {
   var clone = template.content.firstElementChild.cloneNode(true);
   var row = document.getElementById("row-1");
   var body = clone.querySelectorAll("li");
-  console.log("table cid: " +order.cid)
 
   body[0].textContent = "Class: " + order.cid;
   body[1].textContent = "Title: " + order.title;
