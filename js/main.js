@@ -6,17 +6,16 @@ var isStaff;
 
 window.onload = function () {
   readCookie();
-  console.log("fid: " + fid + " isStaf: " + isStaff);
   if (fid <= 0) doLogout();
 
   $("#viewRequestsContent").hide();
 
-  if (isStaff) {
-    $("#adminMainToolbar").show();
-    $("#profMainToolbar").hide();
+  if (isStaff == 1) {
+    $(".adminTools").show();
+    $(".profTools").hide();
   } else {
-    $("#profMainToolbar").show();
-    $("#adminMainToolbar").hide();
+    $(".profTools").show();
+    $(".adminTools").hide();
   }
 };
 
@@ -468,21 +467,13 @@ let updateName = (facultyID, name) => {
   }
 };
 
-// read cookie to get fid
 function readCookie() {
-  fid = -1;
   var data = document.cookie;
-  var splits = data.split(",");
-  for (let i = 0; i < splits.length; i++) {
-    var thisOne = splits[i].trim();
-    var tokens = thisOne.split("=");
-    if (tokens[0] === "fid") {
-      fid = parseInt(tokens[1].trim());
-    }
-    if (tokens[0] === "isStaff") {
-      isStaff = parseInt(tokens[1].trim());
-    }
-  }
+  var splits = data.split(";");
+  var thisOne = splits[0].trim();
+  var tokens = thisOne.split("=");
+  fid = parseInt(tokens[1].trim());
+  isStaff = parseInt(tokens[3].trim());
 }
 
 function doLogout() {

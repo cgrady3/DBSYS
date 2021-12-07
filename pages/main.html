@@ -14,7 +14,7 @@
     <link rel="manifest" href="/images/site.webmanifest">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <link href="../css/styles.css" rel="stylesheet">
-    <link href="../css/professorMain.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -29,30 +29,30 @@
     <div class="container-fluid" id="mainHeading">
         <div class="row d-flex justify-content-center">
             <h1>Welcome to the UCF Bookstore Main Page</h1>
-            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-toggle="modal"
+            <br>
+            <button class="btn btn-sm align-self-center p-2" data-toggle="modal"
                 data-target="#editUserPasswordModal">Change
                 Password</button>
-            <a class="btn btn-sm btn-outline-secondary align-self-center p-2" id="returnToLogin"
-                href="/index.html">Return to Login</a>
+            <a class="btn btn-sm align-self-center p-2" id="logout" onclick="doLogout()"
+                href="/index.html">Logout</a>
+        </div>
+        <div class="container-fluid d-flex" id="MainToolbar">
+            <button class="btn btn-sm toolbarButton viewForms profTools">View/Edit Book Request Forms</button>
+            <button class="btn btn-sm toolbarButton profTools" data-toggle="modal"
+                data-target="#orderModal">Create New Book Request</button>
+            <br>
+            <button class="btn btn-sm toolbarButton viewForms toolbarButton adminTools">View/Submit Book Request Forms</button>
+            <button class="btn btn-sm align-self-center toolbarButton adminTools" data-toggle="modal"
+                data-target="#editFacultyModal">Change/Delete Faculty Member's Information</button>
+            <button class="btn btn-sm align-self-center toolbarButton adminTools" data-toggle="modal"
+                data-target="#newFacultyAcct">Create a New Faculty Account</button>
+            <button class="btn btn-sm align-self-center toolbarButton adminTools" data-toggle="modal"
+                data-target="#adminEditPasswordModal">Change an Admin Accounts Password</button>
+            <button class="btn btn-sm align-self-center toolbarButton adminTools" data-toggle="modal"
+                data-target="#deleteAdminAcctModal">Delete an Admin Account</button>
         </div>
     </div>
     <div class="container-fluid" id="mainContainer">
-        <div class="container-fluid d-flex" id="profMainToolbar">
-            <button class="btn btn-sm btn-outline-light toolbarButton viewForms">View/Edit Book Request Forms</button>
-            <button class="btn btn-sm btn-outline-light toolbarButton" data-toggle="modal"
-                data-target="#orderModal">Create New Book Request</button>
-        </div>
-        <div class="container-fluid d-flex" id="adminMainToolbar">
-            <button class="btn btn-sm btn-outline-light toolbarButton viewForms">View/Submit Book Request Forms</button>
-            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-toggle="modal"
-                data-target="#editFacultyModal">Change/Delete Faculty Member's Information</button>
-            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-toggle="modal"
-                data-target="#newFacultyAcct">Create a New Faculty Account</button>
-            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-toggle="modal"
-                data-target="#adminEditPasswordModal">Change an Admin Accounts Password</button>
-            <button class="btn btn-sm btn-outline-secondary align-self-center ml-auto p-2" data-toggle="modal"
-                data-target="#deleteAdminAcctModal">Delete an Admin Account</button>
-        </div>
         <div class="container-fluid" id="mainContent">
 
             <!-- Template for Order Form Content -->
@@ -178,7 +178,7 @@
                     <p class="error-message" id="error-message">Invalid field</p>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn" type="button" data-dismiss="modal">Cancel</button>
                     <button class="btn btn-custom" type="submit" id="submitOrder">Submit</button>
                 </div>
             </div>
