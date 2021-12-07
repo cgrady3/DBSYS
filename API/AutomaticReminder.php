@@ -23,8 +23,8 @@
 		while($row = $result->fetch_assoc()){
 			
             $rows[] = $row['email'];
-			$singleEmail = $row['email'].','
-			$emailList .= $singleEmail
+			$singleEmail = $row['email'].',';
+			$emailList .= $singleEmail;
 
 		}
 		//echo json_encode($rows);
