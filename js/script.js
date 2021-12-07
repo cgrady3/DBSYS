@@ -216,12 +216,12 @@ function sendForgotPasswordEmail(newPassword, Email) {
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
-        var jsonObject = JSON.parse(xhr.responseText);
+        // var jsonObject = JSON.parse(xhr.responseText);
 
-        if (jsonObject.error !== undefined) {
-          $("#forgot-password-error").text("Failed to send forgot password email");
-          return;
-        }
+        // if (jsonObject.error !== undefined) {
+        //   $("#forgot-password-error").text("Failed to send forgot password email");
+        //   return;
+        // }
         // Successfully sent Reset Password email at this point
         $("#forgot-password-error").text("Email sent!");
       }
