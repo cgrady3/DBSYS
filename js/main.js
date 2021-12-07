@@ -555,8 +555,8 @@ function sendBroadcastEmailReminder(emails){
 
   var jsonPayload = '{"emails" : "' + emailList + '"}';
 
-  //call Broadcast.php
-  var url = urlBase + "/SendIndividualEmail" + extension;
+  //call sendEmail.php
+  var url = urlBase + "/sendEmail" + extension;
   var xhr = new XMLHttpRequest();
   
   xhr.open("POST", url, true);
@@ -566,7 +566,7 @@ function sendBroadcastEmailReminder(emails){
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         var jsonObject = JSON.parse(xhr.responseText);
-        sendBroadcastEmailReminder(jsonObject);
+        
       }
     };
     xhr.send(jsonPayload);
