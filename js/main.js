@@ -386,7 +386,7 @@ let loadProfsSemesterOrders = (semester) => {
       if (this.readyState === 4 && this.status === 200) {
         var jsonObject = JSON.parse(xhr.responseText);
         console.log("here")
-        console.log("obj  " + jsonObject)
+        console.log("obj  " + jsonObject.length)
         if (jsonObject.length === undefined) {
           $("#searchMsg").text("No orders found");
           return;
