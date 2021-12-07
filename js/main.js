@@ -22,6 +22,11 @@ window.onload = function () {
 $("#editUserpassword").click((e) => {
   var password = $("#facultyNewPassword").val();
 
+  // Ensure that the password enter conforms to our password requirements
+  if(password.length < 8 || password.length > 15) {
+    $("#change-password-message").text("Invalid password length");
+  }
+
   var hashedPassword = md5(password);
 
   var user = '{"fid" : "' + fid + '", "password" : "' + hashedPassword + '"}';
@@ -37,11 +42,11 @@ $("#editUserpassword").click((e) => {
         console.log(jsonObject);
         console.log(jsonObject.results);
         if (jsonObject.results) {
-          $("#edit-error-message").text(
+          $("#change-password-message").text(
             "Your Account Information has been Successfully Updated"
           );
         } else {
-          $("#edit-error-message").text("Could not update account");
+          $("#change-password-message").text("Could not update account");
         }
       }
     };
