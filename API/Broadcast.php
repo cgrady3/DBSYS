@@ -19,7 +19,7 @@
 			//$emailList .= $singleEmail
 
 		}
-		echo json_encode($rows[0]);
+		echo json_encode($rows[0][0]);
   	}
     	else {
 		returnWithError("No emails Found");
