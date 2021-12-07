@@ -217,7 +217,7 @@ $("#createNewFacultyAcct").click((e) => {
 
 $(".viewForms").click((e) => {
   e.preventDefault();
-
+  $("#row-1").empty();
   $("#viewRequestsContent").show();
 });
 
@@ -402,7 +402,7 @@ let loadProfsSemesterOrders = (semester) => {
         var jsonObject = JSON.parse(xhr.responseText);
 
         if (jsonObject.length === undefined) {
-          $("#searchMsg").text("No orders found");
+          $("#row-1").text("No orders found");
           return;
         } else {
           createOrderTable(jsonObject);
@@ -432,7 +432,7 @@ let loadSemesterOrders = (semester) => {
       if (this.readyState === 4 && this.status === 200) {
         var jsonObject = JSON.parse(xhr.responseText);
         if (jsonObject.length === undefined) {
-          $("#searchMsg").text("No orders found");
+          $("#row-1").text("No orders found");
           return;
         } else {
           createOrderTable(jsonObject);
