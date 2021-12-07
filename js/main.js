@@ -385,8 +385,7 @@ let loadProfsSemesterOrders = (semester) => {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         var jsonObject = JSON.parse(xhr.responseText);
-        console.log("here")
-        console.log("obj  " + jsonObject.length)
+
         if (jsonObject.length === undefined) {
           $("#searchMsg").text("No orders found");
           return;
@@ -438,6 +437,7 @@ let createOrderTable = (orders) => {
   var order = template.clone();
 
   for (var i = 0; i < orders.length; i++) {
+    console.log(orders[i])
     order.find(".class").text(orders[i].class);
     order.find(".title").text(orders[i].title);
     order.find(".authors").text(orders[i].authors);
