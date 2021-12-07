@@ -297,6 +297,7 @@ $("#editOrder").on("click", (e) => {
         var courseArr = courseResponse.split("");
         var semesterResponse = jsonObject.semester;
         var semesterArr = semesterResponse.split(" ");
+        console.log("subject: " + courseArr[0] + " " + courseArr[1]);
 
         $("#order-subject").val(courseArr[0]);
         $("#order-courseNumber").val(courseArr[1]);
