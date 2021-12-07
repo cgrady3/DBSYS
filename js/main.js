@@ -369,10 +369,10 @@ $("#submitOrderEdit").click(function () {
 function selectOrder (){
   if (isStaff) {
     $("#submitOrderEdit").hide()
-    $("#submitOrder").show()
+    $("#submitOrder1").show()
   } else {
     $("#submitOrderEdit").show()
-    $("#submitOrder").hide()
+    $("#submitOrder1").hide()
   }
 
   var body = this.querySelectorAll("li");
