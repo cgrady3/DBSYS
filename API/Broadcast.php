@@ -19,7 +19,8 @@
 			$emailList .= $singleEmail
 
 		}
-		echo json_encode($emailList);
+		//echo json_encode($emailList);
+		echo $emailList;
   	}
     	else {
 		returnWithError("No emails Found");
