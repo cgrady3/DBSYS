@@ -382,11 +382,11 @@ function selectOrder() {
   }
 
   var body = this.querySelectorAll("li");
-
+  var subjectArr = body[0].innerText.split(" ")
   selectedOrder = {
     oid: $(this).attr("data-id"),
-    subject: body[0].innerText.split(" ")[1],
-    courseNumber: body[0].innerText.split(" ")[2],
+    subject: subjectArr[1],
+    courseNumber: subjectArr[2],
     title: body[1].innerText.split(" ")[1],
     authors: body[2].innerText.split(": ")[1],
     edition: body[3].innerText.split(" ")[1],
