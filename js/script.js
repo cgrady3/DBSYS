@@ -200,8 +200,8 @@ function sendForgotPasswordEmail(newPassword, Email) {
 
   // Construct Email message
   var message = "Here is your new temporary password : " + newPassword +
-                "\n\rPlease sign in and change your password to something new." +
-                "\n\rSign in here: https://www.databases-group25-project.com";
+                "Please sign in and change your password to something new." +
+                "Sign in here: https://www.databases-group25-project.com";
 
   // Construct jsonPayload
   var jsonPayload = '{"email" : "' + Email + '", "message" : "' + message + '"}';
