@@ -438,8 +438,8 @@ let createOrderTable = (orders) => {
   var header = clone.getElementsByClassName("card-header");
   var row = $("#row-1");
   var body = clone.querySelectorAll("li");
+  var buttons = clone.querySelectorAll("button");
   var footer = clone.getElementsByClassName("card-footer");
-  var buttons = footer.querySelectorAll("button");
 
   for (var i = 0; i < orders.length; i++) {
     console.log("order #" +i+ ": " + orders[i])
