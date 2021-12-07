@@ -3,13 +3,10 @@
 	include "dbConfig.php";
 	include "returnFunctions.php";
 	
-	// include database connection file
-	include "dbConfig.php";
-	include "returnFunctions.php";
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("SELECT * FROM faculty where isStaff=0");
+	$stmt = $conn->prepare("SELECT * FROM faculty");
 	$stmt->execute();
 
 	$result = $stmt->get_result();
@@ -17,7 +14,7 @@
 
   	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()){
-			$rows[] = $row;
+			$rows[] = $row['email'];
 		}
 		echo json_encode($rows);
   	}
