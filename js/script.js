@@ -185,8 +185,8 @@ $("#sendForgotPasswordEmail").click(function () {
         // Assign new password to user in database
         assignTempPassword(newPassword, jsonObject.fid);
 
-        // Send an email to the user containing the new password
-        sendForgotPasswordEmail(newPassword, Email);
+        // // Send an email to the user containing the new password
+        // sendForgotPasswordEmail(newPassword, Email);
       }
     };
     xhr.send(jsonPayload);
@@ -258,6 +258,8 @@ function assignTempPassword(newPassword, fid) {
           return;
         }
         // Successfully changed user password at this point
+        // Send an email to the user containing the new password
+        sendForgotPasswordEmail(newPassword, Email);
       }
     };
     xhr.send(jsonPayload);
