@@ -16,10 +16,10 @@
 		while($row = $result->fetch_assoc()){
 			$rows[] = $row['email'];
 			//$singleEmail = ','.$row['email']
-			//$emailList .= $singleEmail
+			$emailList .= $singleEmail
 
 		}
-		echo json_encode($rows[0][0]);
+		echo json_encode($emailList);
   	}
     	else {
 		returnWithError("No emails Found");
