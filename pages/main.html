@@ -58,21 +58,24 @@
 
             <!-- Template for Order Form Content -->
             <template id="orderForm">
-                <tr>
-                    <th scope="row" class="class"></th>
-                    <td class="title"></td>
-                    <td class="authors"></td>
-                    <td class="edition"></td>
-                    <td class="publisher"></td>
-                    <td class="isbn"></td>
-                    <td class="date"></td>
-                    <td>
-                        <button type="button" class="btn btn-light tableButton" id="editOrder">Edit</button>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-light tableButton" id="deleteOrder">Delete</button>
-                    </td>
-                </tr>
+                <div class="col-sm-3 mb-3">
+                    <div class="card">
+                        <div class="card-header"></div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                        </ul>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-light tableButton" id="editOrder">Edit</button>
+                            <button type="button" class="btn btn-light tableButton" id="deleteOrder">Delete</button>
+                        </div>
+                    </div>
+                </div>
             </template>
 
             <!-- View Book Request Forms Content -->
@@ -93,10 +96,12 @@
                 </div>
             </div>
 
+            <div class="row" id="row-1"></div>
+
             <!-- Template for Request Form Content -->
-            <div class="requestForm">
-                <!-- Table to show Request Form Contents -->
-                <div class="table-responsive tableWrapper">
+            <!-- <div class="requestForm"> -->
+            <!-- Table to show Request Form Contents -->
+            <!-- <div class="table-responsive tableWrapper">
                     <table class="table table-striped table-sm requestFormTable">
                         <thead class="requestFormTableHeader">
                             <tr id="ordersTableHead">
@@ -107,7 +112,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <!-- Modal for edit or create order -->

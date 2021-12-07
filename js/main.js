@@ -434,29 +434,32 @@ let loadSemesterOrders = (semester) => {
 // build table of order form
 let createOrderTable = (orders) => {
   var template = $("#orderForm");
-  var order = template.clone();
+  var clone = template.content.firstElementChild.cloneNode(true);
+  var header = clone.getElementsByClassName("card-header");
+  var row = $("#row-1");
+  var body = clone.querySelectorAll("li");
+  var footer = clone.getElementsByClassName("card-footer");
+  var buttons = footer.querySelectorAll("button");
 
   for (var i = 0; i < orders.length; i++) {
     console.log(orders[i])
-    order.find(".class").text(orders[i].class);
-    order.find(".title").text(orders[i].title);
-    order.find(".authors").text(orders[i].authors);
-    order.find(".edition").text(orders[i].edition);
-    order.find(".publisher").text(orders[i].publisher);
-    order.find(".isbn").text(orders[i].isbn);
-    order.find(".date").text(orders[i].orderBy);
 
-    order.find(".editOrder").attr("orderID", orders[i].orderID);
-    order.find(".deleteOrder").attr("orderID", orders[i].orderID);
+    body[0].textContent = "Class: " + orders[i].class;
+    body[1].textContent = "Title: " + orders[i].title;
+    body[2].textContent = "Authors: " + orders[i].authors;
+    body[3].textContent = "Edition: " + orders[i].edition;
+    body[4].textContent = "Publisher: " + orders[i].publisher;
+    body[5].textContent = "ISBN: " + orders[i].isbn;
+    body[6].textContent = "Submit By: " + orders[i].orderBy;
 
-    $("#requestFormTableBody").append(order);
-  }
+    $(buttons[0]).attr("data-oid", orders[i].oid)
+    $(buttons[1]).attr("data-oid", orders[i].oid)
 
-  if (isStaff) {
-    var button =
-      '<td><button type="button" class="btn btn-light tableButton" id="submitOrder">Submit Order</button></td>';
+    if (isStaff) {
+      footer[0].html('<td><button type="button" class="btn btn-light tableButton" data-oid=' + orders[i].oid +  'id="submitOrder">Submit Order</button></td>')
+    }
 
-    $("#requestFormTableBody").append(button);
+    row.appendChild(clone);
   }
 };
 
