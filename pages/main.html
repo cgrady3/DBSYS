@@ -53,7 +53,7 @@
             <button class="btn btn-sm align-self-center toolbarButton adminTools" data-toggle="modal"
                 data-target="#broadcastEmailModal">Send Email Reminder</button>
             <button class="btn btn-sm align-self-center toolbarButton adminTools" data-toggle="modal"
-                data-target="#broadcastEmailModal">Invite A Professor</button>
+                data-target="#InviteProfessorModal">Invite A Professor</button>
         </div>
     </div>
     <div class="container-fluid" id="mainContainer">
@@ -395,7 +395,7 @@
         </div>
 
         <!-- modal for inviteProfessor -->
-        <div class="modal fade" tabindex="-1" id="broadcastEmailModal">
+        <div class="modal fade" tabindex="-1" id="InviteProfessorModal">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -404,18 +404,18 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                   <!--<div class="modal-body">
-                        <label class="inputPad" for="fid">Reminder Date</label>
+                   <div class="modal-body">
+                        <label class="inputPad" for="email">Email</label>
                         <div class="row mx-auto">
-                            <input id="deletefacultyID" type="text" name="fid" class="form-control hidden" required>
+                            <input id="emailForInvite" type="text" name="email" class="form-control hidden" required>
                         </div>
-                    </div> -->
+                    </div> 
                     <div class="modal-footer">
                         <div class="container-fluid">
                             <div class="row justify-content-around">
                                 <div class="col-xs">
                                     <button class="btn btn-danger" type="submit" data-dismiss="modal"
-                                        id="broadcastEmailReminder">
+                                        id="InviteProfessor">
                                         Invite Professor
                                     </button>
                                 </div>

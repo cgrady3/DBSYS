@@ -513,6 +513,43 @@ let updateName = (facultyID, name) => {
   }
 };
 
+$("#InviteProfessor").click(function(){ 
+  
+  var url = urlBase + "/sendIndividualEmail" + extension;
+  var xhr = new XMLHttpRequest();
+  var link = "http://www.databases-group25-project.com";
+  var email = $("#emailForInvite").val().trim().toLowerCase();
+  // validate email format
+  var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
+
+  var errorMsg = "";
+  // validating email
+  if (!regex.test(email)) {
+    errorMsg = "Invalid email";
+  } else {
+    error = false;
+  }
+
+
+
+  var jsonPayload = '{"emails" : "' + email + '", "url" : "' + link + '"}';
+   
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        //var jsonObject = JSON.parse(xhr.responseText);
+        console.log("success");
+        return;
+      }
+    };
+    xhr.send(jsonPayload);
+  } catch (err) {
+    console.log("broadcast-error");
+  }
+})
 
 $("#broadcastEmailReminder").click(function(){ 
   
@@ -520,6 +557,9 @@ $("#broadcastEmailReminder").click(function(){
   var url = urlBase + "/Broadcast" + extension;
   var xhr = new XMLHttpRequest();
   
+
+
+  var jsonPayload = '{"emails" : "' + emailList + '"}';
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
   // Get json object of all emails
