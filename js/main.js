@@ -539,7 +539,7 @@ let createOrderTable = (orders) => {
   var body = clone.querySelectorAll("li");
   // var buttons = clone.querySelectorAll("button");
   // var footer = clone.getElementsByClassName("card-footer");
-
+console.log("num orders: " + orders.length)
   for (var i = 0; i < orders.length; i++) {
     body[0].textContent = "Class: " + orders[i].cid;
     body[1].textContent = "Title: " + orders[i].title;
