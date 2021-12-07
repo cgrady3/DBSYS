@@ -50,6 +50,10 @@
                 data-target="#adminEditPasswordModal">Change an Admin Accounts Password</button>
             <button class="btn btn-sm align-self-center toolbarButton adminTools" data-toggle="modal"
                 data-target="#deleteAdminAcctModal">Delete an Admin Account</button>
+            <button class="btn btn-sm align-self-center toolbarButton adminTools" data-toggle="modal"
+                data-target="#broadcastEmailModal">Send Email Reminder</button>
+            <button class="btn btn-sm align-self-center toolbarButton adminTools" data-toggle="modal"
+                data-target="#broadcastEmailModal">Invite A Professor</button>
         </div>
     </div>
     <div class="container-fluid" id="mainContainer">
@@ -365,6 +369,70 @@
                                     <button class="btn btn-danger" type="submit" data-dismiss="modal"
                                         id="deleteAdminAcct">
                                         Delete Account
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal for broacast email reminder -->
+        <div class="modal fade" tabindex="-1" id="broadcastEmailModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title w-100 text-center">Send Email Reminder to All Faculty</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                   <!--<div class="modal-body">
+                        <label class="inputPad" for="fid">Reminder Date</label>
+                        <div class="row mx-auto">
+                            <input id="deletefacultyID" type="text" name="fid" class="form-control hidden" required>
+                        </div>
+                    </div> -->
+                    <div class="modal-footer">
+                        <div class="container-fluid">
+                            <div class="row justify-content-around">
+                                <div class="col-xs">
+                                    <button class="btn btn-danger" type="submit" data-dismiss="modal"
+                                        id="broadcastEmailReminder">
+                                        Send Reminder
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal for inviteProfessor -->
+        <div class="modal fade" tabindex="-1" id="broadcastEmailModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title w-100 text-center">Invite Professor To Submit Book Request</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                   <!--<div class="modal-body">
+                        <label class="inputPad" for="fid">Reminder Date</label>
+                        <div class="row mx-auto">
+                            <input id="deletefacultyID" type="text" name="fid" class="form-control hidden" required>
+                        </div>
+                    </div> -->
+                    <div class="modal-footer">
+                        <div class="container-fluid">
+                            <div class="row justify-content-around">
+                                <div class="col-xs">
+                                    <button class="btn btn-danger" type="submit" data-dismiss="modal"
+                                        id="broadcastEmailReminder">
+                                        Invite Professor
                                     </button>
                                 </div>
                             </div>

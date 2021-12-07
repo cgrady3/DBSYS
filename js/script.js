@@ -338,7 +338,7 @@ function assignTempPassword(newPassword, fid) {
   }
 }
 
-function broadcastEmailReminder(){
+$("#broadcastEmailReminder").click(function(){ 
   
   //call Broadcast.php
   var url = urlBase + "/Broadcast" + extension;
@@ -358,7 +358,7 @@ function broadcastEmailReminder(){
   } catch (err) {
     console.log("broadcast-error");
   }
-}
+})
 
 function sendBroadcastEmailReminder(emails){
   let emailList;
