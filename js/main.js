@@ -443,7 +443,7 @@ let createOrderTable = (orders) => {
 
   for (var i = 0; i < orders.length; i++) {
     let order = orders[i].orderBy
-    var jsDate = new Date(Date.parse(order.replace(/[-]/g,'/')))
+    var jsDate = new Date(Date.parse(order))
 console.log("due by: " + jsDate)
     body[0].textContent = "Class: " + orders[i].class;
     body[1].textContent = "Title: " + orders[i].title;
