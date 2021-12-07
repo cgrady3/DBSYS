@@ -192,6 +192,9 @@ $("#sendForgotPasswordEmail").click(function () {
 // Send an email to the user with the new password
 function sendForgotPasswordEmail(newPassword, Email) {
 
+  // Construct Email message
+  var message = 'Here is your temporary password : ' + newPassword +
+                '\n ';
 }
 
 // Updates the user in the database with the new password
