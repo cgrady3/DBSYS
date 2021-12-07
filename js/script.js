@@ -164,39 +164,41 @@ $("#sendForgotPasswordEmail").click(function () {
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
-        var jsonObject = JSON.parse(xhr.responseText);
-        console.log(jsonObject);
-        console.log(jsonObject.error);
+        // var jsonObject = JSON.parse(xhr.responseText);
+        // console.log(jsonObject);
+        // console.log(jsonObject.error);
 
-        if (jsonObject.error !== undefined) {
-          $("#forgot-password-error").text(jsonObject.error);
-          return;
-        }
-        // Account exists if this point is reached
-        isStaff = jsonObject.isStaff;
-        fid = jsonObject.fid;
-        userExists = true;
+        // if (jsonObject.error !== undefined) {
+        //   $("#forgot-password-error").text(jsonObject.error);
+        //   return;
+        // }
+        // // Account exists if this point is reached
+        // isStaff = jsonObject.isStaff;
+        // fid = jsonObject.fid;
+        // userExists = true;
       }
     };
     xhr.send(jsonPayload);
   } catch (err) {
     console.log(err);
   }
-  // // Check if user is staff (illegal to do forgotPassword on staff account)
-  // if (isStaff == 1 || (!userExists)) {
-  //   $("#forgot-password-error").text("No account for this email exists");
-  //   return;
-  // }
+})
 
-  // // User is professor if this point is reached, generate new random password
-  // var newPassword = generateTempPassword();
+// Kept here temporarily for debugging
+// // Check if user is staff (illegal to do forgotPassword on staff account)
+// if (isStaff == 1 || (!userExists)) {
+//   $("#forgot-password-error").text("No account for this email exists");
+//   return;
+// }
 
-  // // Assign new password to user in database
-  // assignTempPassword(newPassword, fid);
+// // User is professor if this point is reached, generate new random password
+// var newPassword = generateTempPassword();
 
-  // // Send an email to the user containing the new password
-  // sendForgotPasswordEmail(newPassword, Email);
-});
+// // Assign new password to user in database
+// assignTempPassword(newPassword, fid);
+
+// // Send an email to the user containing the new password
+// sendForgotPasswordEmail(newPassword, Email);
 
 // Send an email to the user with the new password
 function sendForgotPasswordEmail(newPassword, Email) {
