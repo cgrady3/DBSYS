@@ -19,11 +19,12 @@
 		while($row = $result->fetch_assoc()){
 			
             $rows[] = $row['email'];
-			$singleEmail = $row['email'].','
-			$emailList .= $singleEmail
+			//$singleEmail = $row['email'].','
+			//$emailList .= $singleEmail
 
 		}
 		//echo json_encode($rows);
+        echo(gettype(rows[0]))
 		
   	}
     	else {
@@ -33,7 +34,8 @@
 	$stmt->close();
 	$conn->close();
     $messageString = "Please submit your book request soon! \n";
-    emailList = substr_replace($emailList ,"", -1);
+    $emailList = substr_replace($emailList ,"", -1);
+
     $to			= $emailList;
 	$subject	= 'Book Request Reminder';
 	$message 	=  $messageString.$url;
