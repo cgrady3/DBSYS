@@ -128,6 +128,7 @@ $("#sendForgotPasswordEmail").click(function () {
   var error = true;
   var userExists = false;
   var userIsStaff = 0;
+  var foundFID = 0;
 
   var Email = $("#user-email").val().trim().toLowerCase();
 
@@ -174,22 +175,7 @@ $("#sendForgotPasswordEmail").click(function () {
         }
         // Account exists if this point is reached
         userIsStaff = jsonObject.isStaff;
-        //fid = jsonObject.fid;
-
-        // Check if user is staff (illegal to do forgotPassword on staff account)
-        if (userIsStaff == 1) {
-          $("#forgot-password-error").text("No account for this email exists");
-          return;
-        }
-
-        // User is professor if this point is reached, generate new random password
-        var newPassword = generateTempPassword();
-
-        // Assign new password to user in database
-        assignTempPassword(newPassword, jsonObject.fid);
-
-        // Send an email to the user containing the new password
-        sendForgotPasswordEmail(newPassword, Email);
+        foundFid = jsonObject.fid;
       }
     };
     xhr.send(jsonPayload);
@@ -197,21 +183,21 @@ $("#sendForgotPasswordEmail").click(function () {
     console.log(err);
   }
 
-  // // Check if user is staff (illegal to do forgotPassword on staff account)
-  // if (userIsStaff == 1) {
-  //   $("#forgot-password-error").text("No account for this email exists");
-  //   return;
-  // }
+  // Check if user is staff (illegal to do forgotPassword on staff account)
+  if (userIsStaff == 1) {
+    $("#forgot-password-error").text("No account for this email exists");
+    return;
+  }
 
-  // // User is professor if this point is reached, generate new random password
-  // var newPassword = generateTempPassword();
+  // User is professor if this point is reached, generate new random password
+  var newPassword = generateTempPassword();
 
-  // // Assign new password to user in database
-  // assignTempPassword(newPassword, fid);
+  // Assign new password to user in database
+  assignTempPassword(newPassword, jsonObject.fid);
 
-  // // Send an email to the user containing the new password
-  // sendForgotPasswordEmail(newPassword, Email);
-})
+  // Send an email to the user containing the new password
+  sendForgotPasswordEmail(newPassword, Email);
+});
 
 // Send an email to the user with the new password
 function sendForgotPasswordEmail(newPassword, Email) {
