@@ -633,7 +633,9 @@ function getDeadline(){
       if (this.readyState === 4 && this.status === 200) {
         
         var jsonObject = JSON.parse(xhr.responseText);
-        return jsonObject.deadline;
+        console.log(jsonObject[0]);
+        console.log(jsonObject[0].deadline);
+        return jsonObject[0].deadline;
 
       }
     };
@@ -660,7 +662,7 @@ function sendBroadcastEmailReminder(emails){
   console.log(emailList);
 
   var deadline = getDeadline();
-  
+  console.log(deadline);
   var jsonPayload = '{"emails" : "' + emailList + '", "date" : "' + deadline + '"}';
 
   //call sendEmail.php
