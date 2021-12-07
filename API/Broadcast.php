@@ -14,7 +14,7 @@
 
   	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()){
-			$rows[] = $row;
+			$rows[] = $row['email'];
 		}
 		echo json_encode($rows);
   	}
