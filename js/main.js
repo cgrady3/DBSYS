@@ -620,7 +620,7 @@ $("#broadcastEmailReminder").click(function(){
   }
 })
 
-async function getDeadline(){
+function getDeadline(emailList){
   
   var url = urlBase + "/GetSemesterOrders" + extension;
   var xhr = new XMLHttpRequest();
@@ -640,8 +640,10 @@ async function getDeadline(){
         var jsonObject = JSON.parse(xhr.responseText);
         //console.log(jsonObject[0]);
         console.log(jsonObject[0].deadline);
-        return jsonObject[0].deadline;
-
+        var thiss = jsonObject[0].deadline;
+        console.log(thiss);
+        testFunction(emailList, jsonObject[0].deadline);
+        
       }
     };
     xhr.send(jsonPayload);
@@ -650,7 +652,7 @@ async function getDeadline(){
   }
 }
 
-async function sendBroadcastEmailReminder(emails){
+function sendBroadcastEmailReminder(emails){
   var emailList = "";
   if (emails.error !== undefined) {
     $("#broadcast-error").text(emails.error);
@@ -666,8 +668,11 @@ async function sendBroadcastEmailReminder(emails){
   emailList.slice(0,-1);
   console.log(emailList);
 
-  var deadline = await getDeadline();
-  console.log(deadline);
+  var deadline = getDeadline(emailList);
+  
+}
+
+function testFunction(emailList, deadline){
   var jsonPayload = '{"emails" : "' + emailList + '", "date" : "' + deadline + '"}';
   console.log("you missed ya chance dummy");
   //call sendEmail.php
