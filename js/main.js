@@ -471,6 +471,7 @@ let deleteOrder = () => {
 // load order form for the currently selected semester
 let loadProfsSemesterOrders = (semester) => {
   $("#requestFormTableBody").empty();
+  $("#row-1").empty();
 
   var url = urlBase + "/GetProfsSemesterOrders" + extension;
   var xhr = new XMLHttpRequest();
@@ -503,6 +504,7 @@ let loadProfsSemesterOrders = (semester) => {
 // load the orders for an entire semester
 let loadSemesterOrders = (semester) => {
   $("#requestFormTableBody").empty();
+  $("#row-1").empty();
 
   var url = urlBase + "/GetSemesterOrders" + extension;
   var xhr = new XMLHttpRequest();
@@ -533,7 +535,6 @@ let loadSemesterOrders = (semester) => {
 
 // build table of order form
 let createOrderTable = (order) => {
-  $("#row-1").empty();
   var template = document.getElementById("orderForm");
   var clone = template.content.firstElementChild.cloneNode(true);
   var row = document.getElementById("row-1");
