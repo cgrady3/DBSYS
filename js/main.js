@@ -363,7 +363,7 @@ $("#submitOrderEdit").click(function () {
   $("#edit-error-message").text("");
 });
 
-let selectOrder = () => {
+function selectOrder (){
   var body = this.querySelectorAll("li");
 
   selectedOrder = {
