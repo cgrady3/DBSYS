@@ -19,6 +19,10 @@ window.onload = function () {
   }
 };
 
+$("#logout").click((e) => {
+  doLogout();
+})
+
 $("#editUserpassword").click((e) => {
   var password = $("#facultyNewPassword").val();
 
