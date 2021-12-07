@@ -283,7 +283,7 @@ $(".semester4").click((e) => {
   }
 });
 
-$("#submitOrder").on("click", (e) => {
+$("#submitOrder1").on("click", (e) => {
   var subject = $("#edit-order-subject").val();
   var courseNumber = $("#edit-order-courseNumber").val();
   var season = $("#edit-order-semester").val();
@@ -309,7 +309,7 @@ $("#submitOrder").on("click", (e) => {
   CreateNewOrder(order)
 
   // Close modal and clear fields
-  $("#orderModal").modal("hide");
+  $("#orderModal").modal('hide');
   $("#order-subject").val("");
   $("#order-courseNumber").val("");
   $("#order-semester").val("");
@@ -352,7 +352,7 @@ $("#submitOrderEdit").click(function () {
   deleteOrder()
 
   // Close modal and clear fields
-  $("#edit-orderModal").modal("hide");
+  $("#edit-orderModal").modal('hide');
   $("#edit-order-subject").val("");
   $("#edit-order-courseNumber").val("");
   $("#edit-order-semester").val("");
