@@ -385,7 +385,7 @@ function selectOrder (){
   $("#order-courseNumber").val(selectedOrder.courseNumber);
   $("#order-semester").val(selectedOrder.season);
   $("#order-year").val(selectedOrder.year);
-  $("#order-title").val(jselectedOrder.title);
+  $("#order-title").val(selectedOrder.title);
   $("#order-edition").val(selectedOrder.edition);
   $("#order-authors").val(selectedOrder.authors);
   $("#order-publisher").val(selectedOrder.publisher);
