@@ -179,6 +179,9 @@ $("#createNewFacultyAcct").click((e) => {
   // hashing password
   Password = md5(Password);
 
+  // find out whether we're creating a professor or staff account
+  inputProfessor = document.querySelector('input[id="facultyType"]:checked').value; 
+
   var jsonPayload =
       '{"email" : "' +
       Email +

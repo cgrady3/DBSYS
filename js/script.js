@@ -277,6 +277,8 @@ function saveCookie() {
 }
 
 // Generates an 8 character long randomized password
+// Based on the response from csharptest.net in this post
+// https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
 function generateTempPassword() {
   var length = 8;
   var result           = '';
