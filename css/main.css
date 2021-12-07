@@ -85,3 +85,7 @@
 .word{
     display: inline-block;
 }
+
+.card-header{
+    margin-top: 8px;
+}
