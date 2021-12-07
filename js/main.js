@@ -4,6 +4,7 @@ var fid;
 var currSemester;
 var isStaff;
 var selectedOrder;
+var oid;
 
 window.onload = function () {
   readCookie();
@@ -348,6 +349,7 @@ $("#submitOrderEdit").click(function () {
   };
 
   CreateNewOrder(order)
+  deleteOrder()
 
   // Close modal and clear fields
   $("#edit-orderModal").modal("hide");
@@ -390,6 +392,7 @@ function selectOrder (){
   };
   console.log(selectedOrder.season + " " + selectedOrder.year)
 
+  oid = selectedOrder.oid;
   $("#order-subject").text(selectedOrder.subject);
   $("#order-courseNumber").val(selectedOrder.courseNumber);
   $("#order-semester").val(selectedOrder.season);
@@ -447,7 +450,6 @@ let deleteOrder = () => {
   var url = urlBase + "/DeleteOrder" + extension;
   var xhr = new XMLHttpRequest();
 
-  // var oid = $(this).attr("data-oid");
   var search = '{"oid" : "' + oid + '"}';
 
   xhr.open("PUT", url, true);
