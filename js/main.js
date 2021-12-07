@@ -335,7 +335,7 @@ $("#submitOrder").on("click", (e) => {
   var order =
     '{"fid" : "' +
     fid +
-    '", "course" : "' +
+    '", "cid" : "' +
     cid +
     '", "deadline" : "' +
     $("#order-date").val() +
