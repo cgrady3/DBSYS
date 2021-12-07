@@ -545,6 +545,7 @@ let createOrderTable = (order) => {
   var clone = template.content.firstElementChild.cloneNode(true);
   var row = document.getElementById("row-1");
   var body = clone.querySelectorAll("li");
+  console.log("table cid: " +order.cid)
 
   body[0].textContent = "Class: " + order.cid;
   body[1].textContent = "Title: " + order.title;
