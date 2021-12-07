@@ -442,7 +442,7 @@ let createOrderTable = (orders) => {
   var buttons = footer.querySelectorAll("button");
 
   for (var i = 0; i < orders.length; i++) {
-    console.log(orders[i])
+    console.log("order #" +i+ ": " + orders[i])
 
     body[0].textContent = "Class: " + orders[i].class;
     body[1].textContent = "Title: " + orders[i].title;
