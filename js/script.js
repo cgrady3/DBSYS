@@ -107,6 +107,14 @@ $("#signUp").click(function() {
         isStaff = jsonObject.isStaff;
         saveCookie();
 
+        if (isStaff == 1) {
+          $(".adminTools").show();
+          $(".profTools").hide();
+        } else {
+          $(".profTools").show();
+          $(".adminTools").hide();
+        }
+
         window.location.href = "main.html";
       }
     };
