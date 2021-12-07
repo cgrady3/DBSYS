@@ -379,10 +379,9 @@ function selectOrder (){
     year: body[6].innerText.split(" ")[2],
     deadline: body[7].innerText.split(" ")[1],
   };
-  // selectedOrder = this;
   console.log(selectedOrder.season + " " + selectedOrder.year)
 
-  $("#order-subject").val(selectedOrder.subject);
+  $("#order-subject").text(selectedOrder.subject);
   $("#order-courseNumber").val(selectedOrder.courseNumber);
   $("#order-semester").val(selectedOrder.season);
   $("#order-year").val(selectedOrder.year);
