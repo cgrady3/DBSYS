@@ -270,7 +270,7 @@ $(".semester4").click((e) => {
 $("#editOrder").on("click", (e) => {
   e.preventDefault();
 
-  var search = '{"oid" : "' + $(this).attr("orderID") + '"}';
+  var search = '{"oid" : "' + $(this).attr("data-oid") + '"}';
 
   var url = urlBase + "/GetOrder" + extension;
   var xhr = new XMLHttpRequest();
@@ -442,10 +442,6 @@ let createOrderTable = (orders) => {
   var footer = clone.getElementsByClassName("card-footer");
 
   for (var i = 0; i < orders.length; i++) {
-    let order = orders[i].deadline
-    var jsDate = new Date(Date.parse(order.split(/[- :]/)))
-    var dateArr = jsDate.split(" ");
-console.log("due by: " + dateArr)
     body[0].textContent = "Class: " + orders[i].class;
     body[1].textContent = "Title: " + orders[i].title;
     body[2].textContent = "Authors: " + orders[i].authors;
