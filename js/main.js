@@ -540,7 +540,7 @@ $("#broadcastEmailReminder").click(function(){
 })
 
 function sendBroadcastEmailReminder(emails){
-  var emailList;
+  var emailList = "";
   if (emails.error !== undefined) {
     $("#broadcast-error").text(emails.error);
     return;
