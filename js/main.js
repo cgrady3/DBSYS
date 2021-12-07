@@ -328,6 +328,7 @@ $("#submitOrderEdit").click(function () {
   var courseNumber = $("#edit-order-courseNumber").val();
   var season = $("#edit-order-semester").val();
   var year = $("#edit-order-year").val();
+  var isbn = $("#edit-order-isbn").val()
 
   var cid = subject + " " + courseNumber;
   var semester = season + " " + year;
@@ -342,7 +343,7 @@ $("#submitOrderEdit").click(function () {
     edition: $("#edit-order-edition").val(),
     authors: $("#edit-order-authors").val(),
     publisher: $("#edit-order-publisher").val(),
-    isbn: $("#edit-order-isbn").val(),
+    isbn: isbn,
     uniqueID: uniqueID,
   };
 
@@ -364,6 +365,14 @@ $("#submitOrderEdit").click(function () {
 });
 
 function selectOrder (){
+  if (isStaff) {
+    $("#submitOrderEdit").hide()
+    $("#submitOrder").show()
+  } else {
+    $("#submitOrderEdit").show()
+    $("#submitOrder").hide()
+  }
+
   var body = this.querySelectorAll("li");
 
   selectedOrder = {
