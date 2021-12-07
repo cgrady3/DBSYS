@@ -353,9 +353,9 @@ $("#submitOrder").on("click", (e) => {
 });
 
 // prefill modal fields for prof to edit
-let editOrder = (oid) => {
+let editOrder = () => {
   console.log("edit order");
-  // var oid = $(this).attr("data-oid");
+  var oid = $(this).attr("data-oid");
   var search = '{"oid" : "' + oid + '"}';
   console.log(oid)
 
@@ -395,7 +395,7 @@ let editOrder = (oid) => {
   }
 };
 
-let deleteOrder = (oid) => {
+let deleteOrder = () => {
   var url = urlBase + "/DeleteOrder" + extension;
   var xhr = new XMLHttpRequest();
 
@@ -491,6 +491,7 @@ let createOrderTable = (orders) => {
   var footer = clone.getElementsByClassName("card-footer");
 
   for (var i = 0; i < orders.length; i++) {
+
     body[0].textContent = "Class: " + orders[i].cid;
     body[1].textContent = "Title: " + orders[i].title;
     body[2].textContent = "Authors: " + orders[i].authors;
@@ -500,9 +501,9 @@ let createOrderTable = (orders) => {
     body[6].textContent = "Submit By: " + orders[i].deadline;
 
     $(buttons[0]).attr("data-oid", orders[i].oid);
-    buttons[0].addEventListener("click", editOrder(orders[i].oid));
+    buttons[0].addEventListener("click", editOrder);
     $(buttons[1]).attr("data-oid", orders[i].oid);
-    buttons[1].addEventListener("click", deleteOrder(orders[i].oid));
+    buttons[1].addEventListener("click", deleteOrder);
 
     if (isStaff) {
       footer[0].html('<td><button type="button" class="btn btn-light tableButton" data-oid=' + orders[i].oid +  'id="submitOrder">Submit Order</button></td>')
