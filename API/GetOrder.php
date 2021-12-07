@@ -3,13 +3,13 @@
 	include "dbConfig.php";
 	include "returnFunctions.php";
 
-	error_reporting(E_ALL);
-	ini_set('display_errors', 'on');
+	// error_reporting(E_ALL);
+	// ini_set('display_errors', 'on');
 
 	$inData = getRequestInfo();
 
-	$stmt = $conn->prepare("SELECT * FROM orders WHERE uniqueID=?");
-    $stmt->bind_param("i", $inData["uniqueID"]);
+	$stmt = $conn->prepare("SELECT * FROM orders WHERE oid=?");
+    $stmt->bind_param("i", $inData["oid"]);
 	$stmt->execute();
 
 	$row = $stmt->get_result();
