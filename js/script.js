@@ -177,7 +177,7 @@ $("#sendForgotPasswordEmail").click(function () {
         // fid = jsonObject.fid;
         // userExists = true;
       }
-    };
+    }
     xhr.send(jsonPayload);
   } catch (err) {
     console.log(err);
