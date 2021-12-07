@@ -81,3 +81,7 @@
 .toolbarButton{
     margin: 5px;
 }
+
+.word{
+    display: inline-block;
+}
