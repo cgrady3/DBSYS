@@ -35,6 +35,9 @@
 // 	echo $ex->getMessage();
 // }
 
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
+
 	$to			= 'maximilliangomer@gmail.com';
 	$subject	= 'test email';
 	$message 	= 'testing!';

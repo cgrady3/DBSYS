@@ -3,6 +3,9 @@
 	header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 	header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
 
+	error_reporting(E_ALL);
+	ini_set('display_errors', 'on');
+
 	// config db 
 	$dbHost     = "mi3-ss66.a2hosting.com"; 
 	$dbUsername = "databa14_doadmin"; 
