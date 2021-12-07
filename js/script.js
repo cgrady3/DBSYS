@@ -173,28 +173,26 @@ $("#sendForgotPasswordEmail").click(function () {
         }
         // Account exists if this point is reached
         userExists = true;
+          // Check if user is staff (illegal to do forgotPassword on staff account)
+        if (jsonObject.isStaff == 1) {
+          $("#forgot-password-error").text("No account for this email exists");
+          return;
+        }
+
+        // User is professor if this point is reached, generate new random password
+        $newPassword = generateTempPassword();
+
+        // Assign new password to user in database
+        assignTempPassword(newPassword, jsonObject.fid);
+
+        // Send an email to the user containing the new password
+        sendForgotPasswordEmail(newPassword, Email);
       }
     };
     xhr.send(jsonPayload);
   } catch (err) {
     console.log(err);
   }
-
-  // Check if user is staff (illegal to do forgotPassword on staff account)
-  if (jsonObject.isStaff == 1) {
-    $("#forgot-password-error").text("No account for this email exists");
-    return;
-  }
-
-  // User is professor if this point is reached, generate new random password
-  $newPassword = generateTempPassword();
-
-  // Assign new password to user in database
-  assignTempPassword(newPassword, jsonObject.fid);
-
-  // Send an email to the user containing the new password
-  sendForgotPasswordEmail(newPassword, Email);
-
 });
 
 // Current attempt
