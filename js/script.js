@@ -187,7 +187,7 @@ $("#sendForgotPasswordEmail").click(function () {
   }
 
   // User is professor if this point is reached, generate new random password
-  $newPassword = generateTempPassword();
+  var newPassword = generateTempPassword();
 
   // Assign new password to user in database
   assignTempPassword(newPassword, jsonObject.fid);
