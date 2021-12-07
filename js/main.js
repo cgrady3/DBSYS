@@ -619,7 +619,8 @@ $("#broadcastEmailReminder").click(function(){
   }
 })
 
-function getDeadline(){
+async function getDeadline(){
+  
   var url = urlBase + "/GetSemesterOrders" + extension;
   var xhr = new XMLHttpRequest();
   var semester = $("#order-semester-reminder").val();
@@ -648,7 +649,7 @@ function getDeadline(){
   }
 }
 
-function sendBroadcastEmailReminder(emails){
+async function sendBroadcastEmailReminder(emails){
   var emailList = "";
   if (emails.error !== undefined) {
     $("#broadcast-error").text(emails.error);
@@ -664,7 +665,7 @@ function sendBroadcastEmailReminder(emails){
   emailList.slice(0,-1);
   console.log(emailList);
 
-  var deadline = getDeadline();
+  var deadline = await getDeadline();
   console.log(deadline);
   var jsonPayload = '{"emails" : "' + emailList + '", "date" : "' + deadline + '"}';
   console.log("you missed ya chance dummy");
