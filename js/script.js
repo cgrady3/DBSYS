@@ -127,6 +127,7 @@ $("#signUp").click(function() {
 $("#sendForgotPasswordEmail").click(function () {
   var error = true;
   var userExists = false;
+  var userIsStaff = 0;
 
   var Email = $("#user-email").val().trim().toLowerCase();
 
@@ -171,6 +172,7 @@ $("#sendForgotPasswordEmail").click(function () {
         }
         // Account exists if this point is reached
         userExists = true;
+        userIsStaff = jsonObject.isStaff;
       }
     };
     xhr.send(jsonPayload);
@@ -179,7 +181,7 @@ $("#sendForgotPasswordEmail").click(function () {
   }
 
   // Check if user is staff (illegal to do forgotPassword on staff account)
-  if (jsonObject.isStaff == 1) {
+  if (userIsStaff == 1) {
     $("#forgot-password-error").text("No account for this email exists");
     return;
   }
