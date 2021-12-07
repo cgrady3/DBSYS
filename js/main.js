@@ -347,10 +347,9 @@ $("#submitOrder").on("click", (e) => {
 });
 
 // prefill modal fields for prof to edit
-let editOrder = (e) => {
-  e.preventDefault();
+let editOrder = (oid) => {
   console.log("edit order");
-  var oid = $(this).attr("data-oid");
+  // var oid = $(this).attr("data-oid");
   var search = '{"oid" : "' + oid + '"}';
   console.log(oid)
 
@@ -390,11 +389,11 @@ let editOrder = (e) => {
   }
 };
 
-let deleteOrder = (e) => {
+let deleteOrder = (oid) => {
   var url = urlBase + "/DeleteOrder" + extension;
   var xhr = new XMLHttpRequest();
 
-  var oid = $(this).attr("data-oid");
+  // var oid = $(this).attr("data-oid");
   var search = '{"oid" : "' + oid + '"}';
 
   xhr.open("PUT", url, true);
@@ -495,9 +494,9 @@ let createOrderTable = (orders) => {
     body[6].textContent = "Submit By: " + orders[i].deadline;
 
     $(buttons[0]).attr("data-oid", orders[i].oid);
-    buttons[0].addEventListener("click", editOrder);
+    buttons[0].addEventListener("click", editOrder(oid));
     $(buttons[1]).attr("data-oid", orders[i].oid);
-    buttons[1].addEventListener("click", deleteOrder);
+    buttons[1].addEventListener("click", deleteOrder(oid));
 
     if (isStaff) {
       footer[0].html('<td><button type="button" class="btn btn-light tableButton" data-oid=' + orders[i].oid +  'id="submitOrder">Submit Order</button></td>')
@@ -560,7 +559,6 @@ let updateName = (facultyID, name) => {
 };
 
 $("#InviteProfessor").click(function(){ 
-  
   var url = urlBase + "/sendIndividualEmail" + extension;
   var xhr = new XMLHttpRequest();
   var link = "http://www.databases-group25-project.com";
@@ -575,8 +573,6 @@ $("#InviteProfessor").click(function(){
   } else {
     error = false;
   }
-
-
 
   var jsonPayload = '{"emails" : "' + email + '", "url" : "' + link + '"}';
    
@@ -597,7 +593,6 @@ $("#InviteProfessor").click(function(){
 })
 
 $("#broadcastEmailReminder").click(function(){ 
-  
   //call Broadcast.php
   var url = urlBase + "/Broadcast" + extension;
   var xhr = new XMLHttpRequest();
@@ -619,7 +614,6 @@ $("#broadcastEmailReminder").click(function(){
 })
 
 function getDeadline(){
-  
   var url = urlBase + "/GetSemesterOrders" + extension;
   var xhr = new XMLHttpRequest();
   var semester = $("#order-semester-reminder").val();
