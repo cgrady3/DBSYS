@@ -180,7 +180,8 @@ $("#createNewFacultyAcct").click((e) => {
   Password = md5(Password);
 
   // find out whether we're creating a professor or staff account
-  inputProfessor = document.querySelector('input[id="facultyType"]:checked').value; 
+  // true = staff, false = professor
+  radioSelection = document.querySelector('input[id="facultyType"]:checked').value; 
 
   var jsonPayload =
       '{"email" : "' +
@@ -190,7 +191,7 @@ $("#createNewFacultyAcct").click((e) => {
       '", "name" : "' +
       Name +
       '", "isStaff" : "' +
-      1 +
+      radioSelection +
       '"}';
 
   // URL path    
