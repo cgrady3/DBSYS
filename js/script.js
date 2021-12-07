@@ -172,11 +172,11 @@ $("#sendForgotPasswordEmail").click(function () {
           return;
         }
         // Account exists if this point is reached
-        //userIsStaff = jsonObject.isStaff;
-        //fid = jsonObject.fid;
+        userIsStaff = jsonObject.isStaff;
+        fid = jsonObject.fid;
 
         // Check if user is staff (illegal to do forgotPassword on staff account)
-        if (jsonObject.IsStaff == 1) {
+        if (userIsStaff == 1) {
           $("#forgot-password-error").text("No account for this email exists");
           return;
         }
@@ -185,7 +185,7 @@ $("#sendForgotPasswordEmail").click(function () {
         var newPassword = generateTempPassword();
 
         // Assign new password to user in database
-        assignTempPassword(newPassword, jsonObject.fid);
+        assignTempPassword(newPassword, fid);
 
         // Send an email to the user containing the new password
         sendForgotPasswordEmail(newPassword, Email);
