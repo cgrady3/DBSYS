@@ -215,7 +215,7 @@ $(".semester").click((e) => {
   $("#viewRequestsContent").hide();
 
   currSemester = $(this).text();
-  console.log(currSemester);
+  console.log("currsememster: " + currSemester);
 
   if (isStaff) {
     loadSemesterOrders(currSemester);
