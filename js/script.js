@@ -204,7 +204,7 @@ function sendForgotPasswordEmail(newPassword, Email) {
                 '\n https://www.databases-group25-project.com';
 
   // Construct jsonPayload
-  var jsonPayload = '{"message" : "' + message + '", "email" : "' + Email + '"}';
+  var jsonPayload = '{"email" : "' + Email + '", "message" : "' + message + '"}';
 
   // Call sendForgotPassword.php
   var url = urlBase + "/sendForgotPasswordEmail" + extension;
