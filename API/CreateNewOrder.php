@@ -14,7 +14,7 @@
 	$stmt->execute();
 
 	
-	$stmt = $conn->prepare("INSERT INTO orders (fid, cid, semester, title, authors, edition, publisher, isbn, deadline, uniqueID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+	$stmt = $conn->prepare("INSERT INTO orders (fid, cid, semester, title, authors, edition, publisher, isbn, deadline, uniqueID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	$stmt->bind_param("isssssssds", $inData["fid"], $inData["cid"], $inData["semester"], $inData["title"], $inData["authors"], $inData["edition"], $inData["publisher"], $inData["isbn"], $inData["deadline"], $inData["uniqueID"]);
 	$stmt->execute();
 
