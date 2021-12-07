@@ -209,7 +209,7 @@ $(".viewForms").click((e) => {
 });
 
 // set current semester and start create table process
-$(".semester").click((e) => {
+$("a.dropdown-item").click((e) => {
   e.preventDefault();
 
   $("#viewRequestsContent").hide();
