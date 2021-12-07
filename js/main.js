@@ -220,7 +220,6 @@ $(".semester1").click((e) => {
   if (isStaff) {
     loadSemesterOrders(currSemester);
   } else {
-    console.log("prof")
     loadProfsSemesterOrders(currSemester);
   }
 });
@@ -386,6 +385,8 @@ let loadProfsSemesterOrders = (semester) => {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         var jsonObject = JSON.parse(xhr.responseText);
+        console.log("here")
+        console.log("obj  " + jsonObject)
         if (jsonObject.length === undefined) {
           $("#searchMsg").text("No orders found");
           return;
