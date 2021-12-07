@@ -3,6 +3,7 @@ var extension = ".php";
 var fid;
 var currSemester;
 var isStaff;
+var selectedOrder;
 
 window.onload = function () {
   readCookie();
@@ -21,13 +22,13 @@ window.onload = function () {
 
 $("#logout").click((e) => {
   doLogout();
-})
+});
 
 $("#editUserpassword").click((e) => {
   var password = $("#facultyNewPassword").val();
 
   // Ensure that the password enter conforms to our password requirements
-  if(password.length < 8 || password.length > 15) {
+  if (password.length < 8 || password.length > 15) {
     $("#change-password-message").text("Invalid password length");
   }
 
@@ -99,11 +100,7 @@ $("#editFacultypassword").click((e) => {
 });
 
 $("#deleteAdminAcct").click((e) => {
-  if (
-    confirm(
-      "Are you sure you want to delete this account?"
-    )
-  ) {
+  if (confirm("Are you sure you want to delete this account?")) {
     var facultyID = $("#deletefacultyID").val();
 
     var payload = '{"fid" : "' + facultyID + '"}';
@@ -126,12 +123,7 @@ $("#deleteAdminAcct").click((e) => {
 });
 
 $("#deleteUserAcct").click((e) => {
-  if (
-    confirm(
-      "Are you sure you want to delete your account?"
-    )
-  ) {
-
+  if (confirm("Are you sure you want to delete your account?")) {
     var payload = '{"fid" : "' + fid + '"}';
     // send request to api
     var url = urlBase + "/DeleteUser" + extension;
@@ -181,25 +173,27 @@ $("#createNewFacultyAcct").click((e) => {
 
   // find out whether we're creating a professor or staff account
   // true = staff, false = professor
-  radioSelection = document.querySelector('input[id="facultyType"]:checked').value; 
+  radioSelection = document.querySelector(
+    'input[id="facultyType"]:checked'
+  ).value;
   if (radioSelection) {
-    staffRadioSelection = 1;  // staff
+    staffRadioSelection = 1; // staff
   } else {
-    staffRadioSelection = 0;  // professor
+    staffRadioSelection = 0; // professor
   }
 
   var jsonPayload =
-      '{"email" : "' +
-      Email +
-      '", "password" : "' +
-      Password +
-      '", "name" : "' +
-      Name +
-      '", "isStaff" : "' +
-      staffRadioSelection +
-      '"}';
+    '{"email" : "' +
+    Email +
+    '", "password" : "' +
+    Password +
+    '", "name" : "' +
+    Name +
+    '", "isStaff" : "' +
+    staffRadioSelection +
+    '"}';
 
-  // URL path    
+  // URL path
   var url = urlBase + "/RegisterUser" + extension;
 
   var xhr = new XMLHttpRequest();
@@ -223,7 +217,7 @@ $("#createNewFacultyAcct").click((e) => {
     alert(err);
     location.reload();
   }
-})
+});
 
 $(".viewForms").click((e) => {
   e.preventDefault();
@@ -237,7 +231,7 @@ $(".semester1").click((e) => {
 
   $("#viewRequestsContent").hide();
 
-  currSemester = "spring 2022"
+  currSemester = "spring 2022";
 
   if (isStaff) {
     loadSemesterOrders(currSemester);
@@ -250,7 +244,7 @@ $(".semester2").click((e) => {
 
   $("#viewRequestsContent").hide();
 
-  currSemester = "summer 2022"
+  currSemester = "summer 2022";
   console.log("currsememster: " + currSemester);
 
   if (isStaff) {
@@ -264,7 +258,7 @@ $(".semester3").click((e) => {
 
   $("#viewRequestsContent").hide();
 
-  currSemester = "fall 2022"
+  currSemester = "fall 2022";
   console.log("currsememster: " + currSemester);
 
   if (isStaff) {
@@ -278,7 +272,7 @@ $(".semester4").click((e) => {
 
   $("#viewRequestsContent").hide();
 
-  currSemester = "spring 2023"
+  currSemester = "spring 2023";
   console.log("currsememster: " + currSemester);
 
   if (isStaff) {
@@ -289,38 +283,138 @@ $(".semester4").click((e) => {
 });
 
 $("#submitOrder").on("click", (e) => {
-  e.preventDefault();
+  var subject = $("#edit-order-subject").val();
+  var courseNumber = $("#edit-order-courseNumber").val();
+  var season = $("#edit-order-semester").val();
+  var year = $("#edit-order-year").val();
 
-  var subject = $("#order-subject").val();
-  var courseNumber = $("#order-courseNumber").val();
   var cid = subject + " " + courseNumber;
-  var season = $("#order-semester").val();
-  var year = $("#order-year").val();
   var semester = season + " " + year;
-  var isbn = $("#order-isbn").val();
   var uniqueID = fid + subject + courseNumber + season + year + isbn;
 
-  var order =
+  let order = {
+    fid: fid,
+    cid: cid,
+    deadline: $("#edit-order-date").val(),
+    semester: semester,
+    title: $("#edit-order-title").val(),
+    edition: $("#edit-order-edition").val(),
+    authors: $("#edit-order-authors").val(),
+    publisher: $("#edit-order-publisher").val(),
+    isbn: $("#edit-order-isbn").val(),
+    uniqueID: uniqueID,
+  };
+
+  CreateNewOrder(order)
+
+  // Close modal and clear fields
+  $("#orderModal").modal("hide");
+  $("#order-subject").val("");
+  $("#order-courseNumber").val("");
+  $("#order-semester").val("");
+  $("#order-year").val("");
+  $("#order-title").val("");
+  $("#order-edition").val("");
+  $("#order-authors").val("");
+  $("#order-publisher").val("");
+  $("#order-isbn").val("");
+  $("#order-date").val("");
+  $("#error-message").text("");
+});
+
+// submit prof order edits
+$("#submitOrderEdit").click(function () {
+  var subject = $("#edit-order-subject").val();
+  var courseNumber = $("#edit-order-courseNumber").val();
+  var season = $("#edit-order-semester").val();
+  var year = $("#edit-order-year").val();
+
+  var cid = subject + " " + courseNumber;
+  var semester = season + " " + year;
+  var uniqueID = fid + subject + courseNumber + season + year + isbn;
+
+  let order = {
+    fid: fid,
+    cid: cid,
+    deadline: $("#edit-order-date").val(),
+    semester: semester,
+    title: $("#edit-order-title").val(),
+    edition: $("#edit-order-edition").val(),
+    authors: $("#edit-order-authors").val(),
+    publisher: $("#edit-order-publisher").val(),
+    isbn: $("#edit-order-isbn").val(),
+    uniqueID: uniqueID,
+  };
+
+  CreateNewOrder(order)
+
+  // Close modal and clear fields
+  $("#edit-orderModal").modal("hide");
+  $("#edit-order-subject").val("");
+  $("#edit-order-courseNumber").val("");
+  $("#edit-order-semester").val("");
+  $("#edit-order-year").val("");
+  $("#edit-order-title").val("");
+  $("#edit-order-edition").val("");
+  $("#edit-order-authors").val("");
+  $("#edit-order-publisher").val("");
+  $("#edit-order-isbn").val("");
+  $("#edit-order-date").val("");
+  $("#edit-error-message").text("");
+});
+
+let selectOrder = () => {
+  var body = this.querySelectorAll("li");
+
+  selectedOrder = {
+    oid: $(this).attr("data-id"),
+    subject: body[0].innerText.split(" ")[1],
+    courseNumber: body[0].innerText.split(" ")[2],
+    title: body[1].innerText.split(" ")[1],
+    authors: body[2].innerText.split(": ")[1],
+    edition: body[3].innerText.split(" ")[1],
+    publisher: body[4].innerText.split(" ")[1],
+    isbn: body[5].innerText.split(" ")[1],
+    season: body[6].innerText.split(" ")[1],
+    year: body[6].innerText.split(" ")[2],
+    deadline: body[7].innerText.split(" ")[1],
+  };
+  selectedOrder = this;
+
+  $("#order-subject").val(selectedOrder.subject);
+  $("#order-courseNumber").val(selectedOrder.courseNumber);
+  $("#order-semester").val(selectedOrder.season);
+  $("#order-year").val(selectedOrder.year);
+  $("#order-title").val(jselectedOrder.title);
+  $("#order-edition").val(selectedOrder.edition);
+  $("#order-authors").val(selectedOrder.authors);
+  $("#order-publisher").val(selectedOrder.publisher);
+  $("#order-isbn").val(selectedOrder.isbn);
+  $("#order-date").val(selectedOrder.deadline);
+};
+
+let CreateNewOrder = (order) => {
+  var newOrder =
     '{"fid" : "' +
-    fid +
+    order.fid +
     '", "cid" : "' +
-    cid +
+    order.cid +
     '", "deadline" : "' +
-    $("#order-date").val() +
+    order.deadline +
     '", "semester" : "' +
-    semester +
+    order.semester +
     '", "title" : "' +
-    $("#order-title").val() +
+    order.title +
     '", "edition" : "' +
-    $("#order-edition").val() +
+    order.edition +
     '", "authors" : "' +
-    $("#order-authors").val() +
+    order.authors +
     '", "publisher" : "' +
-    $("#order-publisher").val() +
+    order.publisher +
     '", "isbn" : "' +
-    isbn +
+    order.isbn +
     '", "uniqueID" : "' +
-    uniqueID +
+    order.uniqueID +
     '"}';
 
   var url = urlBase + "/CreateNewOrder" + extension;
@@ -331,66 +425,10 @@ $("#submitOrder").on("click", (e) => {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         // Close modal and clear fields
-        $("#orderModal").modal("hide");
-        $("#order-subject").val("");
-        $("#order-courseNumber").val("");
-        $("#order-semester").val("");
-        $("#order-year").val("");
-        $("#order-title").val("");
-        $("#order-edition").val("");
-        $("#order-authors").val("");
-        $("#order-publisher").val("");
-        $("#order-isbn").val("");
-        $("#order-date").val("");
-        $("#error-message").text("");
-
         loadProfsSemesterOrders(currSemester);
       }
     };
-    xhr.send(order);
-  } catch (err) {
-    document.getElementById("orderResult").innerHTML = err.message;
-  }
-});
-
-// prefill modal fields for prof to edit
-let editOrder = () => {
-  console.log("edit order");
-  var oid = $(this).attr("data-oid");
-  var search = '{"oid" : "' + oid + '"}';
-  console.log(oid)
-
-  var url = urlBase + "/GetOrder" + extension;
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", url, true);
-  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  try {
-    xhr.onreadystatechange = function () {
-      if (this.readyState === 4 && this.status === 200) {
-        var jsonObject = JSON.parse(xhr.responseText);
-
-        var courseResponse = jsonObject.cid;
-        var courseArr = courseResponse.split("");
-        var semesterResponse = jsonObject.semester;
-        var semesterArr = semesterResponse.split(" ");
-        console.log("subject: " + courseArr[0] + " " + courseArr[1]);
-
-        $("#order-subject").val(courseArr[0]);
-        $("#order-courseNumber").val(courseArr[1]);
-        $("#order-semester").val(semesterArr[0]);
-        $("#order-year").val(semesterArr[1]);
-        $("#order-title").val(jsonObject.title);
-        $("#order-edition").val(jsonObject.edition);
-        $("#order-authors").val(jsonObject.authors);
-        $("#order-publisher").val(jsonObject.publisher);
-        $("#order-isbn").val(jsonObject.isbn);
-        $("#order-date").val(jsonObject.orderBy);
-        $("#error-message").text("");
-
-        $("#orderModal").modal('show');
-      }
-    };
-    xhr.send(search);
+    xhr.send(newOrder);
   } catch (err) {
     document.getElementById("orderResult").innerHTML = err.message;
   }
@@ -417,7 +455,7 @@ let deleteOrder = () => {
   } catch (err) {
     document.getElementById("orderResult").innerHTML = err.message;
   }
-}
+};
 
 // load order form for the currently selected semester
 let loadProfsSemesterOrders = (semester) => {
@@ -485,30 +523,24 @@ let createOrderTable = (orders) => {
   $("#row-1").empty();
   var template = document.getElementById("orderForm");
   var clone = template.content.firstElementChild.cloneNode(true);
-  var header = clone.getElementsByClassName("card-header");
+  // var header = clone.getElementsByClassName("card-header");
   var row = document.getElementById("row-1");
   var body = clone.querySelectorAll("li");
-  var buttons = clone.querySelectorAll("button");
-  var footer = clone.getElementsByClassName("card-footer");
+  // var buttons = clone.querySelectorAll("button");
+  // var footer = clone.getElementsByClassName("card-footer");
 
   for (var i = 0; i < orders.length; i++) {
-
     body[0].textContent = "Class: " + orders[i].cid;
     body[1].textContent = "Title: " + orders[i].title;
     body[2].textContent = "Authors: " + orders[i].authors;
     body[3].textContent = "Edition: " + orders[i].edition;
     body[4].textContent = "Publisher: " + orders[i].publisher;
     body[5].textContent = "ISBN: " + orders[i].isbn;
-    body[6].textContent = "Submit By: " + orders[i].deadline;
+    body[6].textContent = "Semester: " + orders[i].semester;
+    body[7].textContent = "Submit By: " + orders[i].deadline;
 
-    $(buttons[0]).attr("data-oid", orders[i].oid);
-    buttons[0].addEventListener("click", editOrder);
-    $(buttons[1]).attr("data-oid", orders[i].oid);
-    buttons[1].addEventListener("click", deleteOrder);
-
-    if (isStaff) {
-      footer[0].html('<td><button type="button" class="btn btn-light tableButton" data-oid=' + orders[i].oid +  'id="submitOrder">Submit Order</button></td>')
-    }
+    $(clone).attr("data-id", orders[i].oid);
+    clone.addEventListener("click", selectOrder);
 
     row.appendChild(clone);
   }
@@ -566,7 +598,7 @@ let updateName = (facultyID, name) => {
   }
 };
 
-$("#InviteProfessor").click(function(){ 
+$("#InviteProfessor").click(function () {
   var url = urlBase + "/sendIndividualEmail" + extension;
   var xhr = new XMLHttpRequest();
   var link = "http://www.databases-group25-project.com";
@@ -583,10 +615,10 @@ $("#InviteProfessor").click(function(){
   }
 
   var jsonPayload = '{"emails" : "' + email + '", "url" : "' + link + '"}';
-   
+
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  
+
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
@@ -598,9 +630,9 @@ $("#InviteProfessor").click(function(){
   } catch (err) {
     console.log("broadcast-error");
   }
-})
+});
 
-$("#broadcastEmailReminder").click(function(){ 
+$("#broadcastEmailReminder").click(function () {
   //call Broadcast.php
   var url = urlBase + "/Broadcast" + extension;
   var xhr = new XMLHttpRequest();
@@ -619,10 +651,9 @@ $("#broadcastEmailReminder").click(function(){
   } catch (err) {
     console.log("broadcast-error");
   }
-})
+});
 
-function getDeadline(emailList){
-  
+function getDeadline(emailList) {
   var url = urlBase + "/GetSemesterOrders" + extension;
   var xhr = new XMLHttpRequest();
   var semester = $("#order-semester-reminder").val();
@@ -630,21 +661,19 @@ function getDeadline(emailList){
   var semesterYear = semester + " " + year;
   //console.log(semesterYear);
   var jsonPayload = '{"semester" : "' + semesterYear + '"}';
- // console.log(jsonPayload);
+  // console.log(jsonPayload);
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
   // Get json object of all emails
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
-        
         var jsonObject = JSON.parse(xhr.responseText);
         //console.log(jsonObject[0]);
         console.log(jsonObject[0].deadline);
         var thiss = jsonObject[0].deadline;
         console.log(thiss);
         testFunction(emailList, jsonObject[0].deadline);
-        
       }
     };
     xhr.send(jsonPayload);
@@ -653,36 +682,35 @@ function getDeadline(emailList){
   }
 }
 
-function sendBroadcastEmailReminder(emails){
+function sendBroadcastEmailReminder(emails) {
   var emailList = "";
   if (emails.error !== undefined) {
     $("#broadcast-error").text(emails.error);
     return;
   }
   console.log(emails[0]);
-  for(let i=0; i < emails.length; i++)
-  {
+  for (let i = 0; i < emails.length; i++) {
     emailList += emails[i];
-    emailList += ',';
+    emailList += ",";
   }
 
-  emailList.slice(0,-1);
+  emailList.slice(0, -1);
   console.log(emailList);
 
   var deadline = getDeadline(emailList);
-  
 }
 
-function testFunction(emailList, deadline){
-  var jsonPayload = '{"emails" : "' + emailList + '", "date" : "' + deadline + '"}';
+function testFunction(emailList, deadline) {
+  var jsonPayload =
+    '{"emails" : "' + emailList + '", "date" : "' + deadline + '"}';
   console.log("you missed ya chance dummy");
   //call sendEmail.php
   var url = urlBase + "/sendEmail" + extension;
   var xhr = new XMLHttpRequest();
-  
+
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  
+
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {

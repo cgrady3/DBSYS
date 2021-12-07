@@ -23,7 +23,8 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="../js/main.js" defer></script>
-    <script type="text/javascript" src="../js/md5.js" defer></script> <!--required for change password-->
+    <script type="text/javascript" src="../js/md5.js" defer></script>
+    <!--required for change password-->
 </head>
 
 <body>
@@ -63,7 +64,7 @@
             <!-- Template for Order Form Content -->
             <template id="orderForm">
                 <div class="col-sm-3 mb-3">
-                    <div class="card">
+                    <div class="card" data-toggle="modal" data-target="#editOrderModal">
                         <div class="card-header"></div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"></li>
@@ -73,11 +74,8 @@
                             <li class="list-group-item"></li>
                             <li class="list-group-item"></li>
                             <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
                         </ul>
-                        <div class="card-footer">
-                            <button type="button" class="btn btn-light tableButton" id="editOrder">Edit</button>
-                            <button type="button" class="btn btn-light tableButton" id="deleteOrder">Delete</button>
-                        </div>
                     </div>
                 </div>
             </template>
@@ -103,7 +101,7 @@
             <div class="row" id="row-1"></div>
         </div>
 
-        <!-- Modal for edit or create order -->
+        <!-- Modal for create order -->
         <div class="modal fade" tabindex="-1" id="orderModal">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -145,10 +143,61 @@
                         <label class="inputPad" for="order-date">Order By Date</label>
                         <input id="order-date" type="text" name="date" class="form-control" placeholder="YYYY-MM-DD"
                             required>
-                        <p class="error-message" id="error-message">Invalid field</p>
                     </div>
                     <div class="modal-footer">
                         <button class="btn" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-custom" type="submit" id="submitOrder">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal for edit order -->
+        <div class="modal fade" tabindex="-1" id="editOrderModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title w-100 text-center">Edit Order</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="order-class">Class</label>
+                        <div class="row mx-auto">
+                            <div class="col"> <input id="edit-order-subject" type="text" name="subject" size="23"
+                                    class="form-control" placeholder="Subject Code" required> </div>
+                            <div class="col"> <input id="edit-order-courseNumber" type="text" name="course number" size="23"
+                                    class="form-control" placeholder="Course Number" required> </div>
+                        </div>
+                        <label class="inputPad" for="order-semester">Semester</label>
+                        <div class="row mx-auto">
+                            <div class="col">
+                                <input id="edit-order-semester" type="text" name="semester" class="form-control"
+                                    placeholder="Semester" required>
+                            </div>
+                            <div class="col">
+                                <input id="edit-order-year" type="text" name="year" class="form-control" placeholder="Year"
+                                    required>
+                            </div>
+                        </div>
+                        <label class="inputPad" for="order-title">Title</label>
+                        <input id="edit-order-title" type="text" name="title" class="form-control" required>
+                        <label class="inputPad" for="order-edition">Edition</label>
+                        <input id="edit-order-edition" type="text" name="edition" class="form-control" required>
+                        <label class="inputPad" for="order-authors ">Authors</label><br>
+                        <input id="edit-order-authors" type="text" name="authors" class="form-control" required>
+                        <label class="inputPad" for="order-publisher">Publisher</label>
+                        <input id="edit-order-publisher" type="text" name="publisher" class="form-control" required>
+                        <label class="inputPad" for="order-isbn">ISBN</label>
+                        <input id="edit-order-isbn" type="text" name="isbn" class="form-control" required>
+                        <label class="inputPad" for="order-date">Order By Date</label>
+                        <input id="edit-order-date" type="text" name="date" class="form-control" placeholder="YYYY-MM-DD"
+                            required>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-custom" type="submit" id="submitOrderEdit">Submit</button>
                         <button class="btn btn-custom" type="submit" id="submitOrder">Submit</button>
                     </div>
                 </div>
@@ -176,7 +225,8 @@
                         <div class="container-fluid">
                             <div class="row justify-content-around">
                                 <div class="col-xs">
-                                    <button class="btn btn-danger" type="submit" data-dismiss="modal" id="deleteUserAcct">
+                                    <button class="btn btn-danger" type="submit" data-dismiss="modal"
+                                        id="deleteUserAcct">
                                         Delete Account
                                     </button>
                                 </div>
@@ -236,7 +286,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title w-100 text-center">Create New Faculty Account</h5>
+                        <h5 class="modal-title w-100 text-center">Create New Faculty Acct</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -376,15 +426,16 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <label class="inputPad" for="order-semester-reminder">Input the semester to send a reminder for.</label>
+                    <label class="inputPad" for="order-semester-reminder">Input the semester to send a reminder
+                        for.</label>
                     <div class="row mx-auto">
                         <div class="col">
                             <input id="order-semester-reminder" type="text" name="semester" class="form-control"
                                 placeholder="Semester" required>
                         </div>
                         <div class="col">
-                            <input id="order-year-reminder" type="text" name="year" class="form-control" placeholder="Year"
-                                required>
+                            <input id="order-year-reminder" type="text" name="year" class="form-control"
+                                placeholder="Year" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -413,12 +464,12 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                   <div class="modal-body">
+                    <div class="modal-body">
                         <label class="inputPad" for="email">Email</label>
                         <div class="row mx-auto">
                             <input id="emailForInvite" type="text" name="email" class="form-control hidden" required>
                         </div>
-                    </div> 
+                    </div>
                     <div class="modal-footer">
                         <div class="container-fluid">
                             <div class="row justify-content-around">
