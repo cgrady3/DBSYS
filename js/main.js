@@ -215,6 +215,7 @@ $("#createNewFacultyAcct").click((e) => {
           $("#signup-error").text(jsonObject.error);
           return;
         }
+        $("#signup-error").text("Successfully created account");
       }
     };
     xhr.send(jsonPayload);
