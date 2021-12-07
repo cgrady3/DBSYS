@@ -182,7 +182,7 @@ $("#createNewFacultyAcct").click((e) => {
   // find out whether we're creating a professor or staff account
   // true = staff, false = professor
   radioSelection = document.querySelector('input[id="facultyType"]:checked').value; 
-  if (radioSelection == true) {
+  if (radioSelection) {
     staffRadioSelection = 1;  // staff
   } else {
     staffRadioSelection = 0;  // professor
