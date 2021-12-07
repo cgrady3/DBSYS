@@ -500,9 +500,9 @@ let createOrderTable = (orders) => {
     body[6].textContent = "Submit By: " + orders[i].deadline;
 
     $(buttons[0]).attr("data-oid", orders[i].oid);
-    buttons[0].addEventListener("click", editOrder(oid));
+    buttons[0].addEventListener("click", editOrder(orders[i].oid));
     $(buttons[1]).attr("data-oid", orders[i].oid);
-    buttons[1].addEventListener("click", deleteOrder(oid));
+    buttons[1].addEventListener("click", deleteOrder(orders[i].oid));
 
     if (isStaff) {
       footer[0].html('<td><button type="button" class="btn btn-light tableButton" data-oid=' + orders[i].oid +  'id="submitOrder">Submit Order</button></td>')
