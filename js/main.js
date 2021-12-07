@@ -278,50 +278,6 @@ $(".semester4").click((e) => {
   }
 });
 
-// prefill modal fields for prof to edit
-$("#editOrder").click((e) => {
-  e.preventDefault();
-  console.log("edit order");
-  var oid = $(this).attr("data-oid");
-  var search = '{"oid" : "' + oid + '"}';
-  console.log(oid)
-
-  var url = urlBase + "/GetOrder" + extension;
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", url, true);
-  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  try {
-    xhr.onreadystatechange = function () {
-      if (this.readyState === 4 && this.status === 200) {
-        var jsonObject = JSON.parse(xhr.responseText);
-
-        var courseResponse = jsonObject.cid;
-        var courseArr = courseResponse.split("");
-        var semesterResponse = jsonObject.semester;
-        var semesterArr = semesterResponse.split(" ");
-        console.log("subject: " + courseArr[0] + " " + courseArr[1]);
-
-        $("#order-subject").val(courseArr[0]);
-        $("#order-courseNumber").val(courseArr[1]);
-        $("#order-semester").val(semesterArr[0]);
-        $("#order-year").val(semesterArr[1]);
-        $("#order-title").val(jsonObject.title);
-        $("#order-edition").val(jsonObject.edition);
-        $("#order-authors").val(jsonObject.authors);
-        $("#order-publisher").val(jsonObject.publisher);
-        $("#order-isbn").val(jsonObject.isbn);
-        $("#order-date").val(jsonObject.orderBy);
-        $("#error-message").text("");
-
-        $("#orderModal").modal('show');
-      }
-    };
-    xhr.send(search);
-  } catch (err) {
-    document.getElementById("orderResult").innerHTML = err.message;
-  }
-});
-
 $("#submitOrder").on("click", (e) => {
   e.preventDefault();
 
@@ -386,6 +342,73 @@ $("#submitOrder").on("click", (e) => {
     document.getElementById("orderResult").innerHTML = err.message;
   }
 });
+
+// prefill modal fields for prof to edit
+let editOrder = (e) => {
+  e.preventDefault();
+  console.log("edit order");
+  var oid = $(this).attr("data-oid");
+  var search = '{"oid" : "' + oid + '"}';
+  console.log(oid)
+
+  var url = urlBase + "/GetOrder" + extension;
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        var jsonObject = JSON.parse(xhr.responseText);
+
+        var courseResponse = jsonObject.cid;
+        var courseArr = courseResponse.split("");
+        var semesterResponse = jsonObject.semester;
+        var semesterArr = semesterResponse.split(" ");
+        console.log("subject: " + courseArr[0] + " " + courseArr[1]);
+
+        $("#order-subject").val(courseArr[0]);
+        $("#order-courseNumber").val(courseArr[1]);
+        $("#order-semester").val(semesterArr[0]);
+        $("#order-year").val(semesterArr[1]);
+        $("#order-title").val(jsonObject.title);
+        $("#order-edition").val(jsonObject.edition);
+        $("#order-authors").val(jsonObject.authors);
+        $("#order-publisher").val(jsonObject.publisher);
+        $("#order-isbn").val(jsonObject.isbn);
+        $("#order-date").val(jsonObject.orderBy);
+        $("#error-message").text("");
+
+        $("#orderModal").modal('show');
+      }
+    };
+    xhr.send(search);
+  } catch (err) {
+    document.getElementById("orderResult").innerHTML = err.message;
+  }
+};
+
+let deleteOrder = (e) => {
+  var url = urlBase + "/DeleteOrder" + extension;
+  var xhr = new XMLHttpRequest();
+
+  var oid = $(this).attr("data-oid");
+  var search = '{"oid" : "' + oid + '"}';
+
+  xhr.open("PUT", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        $("#row-1").empty();
+        loadProfsSemesterOrders(currSemester);
+      }
+    };
+
+    xhr.send(search);
+  } catch (err) {
+    document.getElementById("orderResult").innerHTML = err.message;
+  }
+}
 
 // load order form for the currently selected semester
 let loadProfsSemesterOrders = (semester) => {
@@ -468,8 +491,10 @@ let createOrderTable = (orders) => {
     body[5].textContent = "ISBN: " + orders[i].isbn;
     body[6].textContent = "Submit By: " + orders[i].deadline;
 
-    $(buttons[0]).attr("data-oid", orders[i].oid)
-    $(buttons[1]).attr("data-oid", orders[i].oid)
+    buttons[0].attr("data-oid", orders[i].oid);
+    buttons[0].addEventListener("click", editOrder);
+    buttons[1].attr("data-oid", orders[i].oid);
+    buttons[1].addEventListener("click", deleteOrder);
 
     if (isStaff) {
       footer[0].html('<td><button type="button" class="btn btn-light tableButton" data-oid=' + orders[i].oid +  'id="submitOrder">Submit Order</button></td>')
