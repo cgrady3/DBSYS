@@ -24,7 +24,7 @@
 
 		}
 		//echo json_encode($rows);
-        echo(gettype(rows[0]))
+        echo gettype(rows[0]);
 		
   	}
     	else {
