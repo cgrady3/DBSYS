@@ -167,13 +167,13 @@ $("#sendForgotPasswordEmail").click(function () {
       if (this.readyState === 4 && this.status === 200) {
         var jsonObject = JSON.parse(xhr.responseText);
 
-        if (jsonObject.error !== undefined) {
+        if (jsonObject.error !== "") {
           $("#forgot-password-error").text(jsonObject.error);
           return;
         }
         // Account exists if this point is reached
         userExists = true;
-          // Check if user is staff (illegal to do forgotPassword on staff account)
+        // Check if user is staff (illegal to do forgotPassword on staff account)
         if (jsonObject.isStaff == 1) {
           $("#forgot-password-error").text("No account for this email exists");
           return;
