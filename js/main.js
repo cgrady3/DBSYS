@@ -283,7 +283,7 @@ $(".semester4").click((e) => {
   }
 });
 
-$("#submitOrder1").on("click", (e) => {
+$("#submitOrder").on("click", (e) => {
   var subject = $("#edit-order-subject").val();
   var courseNumber = $("#edit-order-courseNumber").val();
   var season = $("#edit-order-semester").val();
@@ -322,6 +322,10 @@ $("#submitOrder1").on("click", (e) => {
   $("#order-date").val("");
   $("#error-message").text("");
 });
+
+$("#deleteOrderEdit").click(function(){
+  deleteOrder();
+})
 
 // submit prof order edits
 $("#submitOrderEdit").click(function () {
@@ -369,9 +373,11 @@ $("#submitOrderEdit").click(function () {
 function selectOrder() {
   if (isStaff) {
     $("#submitOrderEdit").hide();
+    $("#deleteOrderEdit").hide();
     $("#submitOrder1").show();
   } else {
     $("#submitOrderEdit").show();
+    $("#deleteOrderEdit").show();
     $("#submitOrder1").hide();
   }
 
