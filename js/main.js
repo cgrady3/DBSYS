@@ -545,7 +545,8 @@ function sendBroadcastEmailReminder(emails){
   console.log(emails[0]);
   for(let i=0; i < emails.length; i++)
   {
-    emailList.concat(emails[i], ',');
+    emailList += emails[i];
+    emailList += ',';
   }
 
   emailList.slice(0,-1);
