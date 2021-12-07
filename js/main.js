@@ -542,7 +542,7 @@ function sendBroadcastEmailReminder(emails){
     $("#broadcast-error").text(emails.error);
     return;
   }
-  
+  console.log(emails[0]);
   for(let i=0; i < emails.length; i++)
   {
     emailList.concat(emails[i], ',');
