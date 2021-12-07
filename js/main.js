@@ -573,9 +573,7 @@ $("#broadcastEmailReminder").click(function(){
   //call Broadcast.php
   var url = urlBase + "/Broadcast" + extension;
   var xhr = new XMLHttpRequest();
-  var deadline = getDeadline();
 
-  var jsonPayload = '{"emails" : "' + emailList + '", "date" : "' + deadline + '"}';
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
   // Get json object of all emails
@@ -609,7 +607,7 @@ function getDeadline(){
       if (this.readyState === 4 && this.status === 200) {
         
         var jsonObject = JSON.parse(xhr.responseText);
-        return jsonObject[0].deadline;
+        return jsonObject.deadline;
 
       }
     };
@@ -634,7 +632,9 @@ function sendBroadcastEmailReminder(emails){
 
   emailList.slice(0,-1);
   console.log(emailList);
-  var jsonPayload = '{"emails" : "' + emailList + '"}';
+
+  var deadline = getDeadline();
+  var jsonPayload = '{"emails" : "' + emailList + '", "date" : "' + deadline + '"}';
 
   //call sendEmail.php
   var url = urlBase + "/sendEmail" + extension;
