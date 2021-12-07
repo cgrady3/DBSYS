@@ -619,8 +619,8 @@ function getDeadline(){
   
   var url = urlBase + "/GetSemesterOrders" + extension;
   var xhr = new XMLHttpRequest();
-  var semester = $("#order-semester-reminder");
-  var year = $("#order-year-reminder");
+  var semester = $("#order-semester-reminder").val();
+  var year = $("#order-year-reminder").val();
   var semesterYear = semester + " " + year;
   console.log(semesterYear);
   var jsonPayload = '{"semester" : "' + semesterYear + '"}';
