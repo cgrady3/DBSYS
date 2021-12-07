@@ -128,7 +128,6 @@ $("#sendForgotPasswordEmail").click(function () {
   var error = true;
   var userExists = false;
   var userIsStaff = 0;
-  //var fid = 0;
 
   var Email = $("#user-email").val().trim().toLowerCase();
 
@@ -166,6 +165,8 @@ $("#sendForgotPasswordEmail").click(function () {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         var jsonObject = JSON.parse(xhr.responseText);
+        console.log(jsonObject);
+        console.log(jsonObject.error);
 
         if (jsonObject.error !== undefined) {
           $("#forgot-password-error").text(jsonObject.error);
