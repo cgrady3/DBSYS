@@ -120,8 +120,7 @@ $("#signUp").click(function() {
     };
     xhr.send(jsonPayload);
   } catch (err) {
-    alert(err);
-    location.reload();
+    console.log(err);
   }
 })
 
@@ -176,8 +175,7 @@ $("#sendForgotPasswordEmail").click(function () {
     };
     xhr.send(jsonPayload);
   } catch (err) {
-    alert(err);
-    location.reload();
+    console.log(err);
   }
 
   // Check if user is staff (illegal to do forgotPassword on staff account)
@@ -201,8 +199,36 @@ $("#sendForgotPasswordEmail").click(function () {
 function sendForgotPasswordEmail(newPassword, Email) {
 
   // Construct Email message
-  var message = 'Here is your temporary password : ' + newPassword +
-                '\n ';
+  var message = 'Here is your new temporary password : ' + newPassword +
+                '\n Please sign in and change your password to something new.' +
+                '\n https://www.databases-group25-project.com';
+
+  // Construct jsonPayload
+  var jsonPayload = '{"message" : "' + message + '", "email" : "' + email + '"}';
+
+  // Call sendIndividualEmail.php
+  var url = urlBase + "/sendIndividualEmail" + extension;
+  
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        var jsonObject = JSON.parse(xhr.responseText);
+
+        if (jsonObject.error !== undefined) {
+          $("#forgot-password-error").text("Failed to send forgot password email");
+          return;
+        }
+        // Successfully changed user password at this point
+      }
+    };
+    xhr.send(jsonPayload);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 // Updates the user in the database with the new password
@@ -232,8 +258,7 @@ function assignTempPassword(newPassword, fid) {
     };
     xhr.send(jsonPayload);
   } catch (err) {
-    alert(err);
-    location.reload();
+    console.log(err);
   }
 }
 
@@ -311,7 +336,7 @@ function generateTempPassword() {
   var charactersLength = characters.length;
   for ( var i = 0; i < length; i++ ) {
     result += characters.charAt(Math.floor(Math.random() * 
-charactersLength));
- }
+    charactersLength));
+  }
  return result;
 }
