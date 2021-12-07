@@ -236,10 +236,10 @@ function sendForgotPasswordEmail(newPassword, Email) {
 function assignTempPassword(newPassword, fid) {
 
   // hashing password
-  Password = md5(Password);
+  hashedPassword = md5(newPassword);
 
   // Build json package (send password, fid)
-  var jsonPayload = '{"password" : "' + newPassword + '", "fid": "' + fid + '"}';
+  var jsonPayload = '{"password" : "' + hashedPassword + '", "fid": "' + fid + '"}';
 
   // Call UpdateUserPass.php
   var url = urlBase + "/UpdateUserPass" + extension;
