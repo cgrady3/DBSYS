@@ -209,12 +209,54 @@ $(".viewForms").click((e) => {
 });
 
 // set current semester and start create table process
-$("a.dropdown-item").click((e) => {
+$(".semester1").click((e) => {
   e.preventDefault();
 
   $("#viewRequestsContent").hide();
 
-  currSemester = $(this).text();
+  currSemester = "spring 2022"
+  console.log("currsememster: " + currSemester);
+
+  if (isStaff) {
+    loadSemesterOrders(currSemester);
+  } else {
+    loadProfsSemesterOrders(currSemester);
+  }
+});
+$(".semester2").click((e) => {
+  e.preventDefault();
+
+  $("#viewRequestsContent").hide();
+
+  currSemester = "summer 2022"
+  console.log("currsememster: " + currSemester);
+
+  if (isStaff) {
+    loadSemesterOrders(currSemester);
+  } else {
+    loadProfsSemesterOrders(currSemester);
+  }
+});
+$(".semester3").click((e) => {
+  e.preventDefault();
+
+  $("#viewRequestsContent").hide();
+
+  currSemester = "fall 2022"
+  console.log("currsememster: " + currSemester);
+
+  if (isStaff) {
+    loadSemesterOrders(currSemester);
+  } else {
+    loadProfsSemesterOrders(currSemester);
+  }
+});
+$(".semester4").click((e) => {
+  e.preventDefault();
+
+  $("#viewRequestsContent").hide();
+
+  currSemester = "spring 2023"
   console.log("currsememster: " + currSemester);
 
   if (isStaff) {
