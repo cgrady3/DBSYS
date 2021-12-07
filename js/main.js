@@ -488,7 +488,8 @@ let loadProfsSemesterOrders = (semester) => {
           $("#row-1").text("No orders found");
           return;
         } else {
-          createOrderTable(jsonObject);
+          for(let i = 0; i < jsonObject.length; i++)
+            createOrderTable(jsonObject[i]);
         }
       }
     };
@@ -518,7 +519,8 @@ let loadSemesterOrders = (semester) => {
           $("#row-1").text("No orders found");
           return;
         } else {
-          createOrderTable(jsonObject);
+          for(let i = 0; i < jsonObject.length; i++)
+            createOrderTable(jsonObject[i]);
         }
       }
     };
@@ -530,7 +532,7 @@ let loadSemesterOrders = (semester) => {
 };
 
 // build table of order form
-let createOrderTable = (orders) => {
+let createOrderTable = (order) => {
   $("#row-1").empty();
   var template = document.getElementById("orderForm");
   var clone = template.content.firstElementChild.cloneNode(true);
@@ -540,22 +542,20 @@ let createOrderTable = (orders) => {
   // var buttons = clone.querySelectorAll("button");
   // var footer = clone.getElementsByClassName("card-footer");
 
-  for (var i = 0; i < orders.length; i++) {
     console.log("order: " + orders[i])
-    body[0].textContent = "Class: " + orders[i].cid;
-    body[1].textContent = "Title: " + orders[i].title;
-    body[2].textContent = "Authors: " + orders[i].authors;
-    body[3].textContent = "Edition: " + orders[i].edition;
-    body[4].textContent = "Publisher: " + orders[i].publisher;
-    body[5].textContent = "ISBN: " + orders[i].isbn;
-    body[6].textContent = "Semester: " + orders[i].semester;
-    body[7].textContent = "Submit By: " + orders[i].deadline;
+    body[0].textContent = "Class: " + order.cid;
+    body[1].textContent = "Title: " + order.title;
+    body[2].textContent = "Authors: " + order.authors;
+    body[3].textContent = "Edition: " + order.edition;
+    body[4].textContent = "Publisher: " + order.publisher;
+    body[5].textContent = "ISBN: " + order.isbn;
+    body[6].textContent = "Semester: " + order.semester;
+    body[7].textContent = "Submit By: " + order.deadline;
 
-    $(clone).attr("data-id", orders[i].oid);
+    $(clone).attr("data-id", order.oid);
     clone.addEventListener("click", selectOrder);
 
     row.appendChild(clone);
-  }
 };
 
 let updateEmail = (facultyID, email) => {
