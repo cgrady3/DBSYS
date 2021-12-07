@@ -573,8 +573,9 @@ $("#broadcastEmailReminder").click(function(){
   //call Broadcast.php
   var url = urlBase + "/Broadcast" + extension;
   var xhr = new XMLHttpRequest();
-  
-  var jsonPayload = '{"emails" : "' + emailList + '"}';
+  var deadline = getDeadline();
+
+  var jsonPayload = '{"emails" : "' + emailList + '", "date" : "' + deadline + '"}';
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
   // Get json object of all emails
@@ -590,6 +591,33 @@ $("#broadcastEmailReminder").click(function(){
     console.log("broadcast-error");
   }
 })
+
+function getDeadline(){
+  
+  var url = urlBase + "/GetSemesterOrders" + extension;
+  var xhr = new XMLHttpRequest();
+  var semester = $("#order-semester-reminder");
+  var year = $("#order-year-reminder");
+  var semesterYear = semester + " " + year;
+
+  var jsonPayload = '{"semester" : "' + semesterYear + '"}';
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  // Get json object of all emails
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        
+        var jsonObject = JSON.parse(xhr.responseText);
+        return jsonObject[0].deadline;
+
+      }
+    };
+    xhr.send(jsonPayload);
+  } catch (err) {
+    console.log("broadcast-error");
+  }
+}
 
 function sendBroadcastEmailReminder(emails){
   var emailList = "";
