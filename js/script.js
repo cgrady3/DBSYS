@@ -2,6 +2,7 @@ var urlBase = "https://www.databases-group25-project.com/API"
 var extension = ".php";
 var fid;
 var isStaff;
+var userExists;
 
 window.onload = function () {
   $("#login-error").text("");
@@ -126,9 +127,7 @@ $("#signUp").click(function() {
 
 $("#sendForgotPasswordEmail").click(function () {
   var error = true;
-  var userExists = false;
-  var userIsStaff = 0;
-  var foundFid = null;
+  userExists = false;
 
   var Email = $("#user-email").val().trim().toLowerCase();
 
@@ -174,8 +173,8 @@ $("#sendForgotPasswordEmail").click(function () {
           return;
         }
         // Account exists if this point is reached
-        userIsStaff = jsonObject.isStaff;
-        foundFid = jsonObject.fid;
+        isStaff = jsonObject.isStaff;
+        fid = jsonObject.fid;
         userExists = true;
       }
     };
@@ -185,7 +184,7 @@ $("#sendForgotPasswordEmail").click(function () {
   }
 
   // Check if user is staff (illegal to do forgotPassword on staff account)
-  if (userIsStaff == 1 || (!userExists)) {
+  if (isStaff == 1 || (!userExists)) {
     $("#forgot-password-error").text("No account for this email exists");
     return;
   }
@@ -194,7 +193,7 @@ $("#sendForgotPasswordEmail").click(function () {
   var newPassword = generateTempPassword();
 
   // Assign new password to user in database
-  assignTempPassword(newPassword, foundFid);
+  assignTempPassword(newPassword, fid);
 
   // Send an email to the user containing the new password
   sendForgotPasswordEmail(newPassword, Email);
