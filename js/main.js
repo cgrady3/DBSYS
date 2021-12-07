@@ -445,7 +445,7 @@ let createOrderTable = (orders) => {
     let order = orders[i].deadline
     var jsDate = new Date(Date.parse(order.split(/[- :]/)))
     var dateArr = jsDate.split(" ");
-console.log("due by: " + dateArr[0] + " " + dateArr[1] + " " + dateArr[2] + " " + dateArr[3])
+console.log("due by: " + dateArr)
     body[0].textContent = "Class: " + orders[i].class;
     body[1].textContent = "Title: " + orders[i].title;
     body[2].textContent = "Authors: " + orders[i].authors;
