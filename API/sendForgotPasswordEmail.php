@@ -9,8 +9,8 @@ ini_set('display_errors', 'on');
 
 $inData = getRequestInfo();
 
-#	$to			= $inData["email"];
-	$to			= 'maximilliangomer@gmail.com';
+	$to			= $inData["email"];
+#	$to			= 'maximilliangomer@gmail.com';
 	$subject	= 'Reset Password';
 	$message 	= $inData["message"];
 #	$message 	= 'test message!';
