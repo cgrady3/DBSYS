@@ -385,8 +385,8 @@ function selectOrder() {
 
   selectedOrder = {
     oid: $(this).attr("data-id"),
-    subject: body[0].innerText.split(" ")[1],
-    courseNumber: body[0].innerText.split(" ")[2],
+    subject: body[0].innerText.split(" ")[0],
+    courseNumber: body[0].innerText.split(" ")[1],
     title: body[1].innerText.split(" ")[1],
     authors: body[2].innerText.split(": ")[1],
     edition: body[3].innerText.split(" ")[1],
