@@ -183,7 +183,7 @@ $("#sendForgotPasswordEmail").click(function () {
         newPassword = generateTempPassword();
 
         // Assign new password to user in database
-        assignTempPassword(newPassword, jsonObject.fid);
+        assignTempPassword(newPassword, jsonObject.fid, Email);
 
         // // Send an email to the user containing the new password
         // sendForgotPasswordEmail(newPassword, Email);
@@ -233,7 +233,7 @@ function sendForgotPasswordEmail(newPassword, Email) {
 }
 
 // Updates the user in the database with the new password
-function assignTempPassword(newPassword, fid) {
+function assignTempPassword(newPassword, fid, Email) {
 
   // hashing password
   hashedPassword = md5(newPassword);
