@@ -57,9 +57,9 @@ $("#editUserpassword").click((e) => {
 });
 
 $("#changeFacultyInfo").click((e) => {
-  var facultyID = $("#facutlyNewPassword").val();
-  var name = $("#facutlyNewName").val();
-  var email = $("#facutlyNewEmail").val();
+  var facultyID = $("#facultyNewPassword").val();
+  var name = $("#facultyNewName").val();
+  var email = $("#facultyNewEmail").val();
 
   updateEmail(facultyID, email);
   updateName(facultyID, name);
@@ -121,7 +121,7 @@ $("#deleteAdminAcct").click((e) => {
   }
 });
 
-$("#deleteAcct").click((e) => {
+$("#deleteUserAcct").click((e) => {
   if (
     confirm(
       "Are you sure you want to delete your account?"
@@ -137,6 +137,8 @@ $("#deleteAcct").click((e) => {
     try {
       xhr.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
+          $("#change-password-message").text("Account successfully deleted, logging out...");
+          sleep(1); // delay so user can view success message
           doLogout();
         }
       };
