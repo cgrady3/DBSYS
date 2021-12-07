@@ -20,7 +20,7 @@ window.onload = function () {
 };
 
 $("#editUserpassword").click((e) => {
-  var password = $("#facutlyNewPassword").val();
+  var password = $("#facultyNewPassword").val();
 
   var user = '{"fid" : "' + fid + '", "Password" : "' + password + '"}';
 
