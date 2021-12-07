@@ -638,7 +638,7 @@ async function getDeadline(){
         
         var jsonObject = JSON.parse(xhr.responseText);
         //console.log(jsonObject[0]);
-        //console.log(jsonObject[0].deadline);
+        console.log(jsonObject[0].deadline);
         return jsonObject[0].deadline;
 
       }
