@@ -30,7 +30,7 @@
     <div class="container-fluid" id="mainHeading">
         <h1>Welcome to the UCF Bookstore Main Page</h1>
         <div class="row d-flex justify-content-center">
-            <button class="btn btn-sm align-self-center top" data-toggle="modal"
+                        <button class="btn btn-sm align-self-center top" data-toggle="modal"
                 data-target="#editUserPasswordModal">Change
                 Password</button>
             <button class="btn btn-sm align-self-center top"><a id="logout" onclick="doLogout()"
@@ -79,19 +79,24 @@
             <div class="" id="viewRequestsContent" style="display:none">
                 <h3 class="contentHeading">View/Edit Book Request Forms</h3>
                 <!-- Dropdown menu for viewing by semester -->
-                <select class="form-select" id="viewRequestsSemesterDropdown">
-                    <option value="" class="semester" href='#' selected>View by Semester</option>
-                    <option value="Fall 2021" class="semester" href='#'>Fall 2021</option>
-                    <option value="Spring 2022" class="semester" href='#'>Spring 2022</option>
-                    <option value="Summer 2022" class="semester" href='#'>Summer 2022</option>
-                    <option value="Fall 2022" class="semester" href='#'>Fall 2022</option>
-                    <option value="Spring 2023" class="semester" href='#'>Spring 2023</option>
-                    <option value="Summer 2023" class="semester" href='#'>Summer 2023</option>
-                    <option value="Fall 2023" class="semester" href='#'>Fall 2023</option>
-                    <option value="Spring 2024" class="semester" href='#'>Spring 2024</option>
-                    <option value="Summer 2024" class="semester" href='#'>Summer 2024</option>
-                    <option value="Fall 2024" class="semester" href='#'>Fall 2024</option>
-                </select>
+                <div class="dropdown" id="selectSemester">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="viewRequestsSemesterDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        View by Semester
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="viewRequestsSemesterDropdown">
+                        <li><a class="dropdown-item semester" href='#'>Fall 2021</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Spring 2022</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Summer 2022</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Fall 2022</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Spring 2023</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Summer 2023</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Fall 2023</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Spring 2024</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Summer 2024</a></li>
+                        <li><a class="dropdown-item semester" href='#'>Fall 2024</a></li>
+                    </ul>
+                </div>
             </div>
 
             <!-- New Book Request Form Content -->
@@ -105,25 +110,25 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="newRequestSemesterDropdown">
                         <li class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Fall
-                            2021</li>
+                                2021</li>
                         <liclass="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Spring
-                            2022></li>
-                            <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Summer
-                                    2022</a></li>
-                            <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Fall
-                                    2022</a></li>
-                            <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Spring
-                                    2023</a></li>
-                            <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Summer
-                                    2023</a></li>
-                            <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Fall
-                                    2023</a></li>
-                            <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Spring
-                                    2024</a></li>
-                            <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Summer
-                                    2024</a></li>
-                            <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Fall
-                                    2024</a></li>
+                                2022></li>
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Summer
+                                2022</a></li>
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Fall
+                                2022</a></li>
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Spring
+                                2023</a></li>
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Summer
+                                2023</a></li>
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Fall
+                                2023</a></li>
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Spring
+                                2024</a></li>
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Summer
+                                2024</a></li>
+                        <li><a class="dropdown-item" href='#' data-toggle="modal" data-target="#orderModal">Fall
+                                2024</a></li>
                     </ul>
                 </div>
             </div>

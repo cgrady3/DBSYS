@@ -214,7 +214,7 @@ $(".semester").click((e) => {
 
   $("#viewRequestsContent").hide();
 
-  currSemester = $(this).value;
+  currSemester = $(this).text;
   console.log("currsememster: " + currSemester);
 
   if (isStaff) {
