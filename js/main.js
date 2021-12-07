@@ -454,6 +454,7 @@ let CreateNewOrder = (order) => {
 };
 
 let deleteOrder = () => {
+  $("#row-1").empty()
   var url = urlBase + "/DeleteOrder" + extension;
   var xhr = new XMLHttpRequest();
 
