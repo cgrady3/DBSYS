@@ -335,7 +335,7 @@ $("#submitOrder").on("click", (e) => {
     fid +
     '", "course" : "' +
     cid +
-    '", "orderBy" : "' +
+    '", "deadline" : "' +
     $("#order-date").val() +
     '", "semester" : "' +
     semester +
