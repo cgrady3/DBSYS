@@ -312,6 +312,8 @@ $("#editOrder").click((e) => {
         $("#order-isbn").val(jsonObject.isbn);
         $("#order-date").val(jsonObject.orderBy);
         $("#error-message").text("");
+
+        $("#orderModal").modal('show');
       }
     };
     xhr.send(search);
@@ -558,7 +560,6 @@ $("#InviteProfessor").click(function(){
       if (this.readyState === 4 && this.status === 200) {
         //var jsonObject = JSON.parse(xhr.responseText);
         console.log("success");
-        return;
       }
     };
     xhr.send(jsonPayload);
@@ -573,8 +574,6 @@ $("#broadcastEmailReminder").click(function(){
   var url = urlBase + "/Broadcast" + extension;
   var xhr = new XMLHttpRequest();
   
-
-
   var jsonPayload = '{"emails" : "' + emailList + '"}';
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -621,7 +620,6 @@ function sendBroadcastEmailReminder(emails){
       if (this.readyState === 4 && this.status === 200) {
         //var jsonObject = JSON.parse(xhr.responseText);
         console.log("success");
-        return;
       }
     };
     xhr.send(jsonPayload);
