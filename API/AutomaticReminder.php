@@ -17,8 +17,6 @@
 	$emailList = '';
     $singleEmail = '';
 
-
-
   	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()){
 			
@@ -27,8 +25,6 @@
 			$emailList .= $singleEmail;
 
 		}
-		//echo json_encode($rows);
-        //echo gettype($rows[0]);
 		
   	}
     	else {
