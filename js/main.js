@@ -443,7 +443,8 @@ let createOrderTable = (orders) => {
 
   for (var i = 0; i < orders.length; i++) {
     let order = orders[i].orderBy
-console.log("due by: " + order.toString)
+    var jsDate = new Date(Date.parse(order.replace(/[-]/g,'/')))
+console.log("due by: " + jsDate)
     body[0].textContent = "Class: " + orders[i].class;
     body[1].textContent = "Title: " + orders[i].title;
     body[2].textContent = "Authors: " + orders[i].authors;
