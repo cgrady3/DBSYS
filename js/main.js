@@ -279,8 +279,9 @@ $(".semester4").click((e) => {
 });
 
 // prefill modal fields for prof to edit
-$("#editOrder").on("click", (e) => {
+$("#editOrder").click((e) => {
   e.preventDefault();
+  console.log("edit order");
   var oid = $(this).attr("data-oid");
   var search = '{"oid" : "' + oid + '"}';
   console.log(oid)
