@@ -182,21 +182,20 @@ $("#sendForgotPasswordEmail").click(function () {
   } catch (err) {
     console.log(err);
   }
+  // // Check if user is staff (illegal to do forgotPassword on staff account)
+  // if (isStaff == 1 || (!userExists)) {
+  //   $("#forgot-password-error").text("No account for this email exists");
+  //   return;
+  // }
 
-  // Check if user is staff (illegal to do forgotPassword on staff account)
-  if (isStaff == 1 || (!userExists)) {
-    $("#forgot-password-error").text("No account for this email exists");
-    return;
-  }
+  // // User is professor if this point is reached, generate new random password
+  // var newPassword = generateTempPassword();
 
-  // User is professor if this point is reached, generate new random password
-  var newPassword = generateTempPassword();
+  // // Assign new password to user in database
+  // assignTempPassword(newPassword, fid);
 
-  // Assign new password to user in database
-  assignTempPassword(newPassword, fid);
-
-  // Send an email to the user containing the new password
-  sendForgotPasswordEmail(newPassword, Email);
+  // // Send an email to the user containing the new password
+  // sendForgotPasswordEmail(newPassword, Email);
 });
 
 // Send an email to the user with the new password
@@ -208,7 +207,7 @@ function sendForgotPasswordEmail(newPassword, Email) {
                 '\n https://www.databases-group25-project.com';
 
   // Construct jsonPayload
-  var jsonPayload = '{"message" : "' + message + '", "email" : "' + email + '"}';
+  var jsonPayload = '{"message" : "' + message + '", "email" : "' + Email + '"}';
 
   // Call sendIndividualEmail.php
   var url = urlBase + "/sendIndividualEmail" + extension;
