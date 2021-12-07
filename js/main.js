@@ -533,7 +533,7 @@ $("#broadcastEmailReminder").click(function(){
         sendBroadcastEmailReminder(jsonObject);
       }
     };
-    xhr.send(jsonPayload);
+    xhr.send();
   } catch (err) {
     console.log("broadcast-error");
   }
